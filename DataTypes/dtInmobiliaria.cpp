@@ -1,4 +1,4 @@
-#include "dtZona.h"
+#include "dtInmobiliaria.h"
 
 // CONSTRUCTOR:
 dtInmobiliaria::dtInmobiliaria(string nombre, string codigo, direccion *direccion){
@@ -9,7 +9,7 @@ dtInmobiliaria::dtInmobiliaria(string nombre, string codigo, direccion *direccio
 
 // DESTRUCTOR:
 dtInmobiliaria::~dtInmobiliaria(){
-    cout << "destruct de dtZona";
+    cout << "destruct de dtInmobiliaria";
 }
 
 // GETTERS:
