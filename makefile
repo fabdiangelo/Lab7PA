@@ -27,10 +27,10 @@ dtRespuesta.o:
 dtZona.o:
 	g++ -c "DataTypes/dtZona.cpp"
 
-mensajesPropiedad.o:
+mensajesPropiedad.o: dtPropiedad.o
 	g++ -c "DataTypes/mensajesPropiedad.cpp"
 
-registroMensajes.o:
+registroMensajes.o: dtMensaje
 	g++ -c "DataTypes/registroMensajes.cpp"
 
 
@@ -53,7 +53,7 @@ departamento.o:
 edificio.o:
 	g++ -c edificio.cpp	
 	
-factory.o:
+factory.o: sistema.o
 	g++ -c factory.cpp	
 
 inmobiliaria.o: usuario.o propiedad.o direccion.o
