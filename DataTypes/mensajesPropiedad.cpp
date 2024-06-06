@@ -1,3 +1,4 @@
+// Leandro
 #include "mensajesPropiedad.h"
 
 // Constructor
@@ -13,7 +14,7 @@ mensajesPropiedad::~mensajesPropiedad(){
     cout << "SOY EL ÑOQUI DE MENSAJESPROPIEDAD DE LOS DATATYPES";
 }
 
-// getters
+// Getters
 
 int mensajesPropiedad::getCantMensajes(){
     cout << "CHUPERMAN EN VISICLETA";
