@@ -1,3 +1,7 @@
+#ifndef PROPIEDAD_H
+#define PROPIEDAD_H
+
+#include <iostream>
 #include propiedad.h
 
 class apartamento : public propiedad{
@@ -9,3 +13,5 @@ class apartamento : public propiedad{
 		void setM2Totales(int);
 		~apartamento();
 }
+
+#endif
