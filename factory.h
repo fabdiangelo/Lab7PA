@@ -7,3 +7,5 @@ class Factory {
     public:
         static ISistema * getSistema(); 
 };
+
+#endif
