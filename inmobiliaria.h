@@ -5,6 +5,7 @@
 #include "DataTypes/direccion.h"
 #include "usuario.h"
 #include "propiedad.h"
+#include "collections/List.h"
 
 using namespace std;
 

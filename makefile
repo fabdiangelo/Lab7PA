@@ -1,5 +1,5 @@
-okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o
-	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o -o programa
+okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o
+	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
 
 
 # Data types
@@ -30,21 +30,21 @@ dtZona.o:
 mensajesPropiedad.o: dtPropiedad.o
 	g++ -c "DataTypes/mensajesPropiedad.cpp"
 
-registroMensajes.o: dtMensaje
+registroMensajes.o: dtMensaje.o
 	g++ -c "DataTypes/registroMensajes.cpp"
 
 
 # Clases
-administrador.o:
+administrador.o: usuario.o
 	g++ -c administrador.cpp
 
-apartamento.o:
+apartamento.o: propiedad.o
 	g++ -c apartamento.cpp
 
-casa.o:
+casa.o: propiedad.o
 	g++ -c casa.cpp	
 
-chat.o:
+chat.o: mensaje.o fecha.o registroMensajes.o
 	g++ -c chat.cpp	
 	
 departamento.o:
@@ -56,7 +56,7 @@ edificio.o:
 factory.o: sistema.o
 	g++ -c factory.cpp	
 
-inmobiliaria.o: usuario.o propiedad.o direccion.o
+inmobiliaria.o: usuario.o propiedad.o direccion.o list.o
 	g++ -c inmobiliaria.cpp	
 	
 interesado.o: usuario.o
@@ -68,7 +68,7 @@ ISistema.o:
 mensaje.o:
 	g++ -c mensaje.cpp	
 	
-propiedad.o:
+propiedad.o: direccion.o list.o registroMensajes.o chat.o
 	g++ -c propiedad.cpp	
 	
 sistema.o:
@@ -81,12 +81,18 @@ zona.o:
 	g++ -c zona.cpp	
 
 
+# LISTAS:
+list.o:
+	g++ -c "ICollection/collections/List.cpp"
+
+
+
 main.o: 
 	g++ -c main.cpp
 
 
 clean:
-	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o -o programa
+	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
 run:
 	make clean
 	make
