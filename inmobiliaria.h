@@ -1,3 +1,6 @@
+#ifndef INMOBILIARIA_H
+#define INMOBILIARIA_H
+
 #include <iostream>
 #include "DataTypes/direccion.h"
 #include "usuario.h"
@@ -26,3 +29,5 @@ public:
     propiedad ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
     void MostrarDatos();
 };
+
+#endif

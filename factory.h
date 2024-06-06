@@ -1,7 +1,7 @@
 #ifndef FACTORY_H
 #endif FACTORY_H
 
-#include "Sistema.h"
+#include "sistema.h"
 
 class Factory {
     public:
