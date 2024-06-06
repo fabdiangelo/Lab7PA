@@ -12,7 +12,7 @@ private:
     int edad;
     string nombre, apellido;
 public:
-    interesado(int edad, string nombre, string apellido);
+    interesado(string correo, string contrasenia, int edad, string nombre, string apellido);
     ~interesado();
     int getEdad();
     string getNombre();
