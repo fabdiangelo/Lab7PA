@@ -14,7 +14,7 @@ private:
 public:
     registroMensajes(dtMensaje mensajes[5]);
     ~registroMensajes();
-    dtMensaje getMensajes();
+    dtMensaje ** getMensajes();
 };
 
 

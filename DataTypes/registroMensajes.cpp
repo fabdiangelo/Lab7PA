@@ -17,6 +17,6 @@ registroMensajes::~registroMensajes(){
 
 // Getters
 
-dtMensaje registroMensajes::getMensajes(){
-
+dtMensaje ** registroMensajes::getMensajes(){
+    return mensajes[]; // NO SE PORQUE NO DEJA DEVOLVER
 }
