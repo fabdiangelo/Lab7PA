@@ -1,5 +1,5 @@
-#ifndef PROPIEDAD_H
-#define PROPIEDAD_H
+#ifndef APARTAMENTO_H
+#define APARTAMENTO_H
 
 #include <iostream>
 #include propiedad.h
