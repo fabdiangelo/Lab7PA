@@ -2,7 +2,7 @@
 #define CASA_H
 
 #include <iostream>
-#include propiedad.h
+#include "propiedad.h"
 
 class casa : public propiedad{
 	private:
