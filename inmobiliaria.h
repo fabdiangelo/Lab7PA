@@ -13,7 +13,7 @@ class inmobiliaria : public usuario
 private:
     string nombre;
     direccion* direccion;
-    propiedades
+    List* propiedades;
 public:
     inmobiliaria(string nom, direccion* dir);
     ~inmobiliaria();

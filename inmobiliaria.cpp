@@ -4,6 +4,7 @@
 inmobiliaria::inmobiliaria(string nom, direccion* dir){
     this -> nombre = nom;
     this -> direccion = dir;
+    this -> propiedades = NULL
 }
 
 // DESTRUCTOR:
