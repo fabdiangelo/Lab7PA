@@ -6,12 +6,13 @@
 #include "mensaje.h"
 #include "DataTypes/fecha.h"
 #include "DataTypes/registroMensajes.h"
+
 class chat{
   private:
     fecha Fecha;
     int Hora;
     int CantMensajes;
-    MisMensajes* mensaje; //para marcar que el chat tiene una lista de mensajes...mal creo
+    List* MisMensajes; 
   public:
     chat(fecha Fecha,int Hora,int CantMensajes);
     fecha getFecha();
