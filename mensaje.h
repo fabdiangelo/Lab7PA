@@ -1,5 +1,5 @@
-#ifndef INMOBILIARIA_H
-#define INMOBILIARIA_H
+#ifndef MENSAJE_H
+#define MENSAJE_H
 
 #include <iostream>
 
