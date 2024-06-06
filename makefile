@@ -1,5 +1,5 @@
-okall: fecha.o direccion.o dtEmpleado.o dtEmpresa.o dtExtranjera.o dtNacional.o empresa.o nacional.o extranjera.o empleado.o relacion_laboral.o main.o
-	g++ fecha.o direccion.o dtEmpleado.o dtEmpresa.o dtExtranjera.o dtNacional.o empresa.o nacional.o extranjera.o empleado.o relacion_laboral.o main.o -o programa
+okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o
+	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o -o programa
 
 
 # Data types
@@ -9,34 +9,76 @@ fecha.o:
 direccion.o:
 	g++ -c "DataTypes/direccion.cpp"
 
-dtEmpleado.o:
-	g++ -c "DataTypes/dtEmpleado.cpp"
+dtDepartamento.o:
+	g++ -c "DataTypes/dtDepartamento.cpp"
 
-dtEmpresa.o:
-	g++ -c "DataTypes/dtEmpresa.cpp"
+dtEdificio.o:
+	g++ -c "DataTypes/dtEdificio.cpp"
 
-dtExtranjera.o: dtEmpresa.o
-	g++ -c "DataTypes/dtExtranjera.cpp"
+dtMensaje.o:
+	g++ -c "DataTypes/dtMensaje.cpp"
 
-dtNacional.o: dtEmpresa.o
-	g++ -c "DataTypes/dtNacional.cpp"
+dtPropiedad.o:
+	g++ -c "DataTypes/dtPropiedad.cpp"
+
+dtRespuesta.o:
+	g++ -c "DataTypes/dtRespuesta.cpp"
+
+dtZona.o:
+	g++ -c "DataTypes/dtZona.cpp"
+
+mensajesPropiedad.o:
+	g++ -c "DataTypes/mensajesPropiedad.cpp"
+
+registroMensajes.o:
+	g++ -c "DataTypes/registroMensajes.cpp"
 
 
 # Clases
-empresa.o: direccion.o
-	g++ -c empresa.cpp
+administrador.o:
+	g++ -c administrador.cpp
 
-nacional.o: empresa.o
-	g++ -c nacional.cpp
+apartamento.o:
+	g++ -c apartamento.cpp
 
-extranjera.o: empresa.o
-	g++ -c extranjera.cpp	
+casa.o:
+	g++ -c casa.cpp	
 
-empleado.o: direccion.o
-	g++ -c empleado.cpp	
+chat.o:
+	g++ -c chat.cpp	
 	
-relacion_laboral.o: empresa.o empleado.o fecha.o
-	g++ -c relacion_laboral.cpp	
+departamento.o:
+	g++ -c departamento.cpp	
+	
+edificio.o:
+	g++ -c edificio.cpp	
+	
+factory.o:
+	g++ -c factory.cpp	
+
+inmobiliaria.o: usuario.o propiedad.o direccion.o
+	g++ -c inmobiliaria.cpp	
+	
+interesado.o:
+	g++ -c interesado.cpp	
+	
+ISistema.o:
+	g++ -c ISistema.cpp	
+	
+mensaje.o:
+	g++ -c mensaje.cpp	
+	
+propiedad.o:
+	g++ -c propiedad.cpp	
+	
+sistema.o:
+	g++ -c sistema.cpp	
+	
+usuario.o:
+	g++ -c usuario.cpp	
+	
+zona.o:
+	g++ -c zona.cpp	
 
 
 main.o: 
@@ -44,7 +86,7 @@ main.o:
 
 
 clean:
-	rm -f fecha.o direccion.o dtEmpleado.o dtEmpresa.o dtExtranjera.o dtNacional.o empresa.o nacional.o extranjera.o empleado.o relacion_laboral.o main.o programa
+	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o -o programa
 run:
 	make clean
 	make
