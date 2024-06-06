@@ -1,16 +1,15 @@
+#include <iostream>
+
+using namespace std;
+
 class direccion
 {
 private:
-    /* data */
+    string ciudad, calle, numero;
 public:
-    direccion(/* args */);
+    direccion(string ciudad, string calle, string numero);
     ~direccion();
+    string getCiudad();
+    string getCalle();
+    string getNumero();
 };
-
-direccion::direccion(/* args */)
-{
-}
-
-direccion::~direccion()
-{
-}
