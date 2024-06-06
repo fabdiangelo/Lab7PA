@@ -2,7 +2,7 @@
 #define APARTAMENTO_H
 
 #include <iostream>
-#include propiedad.h
+#include "propiedad.h"
 
 class apartamento : public propiedad{
 	private:
