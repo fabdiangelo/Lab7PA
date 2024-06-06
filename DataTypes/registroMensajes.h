@@ -12,7 +12,7 @@ class registroMensajes
 private:
     dtMensaje mensajes[5];
 public:
-    registroMensajes(dtMensaje mensajes);
+    registroMensajes(dtMensaje mensajes[5]);
     ~registroMensajes();
     dtMensaje getMensajes();
 };
