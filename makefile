@@ -1,5 +1,5 @@
-okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o
-	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
+okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o
+	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
 
 
 # Data types
@@ -15,10 +15,16 @@ dtDepartamento.o:
 dtEdificio.o:
 	g++ -c "DataTypes/dtEdificio.cpp"
 
+dtInmobiliaria.o: direccion.o
+	g++ -c "DataTypes/dtInmobiliaria.cpp"
+
 dtMensaje.o:
 	g++ -c "DataTypes/dtMensaje.cpp"
 
-dtPropiedad.o:
+dtPropiedadInmo.o:
+	g++ -c "DataTypes/dtPropiedadInmo.cpp"
+
+dtPropiedad.o: direccion.o
 	g++ -c "DataTypes/dtPropiedad.cpp"
 
 dtRespuesta.o:
@@ -92,7 +98,7 @@ main.o:
 
 
 clean:
-	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtMensaje.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
+	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
 run:
 	make clean
 	make
