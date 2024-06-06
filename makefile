@@ -59,7 +59,7 @@ factory.o:
 inmobiliaria.o: usuario.o propiedad.o direccion.o
 	g++ -c inmobiliaria.cpp	
 	
-interesado.o:
+interesado.o: usuario.o
 	g++ -c interesado.cpp	
 	
 ISistema.o:
