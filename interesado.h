@@ -2,9 +2,7 @@
 #define INMOBILIARIA_H
 
 #include <iostream>
-#include "DataTypes/direccion.h"
 #include "usuario.h"
-#include "propiedad.h"
 
 using namespace std;
 
