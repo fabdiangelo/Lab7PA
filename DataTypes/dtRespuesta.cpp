@@ -1,4 +1,4 @@
-#include "dtRespuesta"
+#include "dtRespuesta.h"
 
 //CONSTRUCTOR:
 dtRespuesta::dtRespuesta(string mensaje){
@@ -8,7 +8,7 @@ dtRespuesta::dtRespuesta(string mensaje){
 // DESTRUCTOR:
 dtRespuesta::~dtRespuesta()
 {
-    cout << "dtruct de dtRespuesta :D"
+    cout << "dtruct de dtRespuesta :D";
 }
 
 // GETTERS:
