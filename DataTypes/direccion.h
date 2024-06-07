@@ -1,3 +1,6 @@
+#ifndef DIRECCION_H
+#define DIRECCION_H
+
 #include <iostream>
 
 using namespace std;
@@ -13,3 +16,5 @@ public:
     string getCalle();
     string getNumero();
 };
+
+#endif

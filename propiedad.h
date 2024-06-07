@@ -16,7 +16,7 @@ private:
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados, precioAlquiler, precioVenta;
     bool garage;
     direccion *direccion;
-    Lista *chats;
+    List *chats;
 public:
     propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, int precioAlquiler, int precioVenta);
     ~propiedad();
