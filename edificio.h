@@ -15,4 +15,4 @@ class edificio{
     int getGasto();
 }
 
-#endif EDIFICIO_H
+#endif
