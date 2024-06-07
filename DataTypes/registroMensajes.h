@@ -10,7 +10,7 @@ using namespace std;
 class registroMensajes
 {
 private:
-    List *mensajes;
+    ICollection *mensajes;
 public:
     registroMensajes(List *mensajes);
     ~registroMensajes();

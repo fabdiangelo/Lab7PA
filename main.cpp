@@ -10,6 +10,7 @@ using namespace std;
 #include "DataTypes/fecha.h"
 #include "DataTypes/mensajesPropiedad.h"
 #include "DataTypes/registroMensajes.h"
+#include "ICollection/collections/List.h"
 
 
 void pruebaDir(){
@@ -80,29 +81,34 @@ void pruebaRegistroMensajes(){
     dtMensaje *mens3 = new dtMensaje("mens3", 3);
     dtMensaje *mens4 = new dtMensaje("mens4", 4);
 
-    List *mensajes;
-    mensajes -> add(mens1);
-    mensajes -> add(mens2);
-    mensajes -> add(mens3);
-    mensajes -> add(mens4);
+    ICollection *mensajes = new List();
+    // mensajes -> add(mens1);
+    // mensajes -> add(mens2);
+    // mensajes -> add(mens3);
+    // mensajes -> add(mens4);
 
-    registroMensajes *registro = new registroMensajes(mensajes);
-    List *mensRegistro = registro -> getMensajes();
-    IIterator *iter = mensRegistro -> getIterator();
+    // registroMensajes *registro = new registroMensajes(mensajes);
 
-    cout << mensRegistro -> getSize();
-    for (int i = 0; i < mensRegistro -> getSize(); i++){
-        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
-        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
-        iter -> next();
-    }
+    // List *mensRegistro = (List *) registro -> getMensajes();
+    // IIterator *iter = mensRegistro -> getIterator();
+
+    // cout << mensRegistro -> getSize();
+    // for (int i = 0; i < mensRegistro -> getSize(); i++){
+    //     dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+    //     cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+    //     iter -> next();
+    // }
     
     mens1 -> ~dtMensaje();
+    mens2 -> ~dtMensaje();
+    mens3 -> ~dtMensaje();
+    mens4 -> ~dtMensaje();
 }
 
 /*
 g++ -o temp ICollection/interfaces/ICollectible.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp
 */
+
 int main (){
     pruebaRegistroMensajes();
     return 0;

@@ -2,7 +2,7 @@
 #define DTPROPIEDADINMO_H
 
 #include <iostream>
-#include "DataTypes/direccion.h"
+#include "direccion.h"
 
 using namespace std;
 

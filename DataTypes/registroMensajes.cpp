@@ -1,12 +1,14 @@
 #include "registroMensajes.h"
 
 // COSNTRUCTOR:
-registroMensajes::registroMensajes(List *mensajes){
-    // if(mensajes -> getSize() > 5){
-    //     IIterator *iter = mensajes -> getIterator();
-    //     List * temp;
+registroMensajes::registroMensajes(List *mens){
+    cout << mensajes -> getSize();
+    // if(mens -> getSize() > 5){
+    //     IIterator *iter = mens -> getIterator();
+    //     this -> mensajes = new List();
+    //     // List * temp = new List();
     //     for (int i = 0; i < 5; i++){
-    //         temp -> add( iter -> getCurrent() );
+    //         this -> mensajes -> add( iter -> getCurrent() );
     //         iter -> next();
     //     }
     // }else{
@@ -21,5 +23,6 @@ registroMensajes::~registroMensajes(){
 
 // GETTERS:
 List *registroMensajes::getMensajes(){
-    return this -> mensajes;
+    List * mensajes = (List *) this -> mensajes; 
+    return mensajes;
 }
