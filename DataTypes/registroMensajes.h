@@ -12,7 +12,7 @@ class registroMensajes
 private:
     ICollection *mensajes;
 public:
-    registroMensajes(List *mensajes);
+    registroMensajes(ICollectible *mensajes);
     ~registroMensajes();
     List *getMensajes();
 };
