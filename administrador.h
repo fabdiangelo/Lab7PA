@@ -6,7 +6,7 @@
 
 class administrador : public usuario{
 	public:
-		administrador(string, string);
+		administrador(string correo, string contrasenia);
 		~administrador();
 };
 

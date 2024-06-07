@@ -1,40 +1,35 @@
 #include "zona.h"
 
-// CONSTRUCTOR
-
+// CONSTRUCTOR:
 zona::zona(string nombre, string codigo){
-    this->nombre = nombre;
-    this->codigo = codigo;
+    this -> nombre = nombre;
+    this -> codigo = codigo;
 }
 
-// DESTRUCTOR
-
+// DESTRUCTOR:
 zona::~zona(){
-    cout << "SOY ~ DE ZONA";
+    cout << "destruct de zona";
 }
 
-// GETTERS
-
+// GETTERS:
 string zona::getNombre(){
-    return this->nombre;
+    return this -> nombre;
 }
 
 string zona::getCodigo(){
-    return this->codigo;
+    return this -> codigo;
 }
 
-// SETTERS
-
+// SETTERS:
 void zona::setNombre(string nombre){
-    this->nombre = nombre;
+    this -> nombre = nombre;
 }
 
 void zona::setCodigo(string codigo){
-    this->codigo = codigo;
+    this -> codigo = codigo;
 }
 
-// FUNCIONALIDADES
-
+// FUNCIONALIDADES:
 List zona::listarEdificios(){
     // return NULL;
 }

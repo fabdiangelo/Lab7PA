@@ -1,11 +1,10 @@
 #include "administrador.h"
 
-administrador::administrador(string corre, string contra){
-    this->correo = corre;
-    this->contrasenia = contra;
+// CONSTRUCTOR:
+administrador::administrador(string correo, string contrasenia) : usuario(correo, contrasenia){
 }
 
+// DESTRUCTOR:
 administrador::~administrador(){
-    cout << "murio...";
+    cout << "destruct de administrador";
 }
-

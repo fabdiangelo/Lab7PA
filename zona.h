@@ -1,4 +1,3 @@
-// Leandro
 #ifndef ZONA_H
 #define ZONA_H
 
@@ -17,7 +16,7 @@ public:
     string getNombre();
     string getCodigo();
     void setNombre(string nombre);
-    void setCodigo(string nombre);
+    void setCodigo(string codigo);
     List listarEdificios();
     edificio seleccionarEdificio(string nombre);
     void anidarAZona(propiedad prop);

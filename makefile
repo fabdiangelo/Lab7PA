@@ -3,45 +3,45 @@ okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMens
 
 
 # Data types
-fecha.o:
+fecha.o: #👌
 	g++ -c "DataTypes/fecha.cpp"
 
-direccion.o:
+direccion.o: #👌
 	g++ -c "DataTypes/direccion.cpp"
 
 dtDepartamento.o:
-#	g++ -c "DataTypes/dtDepartamento.cpp"
+	g++ -c "DataTypes/dtDepartamento.cpp"
 
 dtEdificio.o:
-#	g++ -c "DataTypes/dtEdificio.cpp"
+	g++ -c "DataTypes/dtEdificio.cpp"
 
-dtInmobiliaria.o: direccion.o
+dtInmobiliaria.o: direccion.o #👌
 	g++ -c "DataTypes/dtInmobiliaria.cpp"
 
-dtMensaje.o: ICollectible.o
+dtMensaje.o: ICollectible.o #👌
 	g++ -c "DataTypes/dtMensaje.cpp"
 
-dtPropiedadInmo.o:
+dtPropiedadInmo.o: direccion.o #Falta testeo en main
 	g++ -c "DataTypes/dtPropiedadInmo.cpp"
 
-dtPropiedad.o: direccion.o
+dtPropiedad.o: direccion.o #👌
 	g++ -c "DataTypes/dtPropiedad.cpp"
 
-dtRespuesta.o:
+dtRespuesta.o: #👌
 	g++ -c "DataTypes/dtRespuesta.cpp"
 
-dtZona.o:
+dtZona.o: #👌
 	g++ -c "DataTypes/dtZona.cpp"
 
-mensajesPropiedad.o: dtPropiedad.o
+mensajesPropiedad.o: dtPropiedad.o #👌
 	g++ -c "DataTypes/mensajesPropiedad.cpp"
 
-registroMensajes.o: dtMensaje.o
+registroMensajes.o: dtMensaje.o #nu se
 	g++ -c "DataTypes/registroMensajes.cpp"
 
 
 # Clases
-administrador.o: usuario.o
+administrador.o: usuario.o # falta prueba en main
 	g++ -c administrador.cpp
 
 apartamento.o: propiedad.o
@@ -71,7 +71,7 @@ interesado.o: usuario.o
 ISistema.o:
 	g++ -c ISistema.cpp	
 	
-mensaje.o:
+mensaje.o: ICollectible.o # falta prueba en main
 	g++ -c mensaje.cpp	
 	
 propiedad.o: direccion.o list.o registroMensajes.o chat.o
@@ -80,10 +80,10 @@ propiedad.o: direccion.o list.o registroMensajes.o chat.o
 sistema.o:
 	g++ -c sistema.cpp	
 	
-usuario.o:
+usuario.o: #falta func. pensar en como sistema va a guardar actualUser. es necesario hacer esto?
 	g++ -c usuario.cpp	
 	
-zona.o:
+zona.o: list.o edificio.o
 	g++ -c zona.cpp	
 
 

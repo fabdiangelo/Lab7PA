@@ -8,7 +8,7 @@ mensaje::mensaje(int hora, string mensaje){
 
 // DESTRUCTOR:
 mensaje::~mensaje(){
-    cout << "detruct del mensaje";
+    cout << "detruct de mensaje";
 }
 
 // GETTERS:

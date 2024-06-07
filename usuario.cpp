@@ -1,33 +1,35 @@
 #include "usuario.h"
 
-// CONSTRUCTOR
+// CONSTRUCTOR:
 usuario::usuario(string correo, string contrasenia){
     this -> correo = correo;
     this -> contrasenia = contrasenia;
 }
 
-// DESTRUCTOR
-
+// DESTRUCTOR:
 usuario::~usuario(){
-    cout << "SOY EL ~ DE USUARIO" <<endl;
+    cout << "destruct de usuario" << endl;
 }
 
-// GETTERS
-
+// GETTERS:
 string usuario::getCorreo(){
-    return this->correo;
+    return this -> correo;
 }
 
 string usuario::getContrasenia(){
-    return this->contrasenia;
+    return this -> contrasenia;
 }
 
-// SETTERS
-
+// SETTERS:
 void usuario::setCorreo(string correo){
     this -> correo = correo;
 }
 
-void usuario::setContrasenia(string getContrasenia){
+void usuario::setContrasenia(string contrasenia){
     this -> contrasenia = contrasenia;
+}
+
+// FUNCIONALIDAD:
+void usuario::activarUsuario(){
+
 }
