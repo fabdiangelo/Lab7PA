@@ -2,11 +2,13 @@
 
 // CONTRUCTOR:
 mensaje::mensaje(int hora, string mensaje){
+    this -> contenido = mensaje;
+    this -> hora = hora;
 }
 
 // DESTRUCTOR:
 mensaje::~mensaje(){
-    cout << "detruct del mensaje"
+    cout << "detruct del mensaje";
 }
 
 // GETTERS:
@@ -15,10 +17,10 @@ int mensaje::getHora(){
 }
 
 string mensaje::getMensaje(){
-    return this -> mensaje;
+    return this -> contenido;
 }
 
 // SETTERS:
 void mensaje::setMensaje(string mens){
-    this -> mensaje = mens; 
+    this -> contenido = mens; 
 }

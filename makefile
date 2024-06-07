@@ -10,10 +10,10 @@ direccion.o:
 	g++ -c "DataTypes/direccion.cpp"
 
 dtDepartamento.o:
-	g++ -c "DataTypes/dtDepartamento.cpp"
+#	g++ -c "DataTypes/dtDepartamento.cpp"
 
 dtEdificio.o:
-	g++ -c "DataTypes/dtEdificio.cpp"
+#	g++ -c "DataTypes/dtEdificio.cpp"
 
 dtInmobiliaria.o: direccion.o
 	g++ -c "DataTypes/dtInmobiliaria.cpp"
@@ -98,7 +98,7 @@ main.o:
 
 
 clean:
-	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o -o programa
+	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o main.o
 run:
 	make clean
 	make
