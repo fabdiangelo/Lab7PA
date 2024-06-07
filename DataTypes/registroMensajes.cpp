@@ -1,20 +1,25 @@
-// Leandro
 #include "registroMensajes.h"
 
-// Constructor
-
-registroMensajes::registroMensajes(List mensajes){
-    this->mensajes = mensajes;
+// COSNTRUCTOR:
+registroMensajes::registroMensajes(List *mensajes){
+    // if(mensajes -> getSize() > 5){
+    //     IIterator *iter = mensajes -> getIterator();
+    //     List * temp;
+    //     for (int i = 0; i < 5; i++){
+    //         temp -> add( iter -> getCurrent() );
+    //         iter -> next();
+    //     }
+    // }else{
+        this -> mensajes = mensajes;
+    // }
 }
 
-// Destructor
-
+// DESTRUCTOR:
 registroMensajes::~registroMensajes(){
-    cout << "SOY EL ÑOQUIS DE REGISTROMENSAJES DE DATATYPES";
+    cout << "destruct de registroMensajes" << endl;
 }
 
-// Getters
-
-List registroMensajes::getMensajes(){
-    return mensajes;
+// GETTERS:
+List *registroMensajes::getMensajes(){
+    return this -> mensajes;
 }
