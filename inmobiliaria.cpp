@@ -3,8 +3,8 @@
 // CONSTRUCTOR:
 inmobiliaria::inmobiliaria(string nom, direccion* dir){
     this -> nombre = nom;
-    this -> direccion = dir;
-    this -> propiedades = NULL
+    this -> dir = dir;
+    this -> propiedades = NULL;
 }
 
 // DESTRUCTOR:
@@ -18,7 +18,7 @@ string inmobiliaria::getNombre(){
 
 direccion* inmobiliaria::getDireccion()
 {
-    return this -> direccion;
+    return this -> dir;
 }
 
 // SETTERS:
@@ -27,7 +27,7 @@ void inmobiliaria::setNombre(string nom){
 }
 
 void inmobiliaria::setDireccion(direccion* dir){
-    this -> direccion = dir;
+    this -> dir = dir;
 }
 
 // FUNCIONALIDAD:

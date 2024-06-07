@@ -13,9 +13,9 @@ private:
     string nombreInmo;
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados;
     bool garage, enVenta, enAlquiler;
-    direccion * direccion, direccionInmo;
+    direccion * dir, direccionInmo;
 public:
-    dtProiedadInmo(char* codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion);
+    dtProiedadInmo(char* codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir);
     ~dtProiedadInmo();
 };
 #endif
