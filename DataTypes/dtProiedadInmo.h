@@ -18,11 +18,4 @@ public:
     dtProiedadInmo(char* codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion);
     ~dtProiedadInmo();
 };
-
-dtProiedadInmo::dtProiedadInmo(/* args */)
-{
-}
-
-dtProiedadInmo::~dtProiedadInmo()
-{
-}
+#endif

@@ -10,13 +10,13 @@ class dtInmobiliaria
 {
 private:
     string nombre, correo;
-    direccion *direccion;
+    direccion dir;
 public:
-    dtInmobiliaria(string nombre, string codigo, direccio *direccion);
+    dtInmobiliaria(string nombre, string correo, direccion * dir);
     ~dtInmobiliaria();
     string getNombre();
     string getCorreo();
-    direccion *direccion();
+    direccion* getDireccion();
 };
 
 #endif

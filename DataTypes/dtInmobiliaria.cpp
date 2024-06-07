@@ -1,10 +1,10 @@
 #include "dtInmobiliaria.h"
 
 // CONSTRUCTOR:
-dtInmobiliaria::dtInmobiliaria(string nombre, string codigo, direccion *direccion){
+dtInmobiliaria::dtInmobiliaria(string nombre, string correo, direccion *dir){
     this -> nombre = nombre;
-    this -> codigo = codigo;
-    this -> direccion = direccion;
+    this -> correo = correo;
+    this -> dir = dir;
 }
 
 // DESTRUCTOR:
@@ -17,10 +17,10 @@ string dtInmobiliaria::getNombre(){
     return this -> nombre;
 }
 
-string dtInmobiliaria::getCodigo(){
-    return this -> codigo;
+string dtInmobiliaria::getCorreo(){
+    return this -> correo;
 }
 
 direccion *dtInmobiliaria::getDireccion(){
-    return this -> direccion;
+    //return this -> dir;
 }
