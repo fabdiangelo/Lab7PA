@@ -3,6 +3,7 @@ using namespace std;
 
 #include "DataTypes/direccion.h"
 #include "DataTypes/dtInmobiliaria.h"
+#include "DataTypes/dtMensaje.h"
 #include "DataTypes/dtPropiedad.h"
 #include "DataTypes/dtRespuesta.h"
 #include "DataTypes/dtZona.h"
@@ -26,6 +27,11 @@ void pruebaDtInmo(){
 
     dtInmo->~dtInmobiliaria();
     dir->~direccion();
+}
+void pruebaDtMensaje(){
+    dtMensaje *mens = new dtMensaje("mens1", 1);
+    cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+    mens -> ~dtMensaje();
 }
 void pruebaDtPropiedad(){
     direccion* di = new direccion("a", "b", "c");
@@ -69,13 +75,35 @@ void pruebaMensajesPropiedad(){
     di->~direccion();
 }
 void pruebaRegistroMensajes(){
+    dtMensaje *mens1 = new dtMensaje("mens1", 1);
+    dtMensaje *mens2 = new dtMensaje("mens2", 2);
+    dtMensaje *mens3 = new dtMensaje("mens3", 3);
+    dtMensaje *mens4 = new dtMensaje("mens4", 4);
+
+    List *mensajes;
+    mensajes -> add(mens1);
+    mensajes -> add(mens2);
+    mensajes -> add(mens3);
+    mensajes -> add(mens4);
+
+    registroMensajes *registro = new registroMensajes(mensajes);
+    List *mensRegistro = registro -> getMensajes();
+    IIterator *iter = mensRegistro -> getIterator();
+
+    cout << mensRegistro -> getSize();
+    for (int i = 0; i < mensRegistro -> getSize(); i++){
+        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        iter -> next();
+    }
     
+    mens1 -> ~dtMensaje();
 }
 
 /*
-g++ -o temp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp
+g++ -o temp ICollection/interfaces/ICollectible.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp
 */
 int main (){
-    pruebaMensajesPropiedad();
+    pruebaRegistroMensajes();
     return 0;
 }
