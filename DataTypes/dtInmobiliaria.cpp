@@ -9,7 +9,7 @@ dtInmobiliaria::dtInmobiliaria(string nombre, string correo, direccion *dir){
 
 // DESTRUCTOR:
 dtInmobiliaria::~dtInmobiliaria(){
-    cout << "destruct de dtInmobiliaria" <<endl;
+    cout << "destruct de dtInmobiliaria";
 }
 
 // GETTERS:
@@ -21,6 +21,6 @@ string dtInmobiliaria::getCorreo(){
     return this -> correo;
 }
 
-direccion* dtInmobiliaria::getDireccion(){
+direccion *dtInmobiliaria::getDireccion(){
     return this -> dir;
 }

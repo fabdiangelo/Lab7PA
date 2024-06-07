@@ -16,8 +16,8 @@ public:
     ~zona();
     string getNombre();
     string getCodigo();
-    string setNombre();
-    string setCodigo();
+    void setNombre(string nombre);
+    void setCodigo(string nombre);
     List listarEdificios();
     edificio seleccionarEdificio(string nombre);
     void anidarAZona(propiedad prop);
