@@ -1,25 +1,21 @@
-// Leandro
 #include "mensajesPropiedad.h"
 
-// Constructor
-
-mensajesPropiedad::mensajesPropiedad(int cantidadMensajes, dtPropiedad propiedad){
-    this->cantMensajes = cantidadMensajes;
-    this->propiedad = propiedad;
+// CONSTRUCTOR:
+mensajesPropiedad::mensajesPropiedad(int cantidadMensajes, dtPropiedad *propiedad){
+    this -> cantMensajes = cantidadMensajes;
+    this -> propiedad = propiedad;
 }
 
-// Destructor
-
+// DESTRUCTOR:
 mensajesPropiedad::~mensajesPropiedad(){
-    cout << "SOY EL ÑOQUI DE MENSAJESPROPIEDAD DE LOS DATATYPES";
+    cout << "destruct de mensajesPropiedad" << endl;
 }
 
-// Getters
-
+// GETTERS:
 int mensajesPropiedad::getCantMensajes(){
-    cout << "CHUPERMAN EN VISICLETA";
+    return this -> cantMensajes;
 }
 
-dtPropiedad mensajesPropiedad::getPropiedad(){
-    // FALTA REALIZAR DTPROPIEDAD PARA PODER PROGREZAR
+dtPropiedad *mensajesPropiedad::getPropiedad(){
+    return this -> propiedad;
 }

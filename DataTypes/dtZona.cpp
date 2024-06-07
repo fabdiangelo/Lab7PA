@@ -8,7 +8,7 @@ dtZona::dtZona(string nombre, string codigo){
 
 // DESTRUCTOR:
 dtZona::~dtZona(){
-    cout << "destruct de dtZona";
+    cout << "destruct de dtZona" << endl;
 }
 
 // GETTERS:
