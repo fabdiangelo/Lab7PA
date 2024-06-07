@@ -12,7 +12,11 @@ class edificio{
   public:
     string getNombre();
     int getCantPisos();
-    int getGasto();
+    int getGastosComunes();
+    void serNombre(string);
+    void setCantPisos(int);
+    void aniadirAEdificio(propiedad);
+    void desvincularEd(string);
 };
 
 #endif
