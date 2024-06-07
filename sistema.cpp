@@ -40,25 +40,78 @@ List sistema::listarZonaDep(char depSeleccionado){
 
 }
 
+string sistema::seleccionarZona(string zonaSeleccionada){
 
-/*
-string seleccionarZona(string zonaSeleccionada);
-List listarEdificios();
-void seleccionarEdificio();
-dtRespuesta ingresarDatosApartamento(int, int, int, bool, direccion, int);
-dtRespuesta ingresarDatosCasa(int, int, int, bool, direccion, int);
-dtRespuesta ingresarPrecioAlquiler(int);
-dtRespuesta ingresarPrecioVenta(int);
-void finalizarAlta();
-List listarPropiedades(string);
-dtProiedadInmo infoPropInmo(string);
-void ingresarCodigoProp(string);
-void borrarPorp(string);
-List listarPropMens(string);
-registroMensajes listarMensajes(string);
-void crearChat();
-dtRespuesta ingresarMensaje(string);
-List listarMensajesRecientes();
-dtInmobiliaria mostrarDatosInmo();
-dtPropiedad mostrarPropiedad();
-*/
+}
+
+List sistema::listarEdificios(){
+
+}
+
+void sistema::seleccionarEdificio(){
+
+}
+
+dtRespuesta sistema::ingresarDatosApartamento(int ambientes, int dormitorios, int banios, bool garage, direccion * dir, int metros){
+
+}
+
+dtRespuesta sistema::ingresarDatosCasa(int ambientes, int dormitorios, int banios , bool garage, direccion * dir, int M2Verde){
+
+}
+
+dtRespuesta sistema::ingresarPrecioAlquiler(int valorAlqui){
+
+}
+
+dtRespuesta sistema::ingresarPrecioVenta(int valorVenta){
+
+}
+
+void sistema::finalizarAlta(){
+
+}
+
+List sistema::listarPropiedades(string zonaSeleccionada){
+
+}
+
+dtProiedadInmo sistema::infoPropInmo(string propInmo){
+
+}
+
+void sistema::ingresarCodigoProp(string codigo){
+
+}
+
+void sistema::borrarPorp(string codigo){
+
+}
+
+List sistema::listarPropMens(string zonaSeleccionada){
+
+}
+
+registroMensajes sistema::listarMensajes(string propSeleccionada){
+
+}
+
+void sistema::crearChat(){
+
+}
+
+dtRespuesta sistema::ingresarMensaje(string mensaje){
+
+}
+
+List sistema::listarMensajesRecientes(){
+
+}
+
+dtInmobiliaria sistema::mostrarDatosInmo(){
+
+}
+
+dtPropiedad sistema::mostrarPropiedad(){
+
+}
