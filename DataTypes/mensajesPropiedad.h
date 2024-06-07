@@ -10,12 +10,12 @@ class mensajesPropiedad
 {
 private:
     int cantMensajes;
-    dtPropiedad propiedad;
+    dtPropiedad *propiedad;
 public:
-    mensajesPropiedad(int cantidadMensajes, dtPropiedad propiedad);
+    mensajesPropiedad(int cantidadMensajes, dtPropiedad *propiedad);
     ~mensajesPropiedad();
     int getCantMensajes();
-    dtPropiedad getPropiedad();
+    dtPropiedad *getPropiedad();
 };
 
 

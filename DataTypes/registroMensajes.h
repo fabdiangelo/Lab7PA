@@ -11,12 +11,11 @@ using namespace std;
 class registroMensajes
 {
 private:
-    List mensajes[5];
+    List dtMensaje;
 public:
-    registroMensajes(List mensajes[5]);
+    registroMensajes(List mensajes);
     ~registroMensajes();
-    List ** getMensajes();
+    List getMensajes();
 };
-
 
 #endif
