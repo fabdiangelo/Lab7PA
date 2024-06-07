@@ -12,9 +12,10 @@ class registroMensajes
 private:
     ICollection *mensajes;
 public:
-    registroMensajes(ICollectible *mensajes);
+    registroMensajes();
     ~registroMensajes();
     List *getMensajes();
+    void agregarMensaje(dtMensaje *mens);
 };
 
 #endif

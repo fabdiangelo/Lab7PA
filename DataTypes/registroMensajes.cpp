@@ -1,20 +1,8 @@
 #include "registroMensajes.h"
 
 // COSNTRUCTOR:
-registroMensajes::registroMensajes(ICollectible *mens){
-    // cout << mensajes -> getSize();
-    // // if(mens -> getSize() > 5){
-    // //     IIterator *iter = mens -> getIterator();
-    // //     this -> mensajes = new List();
-    // //     // List * temp = new List();
-    // //     for (int i = 0; i < 5; i++){
-    // //         this -> mensajes -> add( iter -> getCurrent() );
-    // //         iter -> next();
-    // //     }
-    // // }else{
-    //     this -> mensajes = mensajes;
-    // // }
-    this->mensajes->add(mens);
+registroMensajes::registroMensajes(){
+    this -> mensajes = new List();
 }
 
 // DESTRUCTOR:
@@ -26,4 +14,13 @@ registroMensajes::~registroMensajes(){
 List *registroMensajes::getMensajes(){
     List * mensajes = (List *) this -> mensajes; 
     return mensajes;
+}
+
+// FUNCIONALIDADES:
+void registroMensajes::agregarMensaje(dtMensaje * mens){
+    if (this -> mensajes -> getSize() < 5){
+        this -> mensajes -> add(mens);
+    }else{
+        cout << "Limite de mensajes superado" << endl; 
+    }
 }

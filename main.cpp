@@ -10,7 +10,6 @@ using namespace std;
 #include "DataTypes/fecha.h"
 #include "DataTypes/mensajesPropiedad.h"
 #include "DataTypes/registroMensajes.h"
-#include "ICollection/collections/List.h"
 
 
 void pruebaDir(){
@@ -80,24 +79,25 @@ void pruebaRegistroMensajes(){
     dtMensaje *mens2 = new dtMensaje("mens2", 2);
     dtMensaje *mens3 = new dtMensaje("mens3", 3);
     dtMensaje *mens4 = new dtMensaje("mens4", 4);
+    dtMensaje *mens5 = new dtMensaje("mens4", 5);
+    dtMensaje *mens6 = new dtMensaje("mens4", 6);
 
-    ICollection *mensajes = new List();
-    // mensajes -> add(mens1);
-    // mensajes -> add(mens2);
-    // mensajes -> add(mens3);
-    // mensajes -> add(mens4);
+    registroMensajes* registro = new registroMensajes();
+    registro -> agregarMensaje(mens1);
+    registro -> agregarMensaje(mens2);
+    registro -> agregarMensaje(mens3);
+    registro -> agregarMensaje(mens4);
+    registro -> agregarMensaje(mens5);
+    registro -> agregarMensaje(mens6);
 
-    // registroMensajes *registro = new registroMensajes(mensajes);
+    List *mensRegistro = (List *) registro -> getMensajes();
+    IIterator *iter = mensRegistro -> getIterator();
 
-    // List *mensRegistro = (List *) registro -> getMensajes();
-    // IIterator *iter = mensRegistro -> getIterator();
-
-    // cout << mensRegistro -> getSize();
-    // for (int i = 0; i < mensRegistro -> getSize(); i++){
-    //     dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
-    //     cout << mens->getHora() << " - " << mens->getMensaje() << endl;
-    //     iter -> next();
-    // }
+    for (int i = 0; i < mensRegistro -> getSize(); i++){
+        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        iter -> next();
+    }
     
     mens1 -> ~dtMensaje();
     mens2 -> ~dtMensaje();
@@ -106,7 +106,14 @@ void pruebaRegistroMensajes(){
 }
 
 /*
-g++ -o temp ICollection/interfaces/ICollectible.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp
+g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp
+
+    ICollection/interfaces/ICollectible.cpp 
+    ICollection/interfaces/IIterator.cpp 
+    ICollection/interfaces/ICollection.cpp
+    ICollection/collections/ListNode.cpp
+    ICollection/collections/ListIterator.cpp
+    ICollection/collections/List.cpp
 */
 
 int main (){
