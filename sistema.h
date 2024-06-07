@@ -5,9 +5,10 @@
 #include <iostream>
 #include "DataTypes/dtRespuesta.h"
 #include "DataTypes/direccion.h"
-#include "DataTypes/dtPropiedadInmo.h"
+#include "DataTypes/dtProiedadInmo.h"
 #include "DataTypes/registroMensajes.h"
 #include "DataTypes/dtPropiedad.h"
+#include "DataTypes/dtInmobiliaria.h"
 #include "ICollection/collections/List.h"
 
 using namespace std;
@@ -32,7 +33,7 @@ public:
     dtRespuesta ingresarPrecioVenta(int);
     void finalizarAlta();
     List listarPropiedades(string);
-    dtPropiedadInmo infoPropInmo(string);
+    dtProiedadInmo infoPropInmo(string);
     void ingresarCodigoProp(string);
     void borrarPorp(string);
     List listarPropMens(string);

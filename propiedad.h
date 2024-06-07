@@ -15,17 +15,17 @@ private:
     string codigo;
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados, precioAlquiler, precioVenta;
     bool garage;
-    direccion *direccion;
+    direccion *dir;
     List *chats;
 public:
-    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, int precioAlquiler, int precioVenta);
+    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, int precioAlquiler, int precioVenta);
     ~propiedad();
     string getCodigo();
     int getCantAmbientes();
     int getCantDormitorios();
     int getCantBanios();
     bool getGarage();
-    direccion* getDireccion();
+    direccion *getDireccion();
     int getM2Edificados();
     int getPrecioAlquiler();
     int getPrecioVenta();
