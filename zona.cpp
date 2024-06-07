@@ -25,21 +25,36 @@ string zona::getCodigo(){
 
 // SETTERS
 
-string zona::setNombre(){
-    
+void zona::setNombre(string nombre){
+    this->nombre = nombre;
 }
 
+void zona::setCodigo(string codigo){
+    this->codigo = codigo;
+}
 
+// FUNCIONALIDADES
 
+List zona::listarEdificios(){
+    // return NULL;
+}
 
+edificio zona::seleccionarEdificio(string nombre){
+    // return NULL;
+}
 
+void zona::anidarAZona(propiedad prop){
 
-/*    
-string setCodigo();
-List listarEdificios();
-edificio seleccionarEdificio(string nombre);
-void anidarAZona(propiedad prop);
-void desvincularZona(string nombre);
-List listarPropMens();
-void encontrar(string nombre);
-*/
+}
+
+void zona::desvincularZona(string nombre){
+
+}
+
+List zona::listarPropMens(){
+    // return NULL;
+}
+
+void zona::encontrar(string nombre){
+
+}

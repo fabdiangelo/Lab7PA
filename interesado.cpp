@@ -1,7 +1,7 @@
 #include "interesado.h"
 
 // CONSTRUCTOR:
-interesado::interesado(string correo, string contrasenia, int edad, string nombre, string apellido) : usuairo(correo, contrasenia){
+interesado::interesado(string correo, string contrasenia, int edad, string nombre, string apellido) : usuario(correo, contrasenia){
     this -> edad = edad;
     this -> nombre = nombre;
     this -> apellido = apellido;

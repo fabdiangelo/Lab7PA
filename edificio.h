@@ -13,6 +13,6 @@ class edificio{
     string getNombre();
     int getCantPisos();
     int getGasto();
-}
+};
 
 #endif
