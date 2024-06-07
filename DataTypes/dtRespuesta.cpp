@@ -8,7 +8,7 @@ dtRespuesta::dtRespuesta(string mensaje){
 // DESTRUCTOR:
 dtRespuesta::~dtRespuesta()
 {
-    cout << "dtruct de dtRespuesta :D";
+    cout << "dtruct de dtRespuesta" << endl;
 }
 
 // GETTERS:

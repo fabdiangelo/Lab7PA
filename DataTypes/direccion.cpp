@@ -11,6 +11,7 @@ direccion::direccion(string ciudad, string calle, string numero)
 // DESTRUCTOR: 
 direccion::~direccion()
 {
+    cout << "destruct de dir" << endl;
 }
 
 // GETTERS:
