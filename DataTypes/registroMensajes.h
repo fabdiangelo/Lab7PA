@@ -4,17 +4,18 @@
 #include <iostream>
 
 #include "dtMensaje.h"
+#include "../ICollection/collections/List.h"
 
 using namespace std;
 
 class registroMensajes
 {
 private:
-    dtMensaje mensajes[5];
+    List mensajes[5];
 public:
-    registroMensajes(dtMensaje mensajes[5]);
+    registroMensajes(List mensajes[5]);
     ~registroMensajes();
-    dtMensaje ** getMensajes();
+    List ** getMensajes();
 };
 
 

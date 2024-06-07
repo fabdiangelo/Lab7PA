@@ -3,7 +3,7 @@
 
 // Constructor
 
-registroMensajes::registroMensajes(dtMensaje mensajes[5]){
+registroMensajes::registroMensajes(List mensajes[5]){
     for(int i=0; i < 5; i++){
         this->mensajes[i] = mensajes[i];
     }
@@ -17,6 +17,6 @@ registroMensajes::~registroMensajes(){
 
 // Getters
 
-dtMensaje ** registroMensajes::getMensajes(){
+List ** registroMensajes::getMensajes(){
     return mensajes[]; // NO SE PORQUE NO DEJA DEVOLVER
 }
