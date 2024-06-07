@@ -12,6 +12,6 @@ class apartamento : public propiedad{
 		int getM2Totales();
 		void setM2Totales(int);
 		~apartamento();
-}
+};
 
 #endif
