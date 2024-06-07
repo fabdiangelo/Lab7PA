@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class interesado : usuario
+class interesado : public usuario
 {
 private:
     int edad;
