@@ -40,7 +40,7 @@ bool propiedad::getGarage(){
     return this -> garage;
 }
 
-direccion *propiedad::getDireccion(){
+direccion* propiedad::getDireccion(){
     return this -> direccion;
 }
 
@@ -58,7 +58,7 @@ int propiedad::getPrecioVenta(){
 
 // SETTERS:
 void propiedad::setPrecioAlquiler(int precio){
-    this -> precioAlquiler = precio
+    this -> precioAlquiler = precio;
 }
 
 void propiedad::setPrecioVenta(int precio){
@@ -67,10 +67,18 @@ void propiedad::setPrecioVenta(int precio){
 
 //FUNCIONALIDAD
 //pendiente...
-void propiedad::CortarLazos(string codigo);
+void propiedad::CortarLazos(string codigo){
 
-registroMensajes propiedad::MostrarMensajes();
+}
 
-chat *propiedad::CrearChat();
+registroMensajes propiedad::MostrarMensajes(){
+    return NULL;
+}
 
-void propiedad::IngresarMensaje(string mensaje);
+chat *propiedad::CrearChat(){
+    return NULL;
+}
+
+void propiedad::IngresarMensaje(string mensaje){
+    
+}

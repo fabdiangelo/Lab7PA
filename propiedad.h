@@ -25,7 +25,7 @@ public:
     int getCantDormitorios();
     int getCantBanios();
     bool getGarage();
-    direccion *getDireccion();
+    direccion* getDireccion();
     int getM2Edificados();
     int getPrecioAlquiler();
     int getPrecioVenta();

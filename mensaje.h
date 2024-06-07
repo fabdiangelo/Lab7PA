@@ -2,14 +2,15 @@
 #define MENSAJE_H
 
 #include <iostream>
+#include "ICollection/interfaces/ICollectible.h"
 
 using namespace std;
 
-class mensaje
+class mensaje : ICollectible
 {
 private:
     int hora;
-    string mensaje;
+    string contenido;
 public:
     mensaje(int hora, string mensaje);
     ~mensaje();

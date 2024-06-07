@@ -26,4 +26,4 @@ class chat{
     ~chat();
 };
 
-#endif CHAT_H
+#endif
