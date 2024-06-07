@@ -23,7 +23,7 @@ public:
     void anidarAZona(propiedad prop);
     void desvincularZona(string nombre);
     List listarPropMens();
-    void encontrar(string nombre);
+    void encontrar(string nombre)
 };
 
 #endif
