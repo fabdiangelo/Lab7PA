@@ -167,7 +167,28 @@ void pruebaChat(){
     fe -> ~fecha();
 }
 void pruebaDepartamento(){
+    departamento* dep = new departamento("San José", 'M');
+    cout << dep->getNombre() << " - " << dep->getId() << endl;
 
+    dep -> setId('L');
+    dep -> setNombre("Colonia");
+    cout << dep->getNombre() << " - " << dep->getId() << endl;
+
+    dep -> agregarZona("pepe", "NH");
+    dep -> agregarZona("epep", "HN");
+    ICollection *zonas = dep -> obtenerListado();
+
+    IIterator *iter = zonas -> getIterator();
+    for (int i = 0; i < zonas -> getSize(); i++){
+        zona *z =(zona *) iter -> getCurrent();
+        cout << z->getNombre() << " - " << z->getCodigo() << endl;
+        iter -> next();
+    }
+
+    zona* z = dep -> seleccionarZona("NH");
+    cout << z->getNombre() << " - " << z->getCodigo() << endl;
+
+    dep -> ~departamento();
 }
 void pruebaInteresado(){
     interesado *user = new interesado("pepe@mail", "pepito123", 17, "pepe", "perdomo");
@@ -196,7 +217,7 @@ void pruebaUsuario(){
     user ->~usuario();
 }
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp interesado.cpp mensaje.cpp usuario.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp interesado.cpp mensaje.cpp usuario.cpp zona.cpp
 
     ICollection/interfaces/ICollectible.cpp 
     ICollection/interfaces/IIterator.cpp 
@@ -207,6 +228,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaInteresado();
+    pruebaDepartamento();
     return 0;
 }

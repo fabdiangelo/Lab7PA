@@ -30,7 +30,7 @@ dtPropiedadInmo.o: direccion.o #👌
 dtRespuesta.o: #👌
 	g++ -c "DataTypes/dtRespuesta.cpp"
 
-dtZona.o: #👌
+dtZona.o: ICollectible#👌
 	g++ -c "DataTypes/dtZona.cpp"
 
 mensajesPropiedad.o: dtPropiedad.o #👌
@@ -53,7 +53,7 @@ casa.o: propiedad.o
 chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
 	g++ -c chat.cpp	
 	
-departamento.o:
+departamento.o: zona.o list.o dtZona.o
 	g++ -c departamento.cpp	
 	
 edificio.o:
@@ -65,7 +65,7 @@ factory.o: sistema.o
 inmobiliaria.o: usuario.o propiedad.o direccion.o list.o
 	g++ -c inmobiliaria.cpp	
 	
-interesado.o: usuario.o
+interesado.o: usuario.o #👌
 	g++ -c interesado.cpp	
 	
 ISistema.o:

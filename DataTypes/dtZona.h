@@ -2,10 +2,11 @@
 #define DTZONA_H
 
 #include <iostream>
+#include "../ICollection/interfaces/ICollectible.h"
 
 using namespace std;
 
-class dtZona
+class dtZona : public ICollectible
 {
 private:
     string nombre, codigo;

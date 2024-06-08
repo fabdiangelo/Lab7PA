@@ -1,9 +1,10 @@
 #include "zona.h"
 
 // CONSTRUCTOR:
-zona::zona(string nombre, string codigo){
+zona::zona(string nombre, string codigo, departamento* dep){
     this -> nombre = nombre;
     this -> codigo = codigo;
+    this -> dep = dep;
 }
 
 // DESTRUCTOR:
@@ -30,12 +31,12 @@ void zona::setCodigo(string codigo){
 }
 
 // FUNCIONALIDADES:
-List zona::listarEdificios(){
-    // return NULL;
+List* zona::listarEdificios(){
+    return NULL;
 }
 
-edificio zona::seleccionarEdificio(string nombre){
-    // return NULL;
+edificio* zona::seleccionarEdificio(string nombre){
+    return NULL;
 }
 
 void zona::anidarAZona(propiedad prop){
@@ -46,8 +47,8 @@ void zona::desvincularZona(string nombre){
 
 }
 
-List zona::listarPropMens(){
-    // return NULL;
+List* zona::listarPropMens(){
+    return NULL;
 }
 
 void zona::encontrar(string nombre){
