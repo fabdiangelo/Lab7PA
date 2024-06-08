@@ -1,8 +1,8 @@
 #include "mensaje.h"
 
 // CONTRUCTOR:
-mensaje::mensaje(int hora, string mensaje){
-    this -> contenido = mensaje;
+mensaje::mensaje(int hora, string cont){
+    this -> contenido = cont;
     this -> hora = hora;
 }
 

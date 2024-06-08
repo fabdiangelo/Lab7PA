@@ -6,13 +6,13 @@
 
 using namespace std;
 
-class mensaje : ICollectible
+class mensaje : public ICollectible
 {
 private:
     int hora;
     string contenido;
 public:
-    mensaje(int hora, string mensaje);
+    mensaje(int hora, string cont);
     ~mensaje();
     int getHora();
     string getMensaje();
