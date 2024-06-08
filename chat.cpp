@@ -6,7 +6,7 @@ chat::chat(fecha *Fecha, int Hora){
     this -> Hora = Hora;
     this -> CantMensajes = 0;
     this -> MisMensajes = new List();
-    this -> persona = NULL;
+    this -> persona = NULL; // Cambiar por actualUser
 }
 
 // DESTRUCTOR:
@@ -34,11 +34,16 @@ interesado* chat::getInteresado(){
 
 // FUNCIONALIDAD:
 void chat::BorrarMensajes(){
-    for(IIterator *iter = this -> MisMensajes -> getIterator(); iter -> hasCurrent(); iter -> next()){
+    IIterator *iter = this -> MisMensajes -> getIterator();
+
+    while(iter -> hasCurrent()){
         mensaje *mens =(mensaje *) iter -> getCurrent();
+        iter -> next();
         this -> MisMensajes -> remove(mens);
         mens -> ~mensaje();
     }
+    
+    this -> CantMensajes = 0;
 }
 
 registroMensajes* chat::ObtenerRegistro(){
@@ -57,6 +62,9 @@ void chat::CrearMensaje(string contenido){
     t = time(NULL);
     tm = localtime(&t);
     int hora = tm -> tm_hour;
+
     mensaje *mens = new mensaje(hora, contenido);
     MisMensajes -> add(mens);
+
+    this -> CantMensajes++;
 }

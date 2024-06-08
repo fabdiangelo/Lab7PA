@@ -24,7 +24,7 @@ dtMensaje.o: ICollectible.o #👌
 dtPropiedad.o: direccion.o #👌
 	g++ -c "DataTypes/dtPropiedad.cpp"
 
-dtPropiedadInmo.o: direccion.o #Falta testeo en main
+dtPropiedadInmo.o: direccion.o #👌
 	g++ -c "DataTypes/dtPropiedadInmo.cpp"
 
 dtRespuesta.o: #👌
@@ -50,7 +50,7 @@ apartamento.o: propiedad.o
 casa.o: propiedad.o
 	g++ -c casa.cpp	
 
-chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o
+chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
 	g++ -c chat.cpp	
 	
 departamento.o:
@@ -71,7 +71,7 @@ interesado.o: usuario.o
 ISistema.o:
 	g++ -c ISistema.cpp	
 	
-mensaje.o: ICollectible.o # falta prueba en main
+mensaje.o: ICollectible.o #👌
 	g++ -c mensaje.cpp	
 	
 propiedad.o: direccion.o list.o registroMensajes.o chat.o
