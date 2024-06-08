@@ -44,17 +44,19 @@ void chat::BorrarMensajes(){
 registroMensajes* chat::ObtenerRegistro(){
     registroMensajes* res = new registroMensajes();
     for(IIterator *iter = this -> MisMensajes -> getIterator(); iter -> hasCurrent(); iter -> next()){
-        res -> agregarMensaje(iter -> getCurrent());
+        mensaje *mens =(mensaje*) iter -> getCurrent();
+        dtMensaje *men = new dtMensaje(mens ->getMensaje(), mens -> getHora());
+        res -> agregarMensaje(men);
     }
     return res;
 }
 
-void chat::CrearMensaje(string mensaje){
+void chat::CrearMensaje(string contenido){
     time_t t;
     struct tm *tm;
     t = time(NULL);
     tm = localtime(&t);
     int hora = tm -> tm_hour;
-    mensaje * mens = new mensaje(hora, mensaje);
-    this -> misMensajes -> add(mens);
+    mensaje *mens = new mensaje(hora, contenido);
+    MisMensajes -> add(mens);
 }

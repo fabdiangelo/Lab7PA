@@ -8,6 +8,8 @@
 #include "interesado.h"
 #include "ICollection/interfaces/IIterator.h"
 
+using namespace std;
+
 class chat{
   private:
     fecha* Fecha;
@@ -23,7 +25,7 @@ class chat{
     interesado* getInteresado();
     void BorrarMensajes();
     registroMensajes* ObtenerRegistro();
-    void CrearMensaje(string);
+    void CrearMensaje(string contenido);
     ~chat();
 };
 
