@@ -79,8 +79,8 @@ void pruebaRegistroMensajes(){
     dtMensaje *mens2 = new dtMensaje("mens2", 2);
     dtMensaje *mens3 = new dtMensaje("mens3", 3);
     dtMensaje *mens4 = new dtMensaje("mens4", 4);
-    dtMensaje *mens5 = new dtMensaje("mens4", 5);
-    dtMensaje *mens6 = new dtMensaje("mens4", 6);
+    dtMensaje *mens5 = new dtMensaje("mens5", 5);
+    dtMensaje *mens6 = new dtMensaje("mens6", 6);
 
     registroMensajes* registro = new registroMensajes();
     registro -> agregarMensaje(mens1);
