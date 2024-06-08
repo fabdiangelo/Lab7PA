@@ -5,6 +5,7 @@ using namespace std;
 #include "DataTypes/dtInmobiliaria.h"
 #include "DataTypes/dtMensaje.h"
 #include "DataTypes/dtPropiedad.h"
+#include "DataTypes/dtPropiedadInmo.h"
 #include "DataTypes/dtRespuesta.h"
 #include "DataTypes/dtZona.h"
 #include "DataTypes/fecha.h"
@@ -43,6 +44,20 @@ void pruebaDtPropiedad(){
     
     prop ->~dtPropiedad();
     di->~direccion();
+}
+void pruebaDtPropiedadInmo(){
+    direccion* dir = new direccion("a", "b", "c");
+    cout << dir->getCalle() << " - " << dir->getCiudad() << " - " << dir->getNumero() << endl;   
+    direccion* dirInmo = new direccion("d", "e", "f");
+    
+
+    dtPropiedadInmo *prop = new dtPropiedadInmo("123", 3, 4, 1, true, 23, dir, true, false, "propsSA", dirInmo);
+
+    cout << prop->getCantAmbientes() << " - " << prop->getCantBanios() << " - " << prop->getCantDormitorios() << " - " << prop->getCodigo() << " - " << prop->getDireccion() << " - " << prop->getDireccionInmo() << " - " << prop->getEnAlquiler() << " - " << prop->getEnVenta() << " - " << prop->getGarage() << " - " << prop->getM2Edificados() << " - " << prop->getNombreInmo() << endl;
+    
+    prop->~dtPropiedadInmo();
+    dir->~direccion();
+    dirInmo->~direccion();
 }
 void pruebaDtRespuesta(){
     dtRespuesta *res = new dtRespuesta("mens");
@@ -105,8 +120,36 @@ void pruebaRegistroMensajes(){
     mens4 -> ~dtMensaje();
 }
 
+
+#include "chat.h"
+
+// CLASES:
+void pruebaChat(){
+    fecha *fe = new fecha("19", "11", "2004");
+    chat *ch = new chat(fe, 4);
+    fecha *dia = ch -> getFecha();
+    cout << dia->getAnio() << " - " << dia ->getMes() << " - " << dia ->getDia() << " - " << ch -> getHora() << " - " << ch -> getCantMensajes() << endl;
+    ch -> CrearMensaje("fa");
+    ch -> CrearMensaje("da");
+
+
+    registroMensajes* registro = ch -> ObtenerRegistro();
+
+    List *mensRegistro = (List *) registro -> getMensajes();
+    IIterator *iter = mensRegistro -> getIterator();
+
+    for (int i = 0; i < mensRegistro -> getSize(); i++){
+        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        iter -> next();
+    }
+
+    
+    fe -> ~fecha();
+}
+
 /*
-g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp chat.cpp
 
     ICollection/interfaces/ICollectible.cpp 
     ICollection/interfaces/IIterator.cpp 
@@ -117,6 +160,6 @@ g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIter
 */
 
 int main (){
-    pruebaRegistroMensajes();
+    pruebaChat();
     return 0;
 }

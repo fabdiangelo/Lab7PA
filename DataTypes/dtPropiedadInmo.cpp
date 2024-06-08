@@ -1,7 +1,7 @@
 #include "dtPropiedadInmo.h"
 
 // CONSTRUCTOR:
-dtPropiedadInmo::dtPropiedadInmo(char* codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo){
+dtPropiedadInmo::dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -21,7 +21,7 @@ dtPropiedadInmo::~dtPropiedadInmo(){
 }
 
 // GETTERS:
-char *dtPropiedadInmo::getCodigo(){
+string dtPropiedadInmo::getCodigo(){
     return this -> codigo;
 }
 

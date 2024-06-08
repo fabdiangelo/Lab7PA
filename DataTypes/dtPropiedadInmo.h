@@ -9,15 +9,15 @@ using namespace std;
 class dtPropiedadInmo
 {
 private:
-    char *codigo;
-    string nombreInmo;
+    string nombreInmo, codigo;
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados;
     bool garage, enVenta, enAlquiler;
-    direccion * dir, direccionInmo;
+    direccion * dir;
+    direccion * direccionInmo;
 public:
-    dtPropiedadInmo(char* codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo);
+    dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo);
     ~dtPropiedadInmo();
-    char *getCodigo();
+    string getCodigo();
     int getCantAmbientes();
     int getCantDormitorios();
     int getCantBanios();
