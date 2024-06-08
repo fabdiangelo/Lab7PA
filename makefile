@@ -41,7 +41,7 @@ registroMensajes.o: dtMensaje.o #👌
 
 
 # Clases
-administrador.o: usuario.o # falta prueba en main
+administrador.o: usuario.o #👌
 	g++ -c administrador.cpp
 
 apartamento.o: propiedad.o
@@ -80,7 +80,7 @@ propiedad.o: direccion.o list.o registroMensajes.o chat.o
 sistema.o:
 	g++ -c sistema.cpp	
 	
-usuario.o: #falta func. pensar en como sistema va a guardar actualUser. es necesario hacer esto?
+usuario.o: #👌
 	g++ -c usuario.cpp	
 	
 zona.o: list.o edificio.o

@@ -9,7 +9,7 @@ interesado::interesado(string correo, string contrasenia, int edad, string nombr
 
 // DESTRUCTOR:
 interesado::~interesado(){
-    cout << "destruct de interesado";
+    cout << "destruct de interesado" << endl;
 }
 
 // GETTERS:

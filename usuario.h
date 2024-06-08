@@ -17,7 +17,6 @@ public:
     string getContrasenia();
     void setCorreo(string correo);
     void setContrasenia(string contrasenia);
-    void activarUsuario();
 };
 
 #endif

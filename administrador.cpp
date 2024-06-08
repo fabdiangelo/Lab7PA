@@ -6,5 +6,5 @@ administrador::administrador(string correo, string contrasenia) : usuario(correo
 
 // DESTRUCTOR:
 administrador::~administrador(){
-    cout << "destruct de administrador";
+    cout << "destruct de administrador" << endl;
 }

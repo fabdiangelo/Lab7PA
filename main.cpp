@@ -120,17 +120,21 @@ void pruebaRegistroMensajes(){
     mens4 -> ~dtMensaje();
 }
 
-
-#include "mensaje.h"
+#include "administrador.h"
 #include "chat.h"
+#include "departamento.h"
+#include "interesado.h"
+#include "mensaje.h"
+#include "usuario.h"
 
 // CLASES:
-void pruebaMensaje(){
-    mensaje *mens = new mensaje(5, "pepe");
-    cout << mens ->getHora() << " - " << mens -> getMensaje() << endl;
-    mens -> setMensaje("jojo");
-    cout << mens -> getMensaje() << endl;
-    mens ->~mensaje();
+void pruebaAdmin(){
+    administrador *user = new administrador("pepe@mail", "pepito123");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
+    user -> setCorreo("p@p");
+    user -> setContrasenia("p");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
+    user ->~administrador();
 }
 void pruebaChat(){
     fecha *fe = new fecha("19", "11", "2004");
@@ -162,9 +166,37 @@ void pruebaChat(){
     ch ->~chat();
     fe -> ~fecha();
 }
+void pruebaDepartamento(){
 
+}
+void pruebaInteresado(){
+    interesado *user = new interesado("pepe@mail", "pepito123", 17, "pepe", "perdomo");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << " - " << user->getEdad() << " - " << user->getNombre() << " - " << user->getApellido() << endl;
+    user -> setCorreo("p@p");
+    user -> setContrasenia("p");
+    user -> setEdad(71);
+    user -> setNombre("epep");
+    user -> setApellido("omodrep");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << " - " << user->getEdad() << " - " << user->getNombre() << " - " << user->getApellido() << endl;
+    user ->~interesado();
+}
+void pruebaMensaje(){
+    mensaje *mens = new mensaje(5, "pepe");
+    cout << mens ->getHora() << " - " << mens -> getMensaje() << endl;
+    mens -> setMensaje("jojo");
+    cout << mens -> getMensaje() << endl;
+    mens ->~mensaje();
+}
+void pruebaUsuario(){
+    usuario *user = new usuario("pepe@mail", "pepito123");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
+    user -> setCorreo("p@p");
+    user -> setContrasenia("p");
+    cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
+    user ->~usuario();
+}
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp mensaje.cpp chat.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp interesado.cpp mensaje.cpp usuario.cpp
 
     ICollection/interfaces/ICollectible.cpp 
     ICollection/interfaces/IIterator.cpp 
@@ -175,6 +207,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaChat();
+    pruebaInteresado();
     return 0;
 }

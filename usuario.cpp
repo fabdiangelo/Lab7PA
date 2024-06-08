@@ -28,8 +28,3 @@ void usuario::setCorreo(string correo){
 void usuario::setContrasenia(string contrasenia){
     this -> contrasenia = contrasenia;
 }
-
-// FUNCIONALIDAD:
-void usuario::activarUsuario(){
-
-}
