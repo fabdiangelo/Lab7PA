@@ -121,35 +121,42 @@ void pruebaRegistroMensajes(){
 }
 
 
-#include "chat.h"
+#include "mensaje.h"
+// #include "chat.h"
 
 // CLASES:
-void pruebaChat(){
-    fecha *fe = new fecha("19", "11", "2004");
-    chat *ch = new chat(fe, 4);
-    fecha *dia = ch -> getFecha();
-    cout << dia->getAnio() << " - " << dia ->getMes() << " - " << dia ->getDia() << " - " << ch -> getHora() << " - " << ch -> getCantMensajes() << endl;
-    ch -> CrearMensaje("fa");
-    ch -> CrearMensaje("da");
-
-
-    registroMensajes* registro = ch -> ObtenerRegistro();
-
-    List *mensRegistro = (List *) registro -> getMensajes();
-    IIterator *iter = mensRegistro -> getIterator();
-
-    for (int i = 0; i < mensRegistro -> getSize(); i++){
-        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
-        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
-        iter -> next();
-    }
-
-    
-    fe -> ~fecha();
+void pruebaMensaje(){
+    mensaje *mens = new mensaje(5, "pepe");
+    cout << mens ->getHora() << " - " << mens -> getMensaje() << endl;
+    mens -> setMensaje("jojo");
+    cout << mens -> getMensaje() << endl;
+    mens ->~mensaje();
 }
+// void pruebaChat(){
+//     fecha *fe = new fecha("19", "11", "2004");
+//     chat *ch = new chat(fe, 4);
+//     fecha *dia = ch -> getFecha();
+//     cout << dia->getAnio() << " - " << dia ->getMes() << " - " << dia ->getDia() << " - " << ch -> getHora() << " - " << ch -> getCantMensajes() << endl;
+//     ch -> CrearMensaje("fa");
+//     ch -> CrearMensaje("da");
+
+
+//     registroMensajes* registro = ch -> ObtenerRegistro();
+
+//     List *mensRegistro = (List *) registro -> getMensajes();
+//     IIterator *iter = mensRegistro -> getIterator();
+
+//     for (int i = 0; i < mensRegistro -> getSize(); i++){
+//         dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+//         cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+//         iter -> next();
+//     }
+
+//     fe -> ~fecha();
+// }
 
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp chat.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp mensaje.cpp chat.cpp
 
     ICollection/interfaces/ICollectible.cpp 
     ICollection/interfaces/IIterator.cpp 
@@ -160,6 +167,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaChat();
+    pruebaMensaje();
     return 0;
 }
