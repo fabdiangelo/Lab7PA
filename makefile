@@ -53,7 +53,7 @@ casa.o: propiedad.o
 chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
 	g++ -c chat.cpp	
 	
-departamento.o: zona.o list.o dtZona.o
+departamento.o: zona.o list.o dtZona.o #👌
 	g++ -c departamento.cpp	
 	
 edificio.o:
