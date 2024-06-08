@@ -10,13 +10,15 @@ class edificio{
     int cantPisos;
     int gastosComunes;
   public:
+    edificio(string nombre,int cantPisos,int gastosComunes);
     string getNombre();
     int getCantPisos();
     int getGastosComunes();
-    void serNombre(string);
-    void setCantPisos(int);
+    void setNombre(string nombre);
+    void setCantPisos(int cantPisos);
     void aniadirAEdificio(propiedad);
     void desvincularEd(string);
+    ~edificio();
 };
 
 #endif
