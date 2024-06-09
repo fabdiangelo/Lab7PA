@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class propiedad
+class propiedad : public ICollectible
 {
 private:
     string codigo;
@@ -32,7 +32,7 @@ public:
     void setPrecioAlquiler(int precio);
     void setPrecioVenta(int precio);
     void CortarLazos(string codigo);
-    registroMensajes MostrarMensajes();
+    registroMensajes *MostrarMensajes();
     chat *CrearChat();
     void IngresarMensaje(string mensaje);
 };

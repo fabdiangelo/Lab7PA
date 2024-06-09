@@ -71,7 +71,7 @@ void propiedad::CortarLazos(string codigo){
 
 }
 
-registroMensajes propiedad::MostrarMensajes(){
+registroMensajes *propiedad::MostrarMensajes(){
     return NULL;
 }
 

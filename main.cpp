@@ -123,6 +123,7 @@ void pruebaRegistroMensajes(){
 #include "administrador.h"
 #include "chat.h"
 #include "departamento.h"
+#include "edificio.h"
 #include "interesado.h"
 #include "mensaje.h"
 #include "usuario.h"
@@ -190,6 +191,29 @@ void pruebaDepartamento(){
 
     dep -> ~departamento();
 }
+void pruebaEdificio(){
+    edificio *ed = new edificio("nombre", 2, 1000);
+    cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed->getGastosComunes() << endl;
+    ed -> setNombre("ed");
+    ed -> setCantPisos(3);
+    ed -> setGastosComunes(2000);
+    cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed->getGastosComunes() << endl;
+
+    direccion *dir = new direccion("a", "b", "c");
+    propiedad *prop1 = new propiedad("cod1", 1, 1, 1, true, dir, 1, 1, 1);
+    propiedad *prop2 = new propiedad("cod2", 2, 2, 1, true, dir, 2, 2, 2);
+
+    ed -> agreagrPropiedad(prop1);
+    ed -> agreagrPropiedad(prop2);
+
+    ed -> desvincularProp(prop2 -> getCodigo());
+    ed -> desvincularProp(prop1 -> getCodigo());
+
+    prop1 -> ~propiedad();
+    prop2 -> ~propiedad();
+    ed -> ~edificio();
+    dir->~direccion();
+}
 void pruebaInteresado(){
     interesado *user = new interesado("pepe@mail", "pepito123", 17, "pepe", "perdomo");
     cout << user->getCorreo() << " - " << user->getContrasenia() << " - " << user->getEdad() << " - " << user->getNombre() << " - " << user->getApellido() << endl;
@@ -216,18 +240,25 @@ void pruebaUsuario(){
     cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
     user ->~usuario();
 }
-/*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/ICollection.cpp ICollection/collections/ListNode.cpp ICollection/collections/ListIterator.cpp ICollection/collections/List.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp interesado.cpp mensaje.cpp usuario.cpp zona.cpp
 
+/*
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
+
+    ICollection/String.cpp
     ICollection/interfaces/ICollectible.cpp 
-    ICollection/interfaces/IIterator.cpp 
     ICollection/interfaces/ICollection.cpp
-    ICollection/collections/ListNode.cpp
-    ICollection/collections/ListIterator.cpp
+    ICollection/interfaces/IDictionary.cpp
+    ICollection/interfaces/IIterator.cpp 
+    ICollection/interfaces/IKey.cpp 
+    ICollection/interfaces/OrderedKey.cpp
     ICollection/collections/List.cpp
+    ICollection/collections/ListIterator.cpp
+    ICollection/collections/ListNode.cpp
+    ICollection/collections/OrderedDictionary.cpp
+    ICollection/collections/OrderedDictionaryEntry.cpp
 */
 
 int main (){
-    pruebaDepartamento();
+    pruebaEdificio();
     return 0;
 }
