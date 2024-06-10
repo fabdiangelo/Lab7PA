@@ -76,7 +76,7 @@ List sistema::listarPropiedades(string zonaSeleccionada){
 
 }
 
-dtProiedadInmo sistema::infoPropInmo(string propInmo){
+dtPropiedadInmo sistema::infoPropInmo(string propInmo){
 
 }
 

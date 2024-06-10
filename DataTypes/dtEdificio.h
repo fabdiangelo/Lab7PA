@@ -3,6 +3,9 @@
 #ifndef DTEDIFICIO_H
 #define DTEDIFICIO_H
 
+#include <iostream>
+using namespace std;
+
 class dtEdificio {
     private:
       string nombre;
@@ -12,8 +15,7 @@ class dtEdificio {
       dtEdificio(string nombre,int cantPisos,int gastosComunes);
       string getNombre();
       int getCantPisos();
-      int getGastosComunes():
+      int getGastosComunes();
       ~dtEdificio();
-}  
-//SIN TERMINAR
+};
 #endif

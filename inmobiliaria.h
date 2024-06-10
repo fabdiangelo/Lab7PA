@@ -16,7 +16,7 @@ private:
     direccion* dir;
     List* propiedades;
 public:
-    inmobiliaria(string nom, direccion* dir);
+    inmobiliaria(string correo, string contrasenia, string nom, direccion* dir);
     ~inmobiliaria();
     string getNombre();
     direccion* getDireccion();

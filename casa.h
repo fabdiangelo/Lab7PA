@@ -15,6 +15,6 @@ class casa : public propiedad{
     		void setM2Verdes(int);
 		void setM2Totales(int);
 		~casa();
-}
+};
 
 #endif

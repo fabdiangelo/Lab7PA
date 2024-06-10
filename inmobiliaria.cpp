@@ -1,7 +1,7 @@
 #include "inmobiliaria.h"
 
 // CONSTRUCTOR:
-inmobiliaria::inmobiliaria(string nom, direccion* dir){
+inmobiliaria::inmobiliaria(string correo, string contrasenia, string nom, direccion* dir) : usuario(correo, contrasenia){
     this -> nombre = nom;
     this -> dir = dir;
     this -> propiedades = NULL;
