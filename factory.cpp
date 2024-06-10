@@ -1,7 +1,7 @@
 #include "factory.h"
 
-ISistema * factory::getSistema() {
-    return sistema::getInstance();
+sistema * factory::getSistema() {
+    return sistema::getInstance(); // hay que crear esta funcionalidad en el sistema o se coloco mal?
 };
 
 
