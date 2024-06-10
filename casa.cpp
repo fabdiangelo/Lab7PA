@@ -4,7 +4,7 @@ casa::casa(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios
     this->M2Totales = mt2;
     this->M2Verdes = mt2;
     //NOSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // ta arreglao bro bo sabe que me acorde fue increible
+    // ta arreglao bro
 }
 
 void casa::setM2Totales(int mt2){
