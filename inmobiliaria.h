@@ -5,7 +5,7 @@
 #include "DataTypes/direccion.h"
 #include "usuario.h"
 #include "propiedad.h"
-#include "collections/List.h"
+#include "ICollection/collections/List.h"
 
 using namespace std;
 
@@ -22,13 +22,13 @@ public:
     direccion* getDireccion();
     void setNombre(string nom);
     void setDireccion(direccion* dir);
-    propiedad IngresarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
-    propiedad IngresarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+    propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T);
+    propiedad* IngresarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
     void IngresarPrecioAlquiler(int precio);
     void IngresarPrecioVenta(int precio);
     void BorrarPropiedad(string prop);
-    propiedad ModificarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
-    propiedad ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+    propiedad* ModificarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
+    propiedad* ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
     void MostrarDatos();
 };
 

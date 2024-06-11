@@ -1,4 +1,7 @@
 #include "inmobiliaria.h"
+#include "apartamento.h"
+#include "casa.h"
+#include "propiedad.cpp"
 
 // CONSTRUCTOR:
 inmobiliaria::inmobiliaria(string correo, string contrasenia, string nom, direccion* dir) : usuario(correo, contrasenia){
@@ -9,6 +12,7 @@ inmobiliaria::inmobiliaria(string correo, string contrasenia, string nom, direcc
 
 // DESTRUCTOR:
 inmobiliaria::~inmobiliaria(){
+    cout << "destruct de inmobiliaria" << endl;
 }
 
 // GETTERS:
@@ -32,7 +36,9 @@ void inmobiliaria::setDireccion(direccion* dir){
 
 // FUNCIONALIDAD:
 //pendiente...
-propiedad IngresarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
+propiedad * IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T){
+    apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, precioAlquiler, precioVenta, m2T);
+}
 
 propiedad IngresarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
 
