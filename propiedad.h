@@ -35,6 +35,7 @@ public:
     registroMensajes *MostrarMensajes();
     chat *CrearChat();
     void IngresarMensaje(string mensaje);
+    int obtenerCantMensajes();
 };
 
 #endif

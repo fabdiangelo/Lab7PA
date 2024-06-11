@@ -6,11 +6,12 @@
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/interfaces/IKey.h"
 #include "ICollection/String.h"
+#include "ICollection/interfaces/ICollectible.h"
 #include <iostream>
 
 using namespace std;
 
-class edificio{
+class edificio : public ICollectible{
   private:
     string nombre;
     int cantPisos;

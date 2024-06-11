@@ -5,6 +5,7 @@
 #include "ICollection/collections/List.h"
 #include "edificio.h"
 #include "departamento.h"
+#include "DataTypes/mensajesPropiedad.h"
 
 class departamento;
 
@@ -24,7 +25,7 @@ class zona : public ICollectible{
     void setCodigo(string codigo);
     IDictionary* listarEdificios();
     edificio* seleccionarEdificio(string nombre);
-    void agegarEdificio(edificio* prop);
+    void agegarEdificio(edificio* ed);
     void desvincularEdifico(string nombre);
     IDictionary* listarPropiedades();
     propiedad* seleccionarPropiedad(string codigo);

@@ -3,10 +3,11 @@
 #define MENSAJESPROPIEDAD_H
 #include <iostream>
 #include "dtPropiedad.h"
+#include "../ICollection/interfaces/ICollectible.h"
 
 using namespace std;
 
-class mensajesPropiedad
+class mensajesPropiedad : public ICollectible
 {
 private:
     int cantMensajes;

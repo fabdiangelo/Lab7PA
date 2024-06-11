@@ -82,3 +82,6 @@ chat *propiedad::CrearChat(){
 void propiedad::IngresarMensaje(string mensaje){
     
 }
+int propiedad::obtenerCantMensajes(){
+    return 1;
+}
