@@ -22,10 +22,11 @@ class zona : public ICollectible{
     string getCodigo();
     void setNombre(string nombre);
     void setCodigo(string codigo);
-    List* listarEdificios();
+    IDictionary* listarEdificios();
     edificio* seleccionarEdificio(string nombre);
     void agegarEdificio(edificio* prop);
     void desvincularEdifico(string nombre);
+    IDictionary* listarPropiedades();
     propiedad* seleccionarPropiedad(string codigo);
     void agegarPropiedad(propiedad* prop);
     void desvincularPropiedad(string codigo);
