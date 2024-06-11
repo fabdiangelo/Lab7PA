@@ -83,7 +83,7 @@ sistema.o:
 usuario.o: #👌
 	g++ -c usuario.cpp	
 	
-zona.o: list.o edificio.o
+zona.o: list.o edificio.o departamento.o mensajesPropiedad.o
 	g++ -c zona.cpp	
 
 
