@@ -56,7 +56,7 @@ chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
 departamento.o: zona.o list.o dtZona.o #👌
 	g++ -c departamento.cpp	
 	
-edificio.o:
+edificio.o: OrderedDictionary.o IKey.o String.o #👌
 	g++ -c edificio.cpp	
 	
 factory.o: sistema.o
