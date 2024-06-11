@@ -32,7 +32,6 @@ class zona : public ICollectible{
     void agegarPropiedad(propiedad* prop);
     void desvincularPropiedad(string codigo);
     List* listarPropMens();
-    void encontrar(string nombre);
 };
 
 #endif

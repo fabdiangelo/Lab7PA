@@ -256,15 +256,68 @@ void pruebaUsuario(){
 void pruebaZona(){
     departamento* dep = new departamento("San José", 'M');
     zona *z = new zona("zonita", "123", dep); 
-
+    cout << z->getCodigo() << " - " << z->getNombre() << endl;
+    z -> setNombre("zona1");
+    z -> setCodigo("135");
     cout << z->getCodigo() << " - " << z->getNombre() << endl;
 
+    edificio* ed1 = new edificio("ed1", 2, 100);
+    edificio* ed2 = new edificio("ed2", 3, 1000);
+    z -> agegarEdificio(ed1);
+    z -> agegarEdificio(ed2);
+    IDictionary *edificios = z -> listarEdificios();
+
+    for (IIterator *iter = edificios -> getIterator(); iter -> hasCurrent(); iter -> next()){
+        edificio *ed =(edificio *) iter -> getCurrent();
+        cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed ->getGastosComunes() << endl;
+    }
+    edificio * ed = z -> seleccionarEdificio("ed1");
+    cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed ->getGastosComunes() << endl;
+
+    z -> desvincularEdifico("ed1");
+    ed = z -> seleccionarEdificio("ed1");
+    z -> desvincularEdifico("ed2");
+
+    direccion* dir = new direccion("a", "b", "c");
+    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, 3, 3, 3);
+    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, 6, 6, 6);
+    z -> agegarPropiedad(prop1);
+    z -> agegarPropiedad(prop2);
+    IDictionary *propiedades = z -> listarPropiedades();
+
+    for (IIterator *itera = propiedades -> getIterator(); itera -> hasCurrent(); itera -> next()){
+        propiedad *prop =(propiedad *) itera -> getCurrent();
+        cout << prop->getCodigo() << " - " << prop->getCantBanios() << endl;
+    }
+    propiedad *prop = z -> seleccionarPropiedad("123");
+    cout << prop->getCodigo() << " - " << prop->getCantBanios() << endl;
+
+    z -> desvincularPropiedad("123");
+    prop = z -> seleccionarPropiedad("123");
+    z -> desvincularPropiedad("456");
+
+    z -> agegarPropiedad(prop1);
+    z -> agegarPropiedad(prop2);
+    List* mens = z ->listarPropMens();
+    for (IIterator *iter = mens -> getIterator(); iter -> hasCurrent(); iter -> next()){
+        mensajesPropiedad *men =(mensajesPropiedad *) iter -> getCurrent();
+        cout << men->getPropiedad()->getCodigo() << " - " << men->getCantMensajes() << endl;
+    }
+
+    z -> desvincularPropiedad("123");
+    z -> desvincularPropiedad("456");
+
+    prop1->~propiedad();
+    prop2->~propiedad();
+    dir->~direccion();
+    ed1->~edificio();
+    ed2->~edificio();
     z->~zona();
     dep->~departamento();
 }
 
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp apartamento.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
 
     ICollection/String.cpp
     ICollection/interfaces/ICollectible.cpp 
@@ -281,6 +334,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaEdificio();
+    pruebaZona();
     return 0;
 }

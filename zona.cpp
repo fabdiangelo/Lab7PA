@@ -11,7 +11,7 @@ zona::zona(string nombre, string codigo, departamento* dep){
 
 // DESTRUCTOR:
 zona::~zona(){
-    cout << "destruct de zona";
+    cout << "destruct de zona" << endl;
 }
 
 // GETTERS:
@@ -39,7 +39,12 @@ IDictionary* zona::listarEdificios(){
 
 edificio* zona::seleccionarEdificio(string nombre){
     IKey *k = new String(nombre.c_str());
-    return (edificio*) this -> edificios -> find(k);
+    if(this -> edificios -> member(k)){
+        edificio* ed = (edificio*) this -> edificios -> find(k);
+        return ed;
+    }
+    cout << "No se encontró un edificio con el nombre " << nombre << " dentro de la zona " << this -> getNombre() << endl;
+    return NULL;
 }
 
 void zona::agegarEdificio(edificio* ed){
@@ -64,13 +69,18 @@ IDictionary* zona::listarPropiedades(){
 
 propiedad* zona::seleccionarPropiedad(string codigo){
     IKey *k = new String(codigo.c_str());
-    return (propiedad*) this -> propiedades -> find(k);
+    if(this -> propiedades -> member(k)){
+        propiedad* prop = (propiedad*) this -> propiedades -> find(k);
+        return prop;
+    }
+    cout << "No se encontró una propiedad con el codigo " << codigo << " dentro de la zona " << this -> getNombre() << endl;
+    return NULL;
 }
 
 void zona::agegarPropiedad(propiedad* prop){
     string codigo = prop -> getCodigo();
     IKey *k = new String(codigo.c_str());
-    this -> edificios -> add(k, prop);
+    this -> propiedades -> add(k, prop);
 }
 
 void zona::desvincularPropiedad(string codigo){
@@ -91,4 +101,5 @@ List* zona::listarPropMens(){
         mensajesPropiedad *mp = new mensajesPropiedad(prop -> obtenerCantMensajes(), dtProp);
         res -> add (mp);
     }
+    return res;
 }
