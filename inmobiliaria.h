@@ -4,8 +4,10 @@
 #include <iostream>
 #include "DataTypes/direccion.h"
 #include "usuario.h"
-#include "propiedad.h"
-#include "ICollection/collections/List.h"
+#include "casa.h"
+#include "apartamento.h"
+#include "ICollection/collections/OrderedDictionary.h"
+#include "ICollection/String.h"
 
 using namespace std;
 
@@ -14,7 +16,7 @@ class inmobiliaria : public usuario
 private:
     string nombre;
     direccion* dir;
-    List* propiedades;
+    IDictionary* propiedades;
 public:
     inmobiliaria(string correo, string contrasenia, string nom, direccion* dir);
     ~inmobiliaria();
@@ -23,7 +25,7 @@ public:
     void setNombre(string nom);
     void setDireccion(direccion* dir);
     propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T);
-    propiedad* IngresarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+    propiedad* IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V);
     void IngresarPrecioAlquiler(int precio);
     void IngresarPrecioVenta(int precio);
     void BorrarPropiedad(string prop);

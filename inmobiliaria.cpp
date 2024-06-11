@@ -1,13 +1,10 @@
 #include "inmobiliaria.h"
-#include "apartamento.h"
-#include "casa.h"
-#include "propiedad.cpp"
 
 // CONSTRUCTOR:
 inmobiliaria::inmobiliaria(string correo, string contrasenia, string nom, direccion* dir) : usuario(correo, contrasenia){
     this -> nombre = nom;
     this -> dir = dir;
-    this -> propiedades = NULL;
+    this -> propiedades = new OrderedDictionary();
 }
 
 // DESTRUCTOR:
@@ -20,8 +17,7 @@ string inmobiliaria::getNombre(){
     return this -> nombre;
 }
 
-direccion* inmobiliaria::getDireccion()
-{
+direccion* inmobiliaria::getDireccion(){
     return this -> dir;
 }
 
@@ -35,21 +31,40 @@ void inmobiliaria::setDireccion(direccion* dir){
 }
 
 // FUNCIONALIDAD:
-//pendiente...
-propiedad * IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T){
-    apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, precioAlquiler, precioVenta, m2T);
+propiedad* inmobiliaria::IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T){
+    propiedad *prop = new apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, precioAlquiler, precioVenta);
+    IKey *k = new String(cod.c_str());
+    this -> propiedades -> add (k, prop);
+    return prop;
 }
 
-propiedad IngresarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+propiedad* inmobiliaria::IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V){
+    propiedad *ca = new casa(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, precioAlquiler, precioVenta, m2V);
+    IKey *k = new String(cod.c_str());
+    this -> propiedades -> add (k, ca);
+    return ca;
+}
 
-void IngresarPrecioAlquiler(int precio);
+void inmobiliaria::IngresarPrecioAlquiler(int precio){
 
-void IngresarPrecioVenta(int precio);
+}
 
-void BorrarPropiedad(string prop);
+void inmobiliaria::IngresarPrecioVenta(int precio){
 
-propiedad ModificarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
+}
 
-propiedad ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+void inmobiliaria::BorrarPropiedad(string prop){
 
-void MostrarDatos();
+}
+
+propiedad* inmobiliaria::ModificarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2){
+    return NULL;
+}
+
+propiedad* inmobiliaria::ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd){
+    return NULL;
+}
+
+void inmobiliaria::MostrarDatos(){
+
+}
