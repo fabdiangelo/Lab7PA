@@ -13,6 +13,8 @@ class zona : public ICollectible{
     string nombre;
     string codigo;
     departamento* dep;
+    IDictionary* edificios;
+    IDictionary* propiedades;
   public:
     zona(string nombre, string codigo, departamento* dep);
     ~zona();
@@ -22,8 +24,11 @@ class zona : public ICollectible{
     void setCodigo(string codigo);
     List* listarEdificios();
     edificio* seleccionarEdificio(string nombre);
-    void anidarAZona(propiedad prop);
-    void desvincularZona(string nombre);
+    void agegarEdificio(edificio* prop);
+    void desvincularEdifico(string nombre);
+    propiedad* seleccionarPropiedad(string codigo);
+    void agegarPropiedad(propiedad* prop);
+    void desvincularPropiedad(string codigo);
     List* listarPropMens();
     void encontrar(string nombre);
 };

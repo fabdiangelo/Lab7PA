@@ -139,6 +139,7 @@ void pruebaRegistroMensajes(){
 #include "interesado.h"
 #include "mensaje.h"
 #include "usuario.h"
+#include "zona.h"
 
 // CLASES:
 void pruebaAdmin(){
@@ -251,6 +252,15 @@ void pruebaUsuario(){
     user -> setContrasenia("p");
     cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
     user ->~usuario();
+}
+void pruebaZona(){
+    departamento* dep = new departamento("San José", 'M');
+    zona *z = new zona("zonita", "123", dep); 
+
+    cout << z->getCodigo() << " - " << z->getNombre() << endl;
+
+    z->~zona();
+    dep->~departamento();
 }
 
 /*
