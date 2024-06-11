@@ -50,8 +50,8 @@ void edificio::desvincularProp(string codigo){
     IKey *k = new String(codigo.c_str());
     if(this -> apartamentos -> member(k)){
         this -> apartamentos -> remove(k);
-        cout << "La propiedad con código " << codigo << " se desvinculó del edificio " << this -> getNombre() << endl;
+        cout << "La propiedad con codigo " << codigo << " se desvinculo del edificio " << this -> getNombre() << endl;
     }else{
-        cout << "La propiedad con código " << codigo << " no se encontraba vinculada con el edificio " << this -> getNombre() << endl;
+        cout << "La propiedad con codigo " << codigo << " no se encontraba vinculada con el edificio " << this -> getNombre() << endl;
     }
 }
