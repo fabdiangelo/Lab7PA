@@ -16,7 +16,7 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
 
 // DESTRUCTOR:
 propiedad::~propiedad(){
-    cout << "destruct de propiedad";
+    cout << "destruct de propiedad" << endl;
 }
 
 // GETTERS:

@@ -2,17 +2,17 @@ okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMens
 	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o -o programa
 
 
-# Data types
+# Data types 👌
 fecha.o: #👌
 	g++ -c "DataTypes/fecha.cpp"
 
 direccion.o: #👌
 	g++ -c "DataTypes/direccion.cpp"
 
-dtDepartamento.o:
+dtDepartamento.o: #👌
 	g++ -c "DataTypes/dtDepartamento.cpp"
 
-dtEdificio.o:
+dtEdificio.o: #👌
 	g++ -c "DataTypes/dtEdificio.cpp"
 
 dtInmobiliaria.o: direccion.o #👌

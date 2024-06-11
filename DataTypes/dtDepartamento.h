@@ -1,5 +1,3 @@
-// Bernardo
-
 #ifndef DTDEPARTAMENTO_H
 #define DTDEPARTAMENTO_H
 
@@ -18,6 +16,5 @@ public:
     string getNombre();
     char getIdentificador();
 };
-
 
 #endif

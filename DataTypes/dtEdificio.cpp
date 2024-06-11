@@ -1,30 +1,26 @@
-// Daniel
 #include "dtEdificio.h"
 
-// CONSTRUCTOR
-
-dtEdificio::dtEdificio(string nombre,int cantPisos,int gastosComunes){
-    this->nombre = nombre;
-    this->cantPisos = cantPisos;
-    this->gastosComunes = gastosComunes;
+// CONSTRUCTOR:
+dtEdificio::dtEdificio(string nombre, int cantPisos, int gastosComunes){
+    this -> nombre = nombre;
+    this -> cantPisos = cantPisos;
+    this -> gastosComunes = gastosComunes;
 }
 
-// DESTRUCTOR
-
+// DESTRUCTOR:
 dtEdificio::~dtEdificio(){
-    cout << "SOY EL ~ DE DTEDIFICIO" << endl;
+    cout << "destruct de dtEdificio" << endl;
 }
 
-// GETTERS
-
+// GETTERS:
 int dtEdificio::getCantPisos(){
-    return this->cantPisos;
+    return this -> cantPisos;
 }
 
 int dtEdificio::getGastosComunes(){
-    return this->gastosComunes;
+    return this -> gastosComunes;
 }
 
 string dtEdificio::getNombre(){
-    return this->nombre;
+    return this -> nombre;
 }

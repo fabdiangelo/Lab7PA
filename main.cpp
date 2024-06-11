@@ -2,6 +2,8 @@
 using namespace std;
 
 #include "DataTypes/direccion.h"
+#include "DataTypes/dtDepartamento.h"
+#include "DataTypes/dtEdificio.h"
 #include "DataTypes/dtInmobiliaria.h"
 #include "DataTypes/dtMensaje.h"
 #include "DataTypes/dtPropiedad.h"
@@ -17,6 +19,16 @@ void pruebaDir(){
     direccion* dir = new direccion("a", "b", "c");
     cout << dir->getCalle() << " - " << dir->getCiudad() << " - " << dir->getNumero() << endl;   
     dir->~direccion();
+}
+void pruebaDtDepa(){
+    dtDepartamento * dep = new dtDepartamento("Colonia", 'L');
+    cout << dep -> getNombre() << " - " << dep->getIdentificador() << endl;
+    dep->~dtDepartamento();
+}
+void pruebaDtEdificio(){
+    dtEdificio *ed = new dtEdificio("ed", 2, 1000);
+    cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed->getGastosComunes() << endl;
+    ed->~dtEdificio();
 }
 void pruebaDtInmo(){
     direccion* dir = new direccion("a", "b", "c");
@@ -242,7 +254,7 @@ void pruebaUsuario(){
 }
 
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
 
     ICollection/String.cpp
     ICollection/interfaces/ICollectible.cpp 
@@ -259,6 +271,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaEdificio();
+    pruebaDtEdificio();
     return 0;
 }

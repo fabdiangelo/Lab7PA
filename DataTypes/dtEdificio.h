@@ -1,5 +1,3 @@
-// Daniel
-
 #ifndef DTEDIFICIO_H
 #define DTEDIFICIO_H
 
@@ -12,10 +10,11 @@ class dtEdificio {
       int cantPisos;
       int gastosComunes;
     public:
-      dtEdificio(string nombre,int cantPisos,int gastosComunes);
+      dtEdificio(string nombre, int cantPisos, int gastosComunes);
       string getNombre();
       int getCantPisos();
       int getGastosComunes();
       ~dtEdificio();
 };
+
 #endif

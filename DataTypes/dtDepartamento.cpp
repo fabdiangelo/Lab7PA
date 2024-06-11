@@ -1,25 +1,21 @@
-// Bernardo
 #include "dtDepartamento.h"
 
-// CONSTRUCTOR
-
+// CONSTRUCTOR:
 dtDepartamento::dtDepartamento(string nombre, char identificador){
-    this->nombre = nombre;
-    this->identificador = identificador;
+    this -> nombre = nombre;
+    this -> identificador = identificador;
 }
 
-// DESTRUCTOR
-
+// DESTRUCTOR:
 dtDepartamento::~dtDepartamento(){
-    cout << "SOY EL ~ DE DTDEPARTAMENTO" << endl;
+    cout << "destruct de dtDepartamento" << endl;
 }
 
-// GETTERS
-
+// GETTERS:
 string dtDepartamento::getNombre(){
-    return this->nombre;
+    return this -> nombre;
 }
 
 char dtDepartamento::getIdentificador(){
-    return this->identificador;
+    return this -> identificador;
 }
