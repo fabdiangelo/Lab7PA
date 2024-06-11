@@ -6,8 +6,8 @@
  *  como de HashedKey
  */
 
-#ifndef _STRING_H
-#define	_STRING_H
+#ifndef _CODSTRING_H
+#define	_CODSTRING_H
 
 class String: public ICollectible, public OrderedKey
 {

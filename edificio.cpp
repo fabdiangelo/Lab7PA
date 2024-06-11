@@ -41,17 +41,17 @@ void edificio::setGastosComunes(int gastos){
 
 // FUNCIONALIDAD:
 void edificio::agreagrPropiedad(propiedad* prop){
-    // string codigo = prop -> getCodigo();
-    // IKey *k = new String(codigo.c_str());
-    // this -> apartamentos -> add(k, prop);
+    string codigo = prop -> getCodigo();
+    IKey *k = new String(codigo.c_str());
+    this -> apartamentos -> add(k, prop);
 }
 
 void edificio::desvincularProp(string codigo){
-    // IKey *k = new String(codigo.c_str());
-    // if(this -> apartamentos -> member(k)){
-    //     this -> apartamentos -> remove(k);
-    //     cout << "La propiedad con código " << codigo << " se desvinculó del edificio " << this -> getNombre() << endl;
-    // }else{
-    //     cout << "La propiedad con código " << codigo << " no se encontraba vinculada con el edificio " << this -> getNombre() << endl;
-    // }
+    IKey *k = new String(codigo.c_str());
+    if(this -> apartamentos -> member(k)){
+        this -> apartamentos -> remove(k);
+        cout << "La propiedad con código " << codigo << " se desvinculó del edificio " << this -> getNombre() << endl;
+    }else{
+        cout << "La propiedad con código " << codigo << " no se encontraba vinculada con el edificio " << this -> getNombre() << endl;
+    }
 }

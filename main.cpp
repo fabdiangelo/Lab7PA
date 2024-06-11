@@ -254,7 +254,7 @@ void pruebaUsuario(){
 }
 
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/registroMensajes.cpp administrador.cpp chat.cpp departamento.cpp edificio.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
 
     ICollection/String.cpp
     ICollection/interfaces/ICollectible.cpp 
@@ -271,6 +271,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaDtEdificio();
+    pruebaEdificio();
     return 0;
 }
