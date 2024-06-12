@@ -68,7 +68,7 @@ edificio.o: OrderedDictionary.o IKey.o String.o ICollectible.o #👌
 factory.o: sistema.o
 	g++ -c factory.cpp	
 
-inmobiliaria.o: usuario.o propiedad.o direccion.o list.o
+inmobiliaria.o: usuario.o casa.o apartamento.o zonasDep.o#👌
 	g++ -c inmobiliaria.cpp	
 	
 interesado.o: usuario.o #👌

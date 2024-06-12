@@ -1,17 +1,10 @@
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 
-#include <iostream>
-#include "DataTypes/direccion.h"
 #include "usuario.h"
 #include "casa.h"
 #include "apartamento.h"
-#include "ICollection/collections/OrderedDictionary.h"
-#include "ICollection/String.h"
-#include "DataTypes/propZona.h"
 #include "DataTypes/zonasDep.h"
-
-using namespace std;
 
 class inmobiliaria : public usuario
 {
