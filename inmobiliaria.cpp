@@ -131,28 +131,31 @@ void inmobiliaria::MostrarDatos(){
         }
         
         zonasDep *zonDep =(zonasDep*) lista -> find(kDep); // encuentra al dep
-        IKey *kZona = new String(z -> getNombre().c_str());
+        IKey *kZona = new String(z -> getCodigo().c_str());
         
         if(!zonDep -> getZonas() -> member(kZona)){ // busca si no existe la zona dentro del dep
             zonDep -> agregarZona(z);
         }
-        
         propZona *proZona = (propZona*) zonDep -> getZonas() -> find(kZona); // encuentra la zona
-    cout << "todo ok 1" << endl;
         proZona -> agregarProp(prop); // añade la prop a la zona
-    cout << "todo ok 2" << endl;
     }
 
     for(IIterator* iterDep = lista -> getIterator(); iterDep -> hasCurrent(); iterDep -> next()){
         zonasDep *zonaDep = (zonasDep*) iterDep -> getCurrent();
         cout << "  - Departamento: " << zonaDep -> getDepartamento() -> getNombre() << endl;
-        for(IIterator* iterZona = lista -> getIterator(); iterZona -> hasCurrent(); iterZona -> next()){
+
+        IIterator* iterZona = zonaDep -> getZonas() -> getIterator();
+        while(iterZona -> hasCurrent()){
             propZona *proZon = (propZona *) iterZona -> getCurrent();
             cout << "    - Zona: " << proZon -> getZona() -> getNombre() << endl;
-            for(IIterator* iterProp = lista -> getIterator(); iterProp -> hasCurrent(); iterProp -> next()){
+
+            IIterator* iterProp = proZon -> getPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
                 propiedad * prop = (propiedad*) iterProp -> getCurrent();
                 cout << "      - Propiedad: " << prop -> getCodigo() << endl;
+                iterProp -> next();
             }
+            iterZona -> next();
         }
     }
 }
