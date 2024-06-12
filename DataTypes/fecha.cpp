@@ -1,7 +1,7 @@
 #include "fecha.h"
 
 // CONSTRUCTOR:
-fecha::fecha(string d, string m, string a){
+fecha::fecha(int d, int m, int a){
     this -> dia = d;
     this -> mes = m;
     this -> anio = a;
@@ -13,14 +13,14 @@ fecha::~fecha(){
 }
 
 // GETTERS:
-string fecha::getDia(){
+int fecha::getDia(){
     return this -> dia;
 }
 
-string fecha::getMes(){
+int fecha::getMes(){
     return this -> mes;
 }
 
-string fecha::getAnio(){
+int fecha::getAnio(){
     return this -> anio;
 }

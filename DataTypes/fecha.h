@@ -8,12 +8,12 @@ using namespace std;
 class fecha
 {
 private:
-    string dia, mes, anio;
+    int dia, mes, anio;
 public:
-    fecha(string dia, string mes, string anio);
+    fecha(int dia, int mes, int anio);
     ~fecha();
-    string getDia();
-    string getMes();
-    string getAnio();
+    int getDia();
+    int getMes();
+    int getAnio();
 };
 #endif

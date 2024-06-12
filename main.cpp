@@ -192,6 +192,7 @@ void pruebaZonasDep(){
 #include "inmobiliaria.h"
 #include "interesado.h"
 #include "mensaje.h"
+#include "propiedad.h"
 #include "usuario.h"
 #include "zona.h"
 
@@ -336,6 +337,23 @@ void pruebaInmobiliaria(){
     inmo -> BorrarPropiedad("prop7 - casa");
     inmo -> BorrarPropiedad("prop8 - casa");
 
+    dep1->~departamento();
+    dep2->~departamento();
+    dir->~direccion();
+    inmo->~inmobiliaria();
+    z1->~zona();
+    z2->~zona();
+    z3->~zona();
+    z4->~zona();
+    z5->~zona();
+    p1->~propiedad();
+    p2->~propiedad();
+    p3->~propiedad();
+    p4->~propiedad();
+    p5->~propiedad();
+    p6->~propiedad();
+    p7->~propiedad();
+    p8->~propiedad();
 }
 void pruebaInteresado(){
     interesado *user = new interesado("pepe@mail", "pepito123", 17, "pepe", "perdomo");
@@ -354,6 +372,9 @@ void pruebaMensaje(){
     mens -> setMensaje("jojo");
     cout << mens -> getMensaje() << endl;
     mens ->~mensaje();
+}
+void pruebaPropiedad(){
+
 }
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");

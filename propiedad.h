@@ -15,7 +15,7 @@ private:
     bool garage;
     direccion *dir;
     zona *z;
-    List *chats;
+    IDictionary *chats;
 public:
     propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z);
     ~propiedad();
@@ -37,11 +37,11 @@ public:
     void setM2Edificados(int m2);
     void setPrecioAlquiler(int precio);
     void setPrecioVenta(int precio);
+    registroMensajes *MostrarMensajes(string correo);
+    void CrearChat(string correo);
+    void IngresarMensaje(string correo, string mensaje);
+    int obtenerCantMensajes(string correo);
     void CortarLazos(string codigo);
-    registroMensajes *MostrarMensajes();
-    chat *CrearChat();
-    void IngresarMensaje(string mensaje);
-    int obtenerCantMensajes();
 };
 
 #endif

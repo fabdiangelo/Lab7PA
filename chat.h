@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class chat{
+class chat : public ICollectible{
   private:
     fecha* Fecha;
     int Hora;
@@ -18,7 +18,7 @@ class chat{
     ICollection* MisMensajes; 
     interesado * persona;
   public:
-    chat(fecha* Fecha, int Hora);
+    chat();
     fecha* getFecha();
     int getHora();
     int getCantMensajes();

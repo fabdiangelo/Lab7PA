@@ -12,7 +12,7 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> z = z;
     this -> precioAlquiler = 0;
     this -> precioVenta = 0;
-    this -> chats = new List();
+    this -> chats = new OrderedDictionary();
 }
 
 // DESTRUCTOR:
@@ -56,10 +56,10 @@ int propiedad::getPrecioAlquiler(){
 int propiedad::getPrecioVenta(){
     return this -> precioVenta;
 }
+
 zona* propiedad::getZona(){
     return this -> z;
 }
-
 
 // SETTERS:
 void propiedad::setCantAmbientes(int cant){
@@ -94,22 +94,50 @@ void propiedad::setPrecioVenta(int precio){
     this -> precioVenta = precio;
 }
 
-//FUNCIONALIDAD
+// FUNCIONALIDAD:
+registroMensajes *propiedad::MostrarMensajes(string correo){
+    IKey *k = new String(correo.c_str());
+    if(!chats -> member(k)){
+        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
+        return NULL;
+    }else{
+        chat *c =(chat*) chats -> find(k);
+        return c -> ObtenerRegistro();
+
+    }
+}
+
+void propiedad::CrearChat(string correo){
+    IKey *k = new String(correo.c_str());
+    if(chats -> member(k)){
+        cout << "El usuario " << correo << " ya ha creado un chat con la propiedad " << this -> getCodigo() << endl;
+    }else{
+        chat * c = new chat();
+        chats -> add(k, c);
+    }
+}
+
+void propiedad::IngresarMensaje(string correo, string mensaje){
+    IKey *k = new String(correo.c_str());
+    if(!chats -> member(k)){
+        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
+    }else{
+        chat * c =(chat *) this -> chats -> find(k);
+        c -> CrearMensaje(mensaje);
+    }
+}
+
+int propiedad::obtenerCantMensajes(string correo){
+    IKey *k = new String(correo.c_str());
+    if(!chats -> member(k)){
+        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
+        return 0;
+    }else{
+        chat * c =(chat *) this -> chats -> find(k);
+        return c -> getCantMensajes();
+    }
+}
+
 void propiedad::CortarLazos(string codigo){
 
-}
-
-registroMensajes *propiedad::MostrarMensajes(){
-    return NULL;
-}
-
-chat* propiedad::CrearChat(){
-    return NULL;
-}
-
-void propiedad::IngresarMensaje(string mensaje){
-    
-}
-int propiedad::obtenerCantMensajes(){
-    return 1;
 }

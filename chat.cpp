@@ -1,9 +1,20 @@
 #include "chat.h"
 
 // CONSTRUCTOR:
-chat::chat(fecha *Fecha, int Hora){
-    this -> Fecha = Fecha;
-    this -> Hora = Hora;
+chat::chat(){
+    time_t t;
+    struct tm *tm;
+    t = time(NULL);
+    tm = localtime(&t);
+    int hora = tm -> tm_hour;
+    int dia = tm ->tm_mday;
+    int mes = tm ->tm_mon;
+    int anio = tm ->tm_year;
+
+    fecha* f = new fecha(dia, mes, anio);
+
+    this -> Fecha = f;
+    this -> Hora = hora;
     this -> CantMensajes = 0;
     this -> MisMensajes = new List();
     this -> persona = NULL; // Cambiar por actualUser
