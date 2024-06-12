@@ -19,7 +19,7 @@ public:
     direccion* getDireccion();
     void setNombre(string nom);
     void setDireccion(direccion* dir);
-    propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z);
+    propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z, edificio* ed);
     propiedad* IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V, zona* z);
     void IngresarPrecioAlquiler(string cod, int precio);
     void IngresarPrecioVenta(string cod, int precio);

@@ -33,7 +33,7 @@ class zona : public ICollectible{
     propiedad* seleccionarPropiedad(string codigo);
     void agegarPropiedad(propiedad* prop);
     void desvincularPropiedad(string codigo);
-    List* listarPropMens();
+    List* listarPropMens(string correo);
 };
 
 #endif

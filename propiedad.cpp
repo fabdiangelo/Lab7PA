@@ -61,6 +61,11 @@ zona* propiedad::getZona(){
     return this -> z;
 }
 
+IDictionary* propiedad::getChats(){
+    return this -> chats;
+}
+
+
 // SETTERS:
 void propiedad::setCantAmbientes(int cant){
     this -> cantAmbientes = cant;
@@ -136,8 +141,4 @@ int propiedad::obtenerCantMensajes(string correo){
         chat * c =(chat *) this -> chats -> find(k);
         return c -> getCantMensajes();
     }
-}
-
-void propiedad::CortarLazos(string codigo){
-
 }

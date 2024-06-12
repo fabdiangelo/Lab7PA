@@ -22,5 +22,19 @@ int casa::getM2Verdes(){
 }
 
 casa::~casa(){
-    cout << "derrumbo...";
+    cout << "destruct de casa";
+}
+
+// FUNCIONALIDAD:
+void casa::CortarLazos(){
+    this -> getZona() -> desvincularPropiedad(this -> getCodigo());
+    IIterator *iter = this -> getChats() -> getIterator();
+    while(iter -> hasCurrent()){
+        chat* c =(chat *) iter -> getCurrent();
+        IKey *k = new String(c->getInteresado()->getCorreo().c_str());
+        c -> BorrarMensajes();
+        iter -> next();
+        this -> getChats() -> remove(k);
+        c ->~chat();
+    }
 }

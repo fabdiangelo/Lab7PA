@@ -31,8 +31,8 @@ void inmobiliaria::setDireccion(direccion* dir){
 }
 
 // FUNCIONALIDAD:
-propiedad* inmobiliaria::IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z){
-    propiedad *prop = new apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, z);
+propiedad* inmobiliaria::IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z, edificio* ed){
+    propiedad *prop = new apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, z, ed);
     IKey *k = new String(cod.c_str());
     this -> propiedades -> add (k, prop);
     return prop;

@@ -29,6 +29,7 @@ public:
     int getPrecioAlquiler();
     int getPrecioVenta();
     zona* getZona();
+    IDictionary* getChats();
     void setCantAmbientes(int cant);
     void setCantDormitorios(int cant);
     void setCantBanios(int cant);
@@ -41,7 +42,7 @@ public:
     void CrearChat(string correo);
     void IngresarMensaje(string correo, string mensaje);
     int obtenerCantMensajes(string correo);
-    void CortarLazos(string codigo);
+    virtual void CortarLazos() = 0;
 };
 
 #endif

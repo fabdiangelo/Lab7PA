@@ -84,7 +84,7 @@ void pruebaDtZona(){
     zona->~dtZona();
 }
 void pruebaFecha(){
-    fecha *dia = new fecha("19", "11", "2004");
+    fecha *dia = new fecha(19, 11, 2004);
     cout << dia->getAnio() << " - " << dia ->getMes() << " - " << dia ->getDia() << endl;
     dia -> ~fecha();
 }
@@ -104,12 +104,13 @@ void pruebaMensajesPropiedad(){
     di->~direccion();
 }
 void pruebaPropZona(){
+    edificio *ed = new edificio("nombre", 2, 1000);
     departamento *d = new departamento("COl", 'L');
     zona * z = new zona("zona1", "l1", d);
     propZona *pz = new propZona(z);
     direccion* dir = new direccion("a", "b", "c");
-    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z);
-    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z);
+    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z, ed);
+    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z, ed);
     
     pz->agregarProp(p1);
     pz->agregarProp(p2);
@@ -206,8 +207,7 @@ void pruebaAdmin(){
     user ->~administrador();
 }
 void pruebaChat(){
-    fecha *fe = new fecha("19", "11", "2004");
-    chat *ch = new chat(fe, 4);
+    chat *ch = new chat();
 
     fecha *dia = ch -> getFecha();
 
@@ -233,7 +233,6 @@ void pruebaChat(){
     cout << ch -> getCantMensajes() << endl;
 
     ch ->~chat();
-    fe -> ~fecha();
 }
 void pruebaDepartamento(){
     departamento* dep = new departamento("San José", 'M');
@@ -271,8 +270,8 @@ void pruebaEdificio(){
     zona * z1= new zona("COL1", "L1", dep1);
 
     direccion *dir = new direccion("a", "b", "c");
-    propiedad *prop1 = new propiedad("cod1", 1, 1, 1, true, dir, 1, z1);
-    propiedad *prop2 = new propiedad("cod2", 2, 2, 1, true, dir, 2, z1);
+    propiedad *prop1 = new apartamento("cod1", 1, 1, 1, true, dir, 1, z1, ed);
+    propiedad *prop2 = new apartamento("cod2", 2, 2, 1, true, dir, 2, z1, ed);
 
     ed -> agreagrPropiedad(prop1);
     ed -> agreagrPropiedad(prop2);
@@ -306,12 +305,13 @@ void pruebaInmobiliaria(){
     zona * z3= new zona("SJ1", "M1", dep2);
     zona * z4= new zona("SJ2", "M2", dep2);
     zona * z5= new zona("SJ3", "M3", dep2);
+    edificio *ed = new edificio("nombre", 2, 1000);
 
-    propiedad* p1 = inmo -> IngresarDatosApartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z1);
-    propiedad* p2 = inmo -> IngresarDatosApartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z2);
-    propiedad* p3 = inmo -> IngresarDatosApartamento("prop3 - apartamento", 3, 3, 3, true, dir, 3, z3);
-    propiedad* p4 = inmo -> IngresarDatosApartamento("prop4 - apartamento", 4, 4, 4, true, dir, 4, z4);
-    propiedad* p5 = inmo -> IngresarDatosApartamento("prop5 - apartamento", 5, 5, 5, true, dir, 5, z5);
+    propiedad* p1 = inmo -> IngresarDatosApartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z1, ed);
+    propiedad* p2 = inmo -> IngresarDatosApartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z2, ed);
+    propiedad* p3 = inmo -> IngresarDatosApartamento("prop3 - apartamento", 3, 3, 3, true, dir, 3, z3, ed);
+    propiedad* p4 = inmo -> IngresarDatosApartamento("prop4 - apartamento", 4, 4, 4, true, dir, 4, z4, ed);
+    propiedad* p5 = inmo -> IngresarDatosApartamento("prop5 - apartamento", 5, 5, 5, true, dir, 5, z5, ed);
     propiedad* p6 = inmo -> IngresarDatosCasa("prop6 - casa", 6, 6, 6, true, dir, 6, 6, z1);
     propiedad* p7 = inmo -> IngresarDatosCasa("prop7 - casa", 7, 7, 7, true, dir, 7, 7, z2);
     propiedad* p8 = inmo -> IngresarDatosCasa("prop8 - casa", 8, 8, 8, true, dir, 8, 8, z3);
@@ -374,7 +374,58 @@ void pruebaMensaje(){
     mens ->~mensaje();
 }
 void pruebaPropiedad(){
+    edificio *ed = new edificio("nombre", 2, 1000);
+    direccion* dir = new direccion("a", "b", "c");
+    departamento* dep = new departamento("San José", 'M');
+    zona *z = new zona("zonita", "123", dep);
+    
+    propiedad *ca = new casa("casa1", 1, 1, 1, true, dir, 1, 1, z);
+    propiedad *ap = new apartamento("apartamento", 2, 2, 2, false, dir, 2, z, ed);
 
+    ca -> CrearChat ("juan@gmail.com");
+    ca -> CrearChat ("juan@gmail.com");
+    ca -> CrearChat ("pepe@gmail.com");
+    ca -> CrearChat ("pedro@gmail.com");
+    ca -> CrearChat ("pepito@gmail.com");
+
+    ca -> IngresarMensaje("pepe@gmail.com", "Hola, k onda");
+    ca -> IngresarMensaje("pepe@gmail.com", "¿");
+    ca -> IngresarMensaje("pepe@gmail.com", "cómo");
+    ca -> IngresarMensaje("pepe@gmail.com", "estás");
+    ca -> IngresarMensaje("pepe@gmail.com", "hoy");
+    ca -> IngresarMensaje("pepe@gmail.com", "?");
+
+    cout << "cant mens " << ca -> obtenerCantMensajes("pepe@gmail.com") << " - " <<  ca -> obtenerCantMensajes("pedro@gmail.com") << endl;
+
+    registroMensajes * reg = ca -> MostrarMensajes("pepe@gmail.com");
+    List *mensRegistro = (List *) reg -> getMensajes();
+    IIterator *iter = mensRegistro -> getIterator();
+    for (int i = 0; i < mensRegistro -> getSize(); i++){
+        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        iter -> next();
+    }
+
+    reg = ca -> MostrarMensajes("juan@gmail.com");
+    mensRegistro = (List *) reg -> getMensajes();
+    iter = mensRegistro -> getIterator();
+    for (int i = 0; i < mensRegistro -> getSize(); i++){
+        dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
+        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        iter -> next();
+    }
+
+    ca -> CortarLazos();
+
+    ed->~edificio();
+    dir->~direccion();
+    dep->~departamento();
+    z->~zona();
+    ca->~propiedad();
+    ap->~propiedad();
+    reg->~registroMensajes();
+    mensRegistro->~List();
+    iter->~IIterator();
 }
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");
@@ -410,8 +461,8 @@ void pruebaZona(){
     z -> desvincularEdifico("ed2");
 
     direccion* dir = new direccion("a", "b", "c");
-    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z);
-    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z);
+    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z, ed);
+    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z, ed);
     z -> agegarPropiedad(prop1);
     z -> agegarPropiedad(prop2);
     IDictionary *propiedades = z -> listarPropiedades();
@@ -429,7 +480,7 @@ void pruebaZona(){
 
     z -> agegarPropiedad(prop1);
     z -> agegarPropiedad(prop2);
-    List* mens = z ->listarPropMens();
+    List* mens = z ->listarPropMens("");
     for (IIterator *iter = mens -> getIterator(); iter -> hasCurrent(); iter -> next()){
         mensajesPropiedad *men =(mensajesPropiedad *) iter -> getCurrent();
         cout << men->getPropiedad()->getCodigo() << " - " << men->getCantMensajes() << endl;
@@ -465,6 +516,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaInmobiliaria();
+    pruebaPropiedad();
     return 0;
 }

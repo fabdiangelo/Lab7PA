@@ -97,12 +97,12 @@ void zona::desvincularPropiedad(string codigo){
     }
 }
 
-List* zona::listarPropMens(){
+List* zona::listarPropMens(string correo){
     List *res = new List;
     for(IIterator* iter = this -> propiedades -> getIterator(); iter -> hasCurrent(); iter -> next()){
         propiedad *prop = (propiedad*) iter -> getCurrent();
         dtPropiedad *dtProp = new dtPropiedad(prop -> getCodigo(), prop -> getDireccion(), prop -> getPrecioVenta() > 0, prop -> getPrecioAlquiler() > 0);
-        mensajesPropiedad *mp = new mensajesPropiedad(prop -> obtenerCantMensajes(), dtProp);
+        mensajesPropiedad *mp = new mensajesPropiedad(prop -> obtenerCantMensajes(correo), dtProp);
         res -> add (mp);
     }
     return res;
