@@ -1,15 +1,9 @@
 #ifndef EDIFICIO_H
 #define EDIFICIO_H
 
-#include "apartamento.h"
-#include "ICollection/collections/OrderedDictionary.h"
-#include "ICollection/interfaces/IKey.h"
-#include "ICollection/String.h"
-#include "ICollection/interfaces/ICollectible.h"
 #include "propiedad.h"
-#include <iostream>
-
-using namespace std;
+#include "ICollection/collections/OrderedDictionary.h"
+#include "ICollection/String.h"
 
 class propiedad;
 

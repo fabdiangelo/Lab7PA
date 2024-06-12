@@ -13,5 +13,5 @@ int apartamento::getM2Totales(){
     return this->M2Totales;
 }
 apartamento::~apartamento(){
-    cout << "incendio...";
+    cout << "destruct de apartamento ";
 }

@@ -1,12 +1,10 @@
 #ifndef ZONA_H
 #define ZONA_H
 
-#include <iostream>
-#include "ICollection/collections/List.h"
-#include "edificio.h"
 #include "departamento.h"
 #include "DataTypes/mensajesPropiedad.h"
 #include "ICollection/interfaces/IDictionary.h"
+#include "edificio.h"
 
 class edificio;
 class departamento;

@@ -1,16 +1,11 @@
 #ifndef PROPIEDAD_H
 #define PROPIEDAD_H
 
-#include <iostream>
-#include "DataTypes/direccion.h"
-#include "ICollection/collections/List.h"
-#include "DataTypes/registroMensajes.h"
 #include "chat.h"
 #include "zona.h"
+#include "DataTypes/direccion.h"
 
 class zona;
-
-using namespace std;
 
 class propiedad : public ICollectible
 {

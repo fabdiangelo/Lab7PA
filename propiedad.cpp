@@ -1,7 +1,7 @@
 #include "propiedad.h"
 
 // CONSTRUCTOR:
-propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, zona* z){
+propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -9,15 +9,15 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> garage = garage;
     this -> dir = dir;
     this -> m2Edificados = m2Edificados;
+    this -> z = z;
     this -> precioAlquiler = 0;
     this -> precioVenta = 0;
-    this -> chats = NULL;
-    this -> z = z;
+    this -> chats = new List();
 }
 
 // DESTRUCTOR:
 propiedad::~propiedad(){
-    cout << "destruct de propiedad" << endl;
+    cout << ": propiedad" << endl;
 }
 
 // GETTERS:
@@ -56,8 +56,36 @@ int propiedad::getPrecioAlquiler(){
 int propiedad::getPrecioVenta(){
     return this -> precioVenta;
 }
+zona* propiedad::getZona(){
+    return this -> z;
+}
+
 
 // SETTERS:
+void propiedad::setCantAmbientes(int cant){
+    this -> cantAmbientes = cant;
+}
+
+void propiedad::setCantDormitorios(int cant){
+    this -> cantDormitorios = cant;
+}
+
+void propiedad::setCantBanios(int cant){
+    this -> cantBanios = cant;
+}
+
+void propiedad::setGarage(bool garage){
+    this -> garage = garage;
+}
+
+void propiedad::setDireccion(direccion* dir){
+    this -> dir = dir;
+}
+
+void propiedad::setM2Edificados(int m2){
+    this -> m2Edificados = m2;
+}
+
 void propiedad::setPrecioAlquiler(int precio){
     this -> precioAlquiler = precio;
 }
@@ -67,7 +95,6 @@ void propiedad::setPrecioVenta(int precio){
 }
 
 //FUNCIONALIDAD
-//pendiente...
 void propiedad::CortarLazos(string codigo){
 
 }
@@ -76,7 +103,7 @@ registroMensajes *propiedad::MostrarMensajes(){
     return NULL;
 }
 
-chat *propiedad::CrearChat(){
+chat* propiedad::CrearChat(){
     return NULL;
 }
 

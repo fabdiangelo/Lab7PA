@@ -1,5 +1,5 @@
-okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o
-	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o -o programa
+okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o
+	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o -o programa
 
 
 # Data types 👌
@@ -36,8 +36,14 @@ dtZona.o: ICollectible#👌
 mensajesPropiedad.o: dtPropiedad.o #👌
 	g++ -c "DataTypes/mensajesPropiedad.cpp"
 
+propZona.o: zona.o #👌
+	g++ -c "DataTypes/propZona.cpp"
+
 registroMensajes.o: dtMensaje.o #👌
 	g++ -c "DataTypes/registroMensajes.cpp"
+
+zonasDep.o: departamento.o propZona.o
+	g++ -c "DataTypes/zonasDep"
 
 
 # Clases
@@ -56,7 +62,7 @@ chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
 departamento.o: zona.o list.o dtZona.o #👌
 	g++ -c departamento.cpp	
 	
-edificio.o: OrderedDictionary.o IKey.o String.o ICollectible.o#👌
+edificio.o: OrderedDictionary.o IKey.o String.o ICollectible.o #👌
 	g++ -c edificio.cpp	
 	
 factory.o: sistema.o
@@ -101,7 +107,7 @@ main.o:
 
 
 clean:
-	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o registroMensajes.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o
+	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o sistema.o usuario.o zona.o list.o ICollectible.o main.o
 run:
 	make clean
 	make

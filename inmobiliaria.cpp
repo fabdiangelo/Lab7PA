@@ -51,7 +51,7 @@ void inmobiliaria::IngresarPrecioAlquiler(string codigo, int precio){
         propiedad* prop =(propiedad*) this -> propiedades -> find(k);
         prop -> setPrecioAlquiler(precio);
     }else{
-        cout << "No se encontró una propiedad con codigo" << codigo << "dentro de la zona con nombre " << this -> getNombre() << endl;
+        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }
 }
 
@@ -61,7 +61,7 @@ void inmobiliaria::IngresarPrecioVenta(string codigo, int precio){
         propiedad* prop =(propiedad*) this -> propiedades -> find(k);
         prop -> setPrecioVenta(precio);
     }else{
-        cout << "No se encontró una propiedad con codigo" << codigo << "dentro de la zona con nombre " << this -> getNombre() << endl;
+        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }
 }
 
@@ -70,7 +70,7 @@ void inmobiliaria::BorrarPropiedad(string codigo){
     if(this -> propiedades -> member(k)){
         propiedades -> remove (k);
     }else{
-        cout << "No se encontró una propiedad con codigo" << codigo << "dentro de la zona con nombre " << this -> getNombre() << endl;
+        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }
 }
 
@@ -88,7 +88,7 @@ void inmobiliaria::ModificarDatosApartamento(string codigo, int cantAmb, int can
         prop -> setPrecioVenta(precioVenta);
         prop -> setM2Totales(m2);
     }else{
-        cout << "No se encontró una propiedad con codigo" << codigo << "dentro de la zona con nombre " << this -> getNombre() << endl;
+        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }
 }
 
@@ -107,7 +107,7 @@ void inmobiliaria::ModifiarDatosCasa(string codigo, int cantAmb, int cantDorm, i
         prop -> setM2Verdes(m2V);
         prop -> setM2Totales(m2 + m2V);
     }else{
-        cout << "No se encontró una propiedad con codigo" << codigo << "dentro de la zona con nombre " << this -> getNombre() << endl;
+        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }
 }
 
@@ -115,7 +115,7 @@ void inmobiliaria::MostrarDatos(){
     cout << "Nombre: " << this -> getNombre() << endl;
     cout << "Mail: " << this -> getCorreo() << endl;
     direccion * dir = this -> getDireccion();
-    cout << "Direccion: " << dir -> getCiudad() << ", " << dir -> getCalle() << " Nro" << dir -> getNumero() << endl;
+    cout << "Direccion: " << dir -> getCiudad() << ", " << dir -> getCalle() << " Nro " << dir -> getNumero() << endl;
     cout << "Propiedades:" << endl;
 
     IDictionary *lista = new OrderedDictionary(); // guarda zonasDep
@@ -124,17 +124,23 @@ void inmobiliaria::MostrarDatos(){
         propiedad *prop =(propiedad *) pi -> getCurrent();
         zona *z= prop -> getZona();
         IKey *kDep = new String(z -> getDepartamento() -> getNombre().c_str()); // obtengo la clave del dep de la prop
+        
         if(!lista -> member(kDep)){ // busca si no existe el dep en lista
             zonasDep* zonDep = new zonasDep(z -> getDepartamento());
             lista -> add (kDep, zonDep);
         }
+        
         zonasDep *zonDep =(zonasDep*) lista -> find(kDep); // encuentra al dep
         IKey *kZona = new String(z -> getNombre().c_str());
+        
         if(!zonDep -> getZonas() -> member(kZona)){ // busca si no existe la zona dentro del dep
             zonDep -> agregarZona(z);
         }
+        
         propZona *proZona = (propZona*) zonDep -> getZonas() -> find(kZona); // encuentra la zona
+    cout << "todo ok 1" << endl;
         proZona -> agregarProp(prop); // añade la prop a la zona
+    cout << "todo ok 2" << endl;
     }
 
     for(IIterator* iterDep = lista -> getIterator(); iterDep -> hasCurrent(); iterDep -> next()){
