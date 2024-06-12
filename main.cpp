@@ -213,9 +213,12 @@ void pruebaEdificio(){
     ed -> setGastosComunes(2000);
     cout << ed->getNombre() << " - " << ed->getCantPisos() << " - " << ed->getGastosComunes() << endl;
 
+    departamento* dep1 = new departamento("Colonia", 'L');
+    zona * z1= new zona("COL1", "L1", dep1);
+
     direccion *dir = new direccion("a", "b", "c");
-    propiedad *prop1 = new propiedad("cod1", 1, 1, 1, true, dir, 1, 1, 1);
-    propiedad *prop2 = new propiedad("cod2", 2, 2, 1, true, dir, 2, 2, 2);
+    propiedad *prop1 = new propiedad("cod1", 1, 1, 1, true, dir, 1, z1);
+    propiedad *prop2 = new propiedad("cod2", 2, 2, 1, true, dir, 2, z1);
 
     ed -> agreagrPropiedad(prop1);
     ed -> agreagrPropiedad(prop2);
@@ -333,8 +336,8 @@ void pruebaZona(){
     z -> desvincularEdifico("ed2");
 
     direccion* dir = new direccion("a", "b", "c");
-    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, 3, 3, 3);
-    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, 6, 6, 6);
+    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z);
+    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z);
     z -> agegarPropiedad(prop1);
     z -> agegarPropiedad(prop2);
     IDictionary *propiedades = z -> listarPropiedades();

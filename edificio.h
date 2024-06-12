@@ -1,4 +1,3 @@
-// Daniel
 #ifndef EDIFICIO_H
 #define EDIFICIO_H
 
@@ -7,9 +6,12 @@
 #include "ICollection/interfaces/IKey.h"
 #include "ICollection/String.h"
 #include "ICollection/interfaces/ICollectible.h"
+#include "propiedad.h"
 #include <iostream>
 
 using namespace std;
+
+class propiedad;
 
 class edificio : public ICollectible{
   private:

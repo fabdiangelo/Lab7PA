@@ -6,8 +6,11 @@
 #include "edificio.h"
 #include "departamento.h"
 #include "DataTypes/mensajesPropiedad.h"
+#include "ICollection/interfaces/IDictionary.h"
 
+class edificio;
 class departamento;
+class propiedad;
 
 class zona : public ICollectible{
   private:

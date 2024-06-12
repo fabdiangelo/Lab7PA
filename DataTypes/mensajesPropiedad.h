@@ -1,4 +1,3 @@
-// Leandro
 #ifndef MENSAJESPROPIEDAD_H
 #define MENSAJESPROPIEDAD_H
 #include <iostream>

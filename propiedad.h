@@ -8,6 +8,8 @@
 #include "chat.h"
 #include "zona.h"
 
+class zona;
+
 using namespace std;
 
 class propiedad : public ICollectible
@@ -17,7 +19,7 @@ private:
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados, precioAlquiler, precioVenta;
     bool garage;
     direccion *dir;
-    zona * z;
+    zona *z;
     List *chats;
 public:
     propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z);
