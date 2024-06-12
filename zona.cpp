@@ -23,6 +23,10 @@ string zona::getCodigo(){
     return this -> codigo;
 }
 
+departamento* zona::getDepartamento(){
+    return this -> dep;
+}
+
 // SETTERS:
 void zona::setNombre(string nombre){
     this -> nombre = nombre;

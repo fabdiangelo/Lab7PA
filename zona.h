@@ -21,6 +21,7 @@ class zona : public ICollectible{
     ~zona();
     string getNombre();
     string getCodigo();
+    departamento* getDepartamento();
     void setNombre(string nombre);
     void setCodigo(string codigo);
     IDictionary* listarEdificios();

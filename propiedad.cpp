@@ -1,7 +1,7 @@
 #include "propiedad.h"
 
 // CONSTRUCTOR:
-propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, int precioAlquiler, int precioVenta){
+propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, zona* z){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -9,9 +9,10 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> garage = garage;
     this -> dir = dir;
     this -> m2Edificados = m2Edificados;
-    this -> precioAlquiler = precioAlquiler;
-    this -> precioVenta = precioVenta;
+    this -> precioAlquiler = 0;
+    this -> precioVenta = 0;
     this -> chats = NULL;
+    this -> z = z;
 }
 
 // DESTRUCTOR:

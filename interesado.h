@@ -1,5 +1,5 @@
-#ifndef INMOBILIARIA_H
-#define INMOBILIARIA_H
+#ifndef INTERESADO_H
+#define INTERESADO_H
 
 #include <iostream>
 #include "usuario.h"

@@ -8,6 +8,8 @@
 #include "apartamento.h"
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/String.h"
+#include "DataTypes/propZona.h"
+#include "DataTypes/zonasDep.h"
 
 using namespace std;
 
@@ -24,13 +26,13 @@ public:
     direccion* getDireccion();
     void setNombre(string nom);
     void setDireccion(direccion* dir);
-    propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2T);
-    propiedad* IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V);
-    void IngresarPrecioAlquiler(int precio);
-    void IngresarPrecioVenta(int precio);
-    void BorrarPropiedad(string prop);
-    propiedad* ModificarDatosApartamento(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
-    propiedad* ModifiarDatosCasa(int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2Edif, int m2Verd);
+    propiedad* IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z);
+    propiedad* IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V, zona* z);
+    void IngresarPrecioAlquiler(string cod, int precio);
+    void IngresarPrecioVenta(string cod, int precio);
+    void BorrarPropiedad(string codigo);
+    void ModificarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta);
+    void ModifiarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V);
     void MostrarDatos();
 };
 
