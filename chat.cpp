@@ -59,10 +59,18 @@ void chat::BorrarMensajes(){
 
 registroMensajes* chat::ObtenerRegistro(){
     registroMensajes* res = new registroMensajes();
-    for(IIterator *iter = this -> MisMensajes -> getIterator(); iter -> hasCurrent(); iter -> next()){
+    IIterator *iter = this -> MisMensajes -> getIterator();
+    int size = this -> MisMensajes -> getSize();
+    if(size > 5){
+        for (int i = 0; i < size - 5; i++){
+            iter -> next();
+        }
+    }
+    while(iter -> hasCurrent()){
         mensaje *mens =(mensaje*) iter -> getCurrent();
         dtMensaje *men = new dtMensaje(mens ->getMensaje(), mens -> getHora());
         res -> agregarMensaje(men);
+        iter -> next();
     }
     return res;
 }

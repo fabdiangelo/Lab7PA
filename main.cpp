@@ -402,7 +402,7 @@ void pruebaPropiedad(){
     IIterator *iter = mensRegistro -> getIterator();
     for (int i = 0; i < mensRegistro -> getSize(); i++){
         dtMensaje *mens =(dtMensaje *) iter -> getCurrent();
-        cout << mens->getHora() << " - " << mens->getMensaje() << endl;
+        cout << mens->getHora() << "hs - " << mens->getMensaje() << endl;
         iter -> next();
     }
 
@@ -415,7 +415,7 @@ void pruebaPropiedad(){
         iter -> next();
     }
 
-    ca -> CortarLazos();
+    ca -> CortarLazos(); // segmentation fault
 
     ed->~edificio();
     dir->~direccion();

@@ -13,6 +13,7 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> precioAlquiler = 0;
     this -> precioVenta = 0;
     this -> chats = new OrderedDictionary();
+    z -> agegarPropiedad(this);
 }
 
 // DESTRUCTOR:

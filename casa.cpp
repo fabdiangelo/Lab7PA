@@ -27,14 +27,23 @@ casa::~casa(){
 
 // FUNCIONALIDAD:
 void casa::CortarLazos(){
+    cout << "todo ok 0" << endl;
     this -> getZona() -> desvincularPropiedad(this -> getCodigo());
+    cout << "todo ok 0";
     IIterator *iter = this -> getChats() -> getIterator();
+    cout << "todo ok 1";
     while(iter -> hasCurrent()){
+    cout << "todo ok 2";
         chat* c =(chat *) iter -> getCurrent();
+    cout << "todo ok 3";
         IKey *k = new String(c->getInteresado()->getCorreo().c_str());
+    cout << "todo ok 4";
         c -> BorrarMensajes();
+    cout << "todo ok 5";
         iter -> next();
+    cout << "todo ok 6";
         this -> getChats() -> remove(k);
+    cout << "todo ok 7";
         c ->~chat();
     }
 }
