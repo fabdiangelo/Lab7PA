@@ -1,6 +1,6 @@
 #include "casa.h"
 
-casa::casa(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, zona* z, int mv2) : propiedad(codigo, cantAmbientes, cantDormitorios, cantBanios, garage, direccion, m2Edificados, z){
+casa::casa(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, int mv2, zona* z) : propiedad(codigo, cantAmbientes, cantDormitorios, cantBanios, garage, dir, m2Edificados, z){
     this->M2Totales = mv2 + m2Edificados;
     this->M2Verdes = mv2;
 }

@@ -431,7 +431,15 @@ void pruebaPropiedad(){
     iter->~IIterator();
 }
 void pruebaSistema(){
+    direccion* dir = new direccion("ciudad", "calle", "numero");
     sistema* sis = new sistema();
+
+
+    sis -> ingresarInmobiliaria("inmo1", dir, "inmobiliriaria1");
+    sis -> enviarCorreo("inmo1");
+    sis -> establecerContra("inmo", "inmo");
+
+
     sis -> listarDepartamentos();
     sis -> seleccionarDepartamento("L");
     sis -> ingresarZona("COL1", "L1");
@@ -444,6 +452,23 @@ void pruebaSistema(){
     sis -> ingresarEdificio("Ed2", 1, 150);
     sis -> ingresarEdificio("Ed3", 12, 9999991);
     sis -> listarEdificios();
+    sis -> seleccionarEdificio("Ed2");
+    sis -> ingresarDatosApartamento("ap21", 1, 1, 1, true, dir, 1);
+    sis -> ingresarDatosApartamento("ap22", 2, 2, 2, true, dir, 2);
+    sis -> ingresarPrecioAlquiler("ap21", 100);
+    sis -> ingresarPrecioAlquiler("ap22", 1000);
+    sis -> seleccionarEdificio("Ed1");
+    sis -> ingresarDatosApartamento("ap11", 3, 3, 3, true, dir, 3);
+    sis -> ingresarDatosCasa("ca1", 1, 1, 1, true, dir, 1, 1);
+    sis -> ingresarDatosCasa("ca2", 2, 2, 2, true, dir, 2, 2);
+    sis -> ingresarPrecioAlquiler("ap11", 300);
+    sis -> ingresarPrecioVenta("ap11", 500);
+    sis -> ingresarPrecioAlquiler("ca1", 10000);
+    sis -> ingresarPrecioVenta("ca2", 1000);
+
+    sis -> finalizarAlta();
+    sis -> seleccionarDepartamento("L");
+    sis -> listarPropiedades("L1");
 }
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");

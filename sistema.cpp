@@ -78,6 +78,32 @@ sistema::~sistema(){
 }
 
 // FUNCIONALIDADES:
+void sistema::enviarCorreo(string correo){
+    if(this -> usuarioActual != NULL){
+        cout << "Ya hay una sesión iniciada" << endl;
+    }else{
+        IKey * k = new String(correo.c_str());
+        usuario *user =(usuario*) usuarios -> find(k);
+        if(user == NULL){
+            cout << "Ningun administrador ha registrado este correo" << endl;
+        }else{
+            usuarioActual = user;
+        }
+    }
+}
+
+void sistema::establecerContra(string contra, string repContra){
+    if(contra == repContra){
+        usuarioActual -> setContrasenia(contra);
+    }
+}
+
+void sistema::verificarContra(string contra){
+    if(contra != usuarioActual -> getContrasenia()){
+        cout << "La contrasenia o el usuario es incorrecto" << endl;
+    }
+}
+
 void sistema::cerrarSesion(){
     if(this -> usuarioActual == NULL){
         cout << "No había una sesión iniciada" << endl;
@@ -87,15 +113,15 @@ void sistema::cerrarSesion(){
     }
 }
 
-dtRespuesta* sistema::ingresarInmobiliaria(string correo, string contrasenia, direccion * dir, string nombre){
-    inmobiliaria *inmo = new inmobiliaria(correo, contrasenia, nombre, dir);
+dtRespuesta* sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre){
+    inmobiliaria *inmo = new inmobiliaria(correo, "", nombre, dir);
     IKey *k = new String(inmo -> getCorreo().c_str());
     this -> usuarios -> add(k, inmo);
     return new dtRespuesta("Todo OK");
 }
 
-dtRespuesta* sistema::ingresarInteresado(string correo, string contrasenia, int edad, string nombre, string apellido){
-    interesado *inter = new interesado(correo, contrasenia, edad, nombre, apellido);
+dtRespuesta* sistema::ingresarInteresado(string correo, int edad, string nombre, string apellido){
+    interesado *inter = new interesado(correo, "", edad, nombre, apellido);
     IKey *k = new String(inter -> getCorreo().c_str());
     this -> usuarios -> add(k, inter);
     return new dtRespuesta("Todo OK");
@@ -141,11 +167,8 @@ void sistema::listarZonas(){
 }
 
 void sistema::seleccionarZona(string zonaSeleccionada){
-        cout << "Todo ok";
     IKey *k = new String(zonaSeleccionada.c_str());
-        cout << "Todo ok";
     zona *z = (zona*) departamentoActual -> getZonas() -> find(k);
-        cout << "Todo ok";
     if(z == NULL){
         cout << "Se ingresó una zona no válida" << endl;
     }else{
@@ -154,7 +177,6 @@ void sistema::seleccionarZona(string zonaSeleccionada){
 }
 
 void sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
-        cout << "Todo ok";
     if(this -> zonaActual == NULL){
         cout << "Debe seleccionar una zona antes de poder ingresar un edificio" << endl;
     }else{
@@ -230,20 +252,24 @@ void sistema::finalizarAlta(){
 }
 
 void sistema::listarPropiedades(string zonaSeleccionada){
-    if(zonaActual == NULL){
-        cout << "Debes seleccionar una zona antes" << endl;
+    if(departamentoActual == NULL){
+        cout << "Debes seleccionar un departamento antes" << endl;
     }else{
         cout << "Departamento: " << departamentoActual -> getNombre() << endl;
+        this -> seleccionarZona(zonaSeleccionada);
         cout << "Zona: " << zonaActual -> getNombre() << endl;
 
         cout << "Apartamentos:" << endl;
         for(IIterator* iter = zonaActual -> listarEdificios() -> getIterator(); iter -> hasCurrent(); iter -> next()){
-            edificio *ed = (edificio*) iter -> getCurrent();           
-            cout << ed;
-            IIterator *iterProp = ed -> getApartamentos() -> getIterator();
-            while(iterProp -> hasCurrent()){
-                apartamento* ap = (apartamento*) iterProp -> getCurrent();
-                cout << ap;
+            edificio *ed = (edificio*) iter -> getCurrent();
+            if(ed ->getApartamentos() ->getSize() > 0){
+                cout << ed;
+                IIterator *iterProp = ed -> getApartamentos() -> getIterator();
+                while(iterProp -> hasCurrent()){
+                    apartamento* ap = (apartamento*) iterProp -> getCurrent();
+                    cout << "  " << ap;
+                    iterProp -> next();
+                }
             }
         }
         cout << "Casas:" << endl;

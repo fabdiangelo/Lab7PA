@@ -146,7 +146,7 @@ int propiedad::obtenerCantMensajes(string correo){
 
 // SOBRECARGA:
 ostream& operator<<(ostream& os, propiedad* prop){
-    os << "  " << prop -> getCodigo() << ") ";
+    os << "  " << prop -> getCodigo() << ") Metros totales: " << prop -> getM2Edificados() <<"    ";
     if(prop -> getPrecioAlquiler() > 0){
         os << "Precio Alquiler: " << prop -> getPrecioAlquiler() << "    ";
     }

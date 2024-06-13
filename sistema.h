@@ -24,12 +24,15 @@ private:
     departamento *departamentoActual;
     zona *zonaActual;
     edificio *edificioActual;
-public:// Faltan las de ingresar sesion
+public:
     sistema();
     ~sistema();
+    void enviarCorreo(string correo);  //👌
+    void establecerContra(string contra, string repContra);  //👌
+    void verificarContra(string contra);  //👌
     void cerrarSesion(); //👌
-    dtRespuesta* ingresarInmobiliaria(string correo, string contrasenia, direccion * dir, string nombre); //👌
-    dtRespuesta* ingresarInteresado(string correo, string contrasenia, int edad, string nombre, string apellido); //👌
+    dtRespuesta* ingresarInmobiliaria(string correo, direccion * dir, string nombre); //👌
+    dtRespuesta* ingresarInteresado(string correo, int edad, string nombre, string apellido); //👌
     void listarDepartamentos(); //👌
     void seleccionarDepartamento(string depSelec); //👌
     void ingresarZona(string nombre, string codigo); //👌
@@ -38,12 +41,12 @@ public:// Faltan las de ingresar sesion
     void ingresarEdificio(string nombre, int pisos, int gastosComunes); //👌
     void listarEdificios(); //👌
     void seleccionarEdificio(string edSelec); //👌
-    void ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
-    void ingresarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V);
-    void ingresarPrecioAlquiler(string codigo, int valorAlqui);
-    void ingresarPrecioVenta(string codigo, int valorVenta);
-    void finalizarAlta();
-    void listarPropiedades(string zonaSeleccionada);
+    void ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2); //👌
+    void ingresarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V); //👌
+    void ingresarPrecioAlquiler(string codigo, int valorAlqui); //👌
+    void ingresarPrecioVenta(string codigo, int valorVenta); //👌
+    void finalizarAlta(); //👌
+    void listarPropiedades(string zonaSeleccionada); //
     dtPropiedadInmo* infoPropInmo(string propInmo);
     void ingresarCodigoProp(string codigo);
     void borrarPorp(string codigo);
