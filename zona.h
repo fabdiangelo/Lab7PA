@@ -34,6 +34,7 @@ class zona : public ICollectible{
     void agegarPropiedad(propiedad* prop);
     void desvincularPropiedad(string codigo);
     List* listarPropMens(string correo);
+    friend ostream& operator<<(ostream& os, zona *z);
 };
 
 #endif

@@ -2,10 +2,11 @@
 #define USUARIO_H
 
 #include <iostream>
+#include "ICollection/interfaces/ICollectible.h"
 
 using namespace std;
 
-class usuario
+class usuario : public ICollectible
 {
 private:
     string correo;

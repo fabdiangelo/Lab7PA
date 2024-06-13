@@ -107,3 +107,9 @@ List* zona::listarPropMens(string correo){
     }
     return res;
 }
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, zona* z){
+    os << "  " << z -> getCodigo() << ") " << z -> getNombre() << endl;
+    return os;
+}

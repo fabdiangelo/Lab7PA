@@ -1,4 +1,3 @@
-// Leandro
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
@@ -8,23 +7,35 @@
 #include "DataTypes/registroMensajes.h"
 #include "DataTypes/dtPropiedad.h"
 #include "DataTypes/dtInmobiliaria.h"
-#include "ICollection/collections/List.h"
 #include "DataTypes/dtPropiedadInmo.h"
+#include "ICollection/collections/OrderedDictionary.h"
+#include "inmobiliaria.h"
+#include "administrador.h"
+#include "interesado.h"
 
 using namespace std;
 
 class sistema
 {
-public:
+private:
+    IDictionary *departamentos;
+    IDictionary *usuarios;
+    usuario *usuarioActual;
+    departamento *departamentoActual;
+    zona *zonaActual;
+    edificio *edificioActual;
+public:// Faltan las de ingresar sesion
     sistema();
     ~sistema();
-    void cerrarSesion();
-    dtRespuesta* ingresarInmobiliaria(string correo, direccion * dir, string nombre);
-    dtRespuesta* darAlta(string nombre, string apellido, int edad, string email);
+    void cerrarSesion(); //👌
+    dtRespuesta* ingresarInmobiliaria(string correo, string contrasenia, direccion * dir, string nombre); //👌
+    dtRespuesta* ingresarInteresado(string correo, string contrasenia, int edad, string nombre, string apellido); //👌
+    void listarDepartamentos(); //👌
+    void seleccionarDepartamento(string depSelec); //👌
+    void ingresarZona(string nombre, string codigo); //👌
+    void listarZonas(); //👌
+    void seleccionarZona(string zonaSeleccionada); //👌
     dtRespuesta* ingresarEdificio(string nombre, int pisos, int gastosComunes);
-    List* listarDepartamentos();
-    List* listarZonaDep(char depSeleccionado);
-    string seleccionarZona(string zonaSeleccionada);
     List* listarEdificios();
     void seleccionarEdificio();
     dtRespuesta* ingresarDatosApartamento(int ambientes, int dormitorios, int banios, bool garage, direccion * dir, int metros);

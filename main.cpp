@@ -194,6 +194,7 @@ void pruebaZonasDep(){
 #include "interesado.h"
 #include "mensaje.h"
 #include "propiedad.h"
+#include "sistema.h"
 #include "usuario.h"
 #include "zona.h"
 
@@ -244,7 +245,7 @@ void pruebaDepartamento(){
 
     dep -> agregarZona("pepe", "NH");
     dep -> agregarZona("epep", "HN");
-    ICollection *zonas = dep -> obtenerListado();
+    IDictionary *zonas = dep -> getZonas();
 
     IIterator *iter = zonas -> getIterator();
     for (int i = 0; i < zonas -> getSize(); i++){
@@ -429,6 +430,16 @@ void pruebaPropiedad(){
     mensRegistro->~List();
     iter->~IIterator();
 }
+void pruebaSistema(){
+    sistema* sis = new sistema();
+    sis -> listarDepartamentos();
+    sis -> seleccionarDepartamento("L");
+    sis -> ingresarZona("COL1", "L1");
+    sis -> ingresarZona("COL2", "L2");
+    sis -> ingresarZona("COL2", "L3");
+    sis -> ingresarZona("COL2", "L4");
+    sis -> listarZonas();
+}
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");
     cout << user->getCorreo() << " - " << user->getContrasenia() << endl;
@@ -501,7 +512,7 @@ void pruebaZona(){
 }
 
 /*
-clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/propZona.cpp DataTypes/registroMensajes.cpp DataTypes/zonasDep.cpp administrador.cpp apartamento.cpp casa.cpp chat.cpp departamento.cpp edificio.cpp inmobiliaria.cpp interesado.cpp mensaje.cpp propiedad.cpp usuario.cpp zona.cpp
+clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interfaces/ICollection.cpp ICollection/interfaces/IDictionary.cpp ICollection/interfaces/IIterator.cpp ICollection/interfaces/IKey.cpp ICollection/interfaces/OrderedKey.cpp ICollection/collections/List.cpp ICollection/collections/ListIterator.cpp ICollection/collections/ListNode.cpp ICollection/collections/OrderedDictionary.cpp ICollection/collections/OrderedDictionaryEntry.cpp ICollection/String.cpp main.cpp DataTypes/direccion.cpp DataTypes/dtDepartamento.cpp DataTypes/dtEdificio.cpp DataTypes/dtInmobiliaria.cpp DataTypes/dtMensaje.cpp DataTypes/dtPropiedad.cpp DataTypes/dtPropiedadInmo.cpp DataTypes/dtRespuesta.cpp DataTypes/dtZona.cpp DataTypes/fecha.cpp DataTypes/mensajesPropiedad.cpp DataTypes/propZona.cpp DataTypes/registroMensajes.cpp DataTypes/zonasDep.cpp administrador.cpp apartamento.cpp casa.cpp chat.cpp departamento.cpp edificio.cpp inmobiliaria.cpp interesado.cpp mensaje.cpp propiedad.cpp sistema.cpp usuario.cpp zona.cpp
 
     ICollection/String.cpp
     ICollection/interfaces/ICollectible.cpp 
@@ -518,6 +529,6 @@ clear; g++ -o temp ICollection/interfaces/ICollectible.cpp ICollection/interface
 */
 
 int main (){
-    pruebaPropiedad();
+    pruebaSistema();
     return 0;
 }
