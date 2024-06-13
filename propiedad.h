@@ -43,6 +43,7 @@ public:
     void IngresarMensaje(string correo, string mensaje);
     int obtenerCantMensajes(string correo);
     virtual void CortarLazos() = 0;
+    friend ostream& operator<<(ostream& os, propiedad *prop);
 };
 
 #endif

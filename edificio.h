@@ -19,6 +19,7 @@ class edificio : public ICollectible{
     string getNombre();
     int getCantPisos();
     int getGastosComunes();
+    IDictionary* getApartamentos();
     void setNombre(string nombre);
     void setCantPisos(int cantPisos);
     void setGastosComunes(int gastos);

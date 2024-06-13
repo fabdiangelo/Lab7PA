@@ -230,6 +230,30 @@ void sistema::finalizarAlta(){
 }
 
 void sistema::listarPropiedades(string zonaSeleccionada){
+    if(zonaActual == NULL){
+        cout << "Debes seleccionar una zona antes" << endl;
+    }else{
+        cout << "Departamento: " << departamentoActual -> getNombre() << endl;
+        cout << "Zona: " << zonaActual -> getNombre() << endl;
+
+        cout << "Apartamentos:" << endl;
+        for(IIterator* iter = zonaActual -> listarEdificios() -> getIterator(); iter -> hasCurrent(); iter -> next()){
+            edificio *ed = (edificio*) iter -> getCurrent();           
+            cout << ed;
+            IIterator *iterProp = ed -> getApartamentos() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                apartamento* ap = (apartamento*) iterProp -> getCurrent();
+                cout << ap;
+            }
+        }
+        cout << "Casas:" << endl;
+        for(IIterator* iter = zonaActual -> listarPropiedades() -> getIterator(); iter -> hasCurrent(); iter -> next()){
+            casa *c = (casa*) iter -> getCurrent();           
+            if(c != NULL){
+                cout << c;
+            }
+        }
+    }
 }
 
 dtPropiedadInmo* sistema::infoPropInmo(string propInmo){

@@ -26,6 +26,10 @@ int edificio::getGastosComunes(){
     return this -> gastosComunes;
 }
 
+IDictionary* edificio::getApartamentos(){
+    return this -> apartamentos;
+}
+
 // SETTERS:
 void edificio::setNombre(string nombre){
     this -> nombre = nombre;
