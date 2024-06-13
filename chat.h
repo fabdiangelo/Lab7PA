@@ -16,13 +16,13 @@ class chat : public ICollectible{
     int Hora;
     int CantMensajes;
     ICollection* MisMensajes; 
-    interesado * persona;
+    string persona;
   public:
     chat();
     fecha* getFecha();
     int getHora();
     int getCantMensajes();
-    interesado* getInteresado();
+    string getInteresado();
     void BorrarMensajes();
     registroMensajes* ObtenerRegistro();
     void CrearMensaje(string contenido);

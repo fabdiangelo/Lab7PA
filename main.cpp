@@ -415,7 +415,9 @@ void pruebaPropiedad(){
         iter -> next();
     }
 
-    ca -> CortarLazos(); // segmentation fault
+    ca -> CortarLazos();
+    cout << "apartamento: " << endl;
+    ap -> CortarLazos();
 
     ed->~edificio();
     dir->~direccion();

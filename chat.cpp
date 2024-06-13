@@ -17,7 +17,7 @@ chat::chat(){
     this -> Hora = hora;
     this -> CantMensajes = 0;
     this -> MisMensajes = new List();
-    this -> persona = NULL; // Cambiar por actualUser
+    this -> persona = "cambiar por actualUser"; // Cambiar de string a interesado*
 }
 
 // DESTRUCTOR:
@@ -38,7 +38,7 @@ int chat::getCantMensajes(){
     return this -> CantMensajes;
 }
 
-interesado* chat::getInteresado(){
+string chat::getInteresado(){
     return this -> persona;
 } 
 
