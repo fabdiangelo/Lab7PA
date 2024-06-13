@@ -141,8 +141,11 @@ void sistema::listarZonas(){
 }
 
 void sistema::seleccionarZona(string zonaSeleccionada){
+        cout << "Todo ok";
     IKey *k = new String(zonaSeleccionada.c_str());
+        cout << "Todo ok";
     zona *z = (zona*) departamentoActual -> getZonas() -> find(k);
+        cout << "Todo ok";
     if(z == NULL){
         cout << "Se ingresó una zona no válida" << endl;
     }else{
@@ -150,46 +153,83 @@ void sistema::seleccionarZona(string zonaSeleccionada){
     }
 }
 
-dtRespuesta* sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
-    if(this -> zonaActual = NULL){
-        return new dtRespuesta("Debe seleccionar una zona antes de poder ingresar un edificio");
+void sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
+        cout << "Todo ok";
+    if(this -> zonaActual == NULL){
+        cout << "Debe seleccionar una zona antes de poder ingresar un edificio" << endl;
     }else{
         edificio* ed = new edificio(nombre, cantPisos, gastosComunes);
         this -> zonaActual -> agegarEdificio(ed);
-        return new dtRespuesta("Todo OK");
     }
 }
 
-List* sistema::listarEdificios(){
-    return NULL;
+void sistema::listarEdificios(){
+    if(zonaActual == NULL){
+        cout << "Debes seleccionar una zona antes" << endl;
+    }else{
+        cout << "Departamento: " << departamentoActual -> getNombre() << endl;
+        cout << "Zona: " << zonaActual -> getNombre() << endl;
+        cout << "Edificios:" << endl;
+        for(IIterator* iter = zonaActual -> listarEdificios() -> getIterator(); iter -> hasCurrent(); iter -> next()){
+            edificio *ed = (edificio*) iter -> getCurrent();
+            cout << ed;
+        }
+    }
 }
 
-void sistema::seleccionarEdificio(){
-
+void sistema::seleccionarEdificio(string edSelec){
+    IKey *k = new String(edSelec.c_str());
+    edificio *ed = (edificio*) zonaActual -> listarEdificios() -> find(k);
+    if(ed == NULL){
+        cout << "Se ingresó una zona no válida" << endl;
+    }else{
+        this -> edificioActual = ed;
+    }
 }
 
-dtRespuesta* sistema::ingresarDatosApartamento(int ambientes, int dormitorios, int banios, bool garage, direccion * dir, int metros){
-    return NULL;
+void sistema::ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2){
+    inmobiliaria* inmo = (inmobiliaria*) this -> usuarioActual;
+    if(inmo == NULL || zonaActual == NULL || edificioActual == NULL){
+        cout << "Debe ingresar con una inmobiliaria y un edificio" << endl;
+    }else{
+        inmo -> IngresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, this -> zonaActual, this -> edificioActual);
+    }
 }
 
-dtRespuesta* sistema::ingresarDatosCasa(int ambientes, int dormitorios, int banios , bool garage, direccion * dir, int M2Verde){
-    return NULL;
+void sistema::ingresarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V){
+    inmobiliaria* inmo = (inmobiliaria*) this -> usuarioActual;
+    if(inmo == NULL || zonaActual == NULL){
+        cout << "Debe ingresar con una inmobiliaria y un edificio" << endl;
+    }else{
+        inmo -> IngresarDatosCasa(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, m2V, this -> zonaActual);
+    }
 }
 
-dtRespuesta* sistema::ingresarPrecioAlquiler(int valorAlqui){
-    return NULL;
+void sistema::ingresarPrecioAlquiler(string codigo, int valorAlqui){
+    inmobiliaria* inmo = (inmobiliaria*) this -> usuarioActual;
+    if(inmo == NULL){
+        cout << "debes ingresar como una inmobiliaria" << endl;
+    }else{
+        inmo -> IngresarPrecioAlquiler(codigo, valorAlqui);
+    }
 }
 
-dtRespuesta* sistema::ingresarPrecioVenta(int valorVenta){
-    return NULL;
+void sistema::ingresarPrecioVenta(string codigo, int valorVenta){
+    inmobiliaria* inmo = (inmobiliaria*) this -> usuarioActual;
+    if(inmo == NULL){
+        cout << "debes ingresar como una inmobiliaria" << endl;
+    }else{
+        inmo -> IngresarPrecioVenta(codigo, valorVenta);
+    }
 }
 
 void sistema::finalizarAlta(){
-
+    this -> departamentoActual = NULL;
+    this -> zonaActual = NULL;
+    this -> edificioActual = NULL;
 }
 
-List* sistema::listarPropiedades(string zonaSeleccionada){
-    return NULL;
+void sistema::listarPropiedades(string zonaSeleccionada){
 }
 
 dtPropiedadInmo* sistema::infoPropInmo(string propInmo){

@@ -439,6 +439,11 @@ void pruebaSistema(){
     sis -> ingresarZona("COL2", "L3");
     sis -> ingresarZona("COL2", "L4");
     sis -> listarZonas();
+    sis -> seleccionarZona("L1");
+    sis -> ingresarEdificio("Ed1", 1, 100);
+    sis -> ingresarEdificio("Ed2", 1, 150);
+    sis -> ingresarEdificio("Ed3", 12, 9999991);
+    sis -> listarEdificios();
 }
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");

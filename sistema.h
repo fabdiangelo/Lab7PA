@@ -35,15 +35,15 @@ public:// Faltan las de ingresar sesion
     void ingresarZona(string nombre, string codigo); //👌
     void listarZonas(); //👌
     void seleccionarZona(string zonaSeleccionada); //👌
-    dtRespuesta* ingresarEdificio(string nombre, int pisos, int gastosComunes);
-    List* listarEdificios();
-    void seleccionarEdificio();
-    dtRespuesta* ingresarDatosApartamento(int ambientes, int dormitorios, int banios, bool garage, direccion * dir, int metros);
-    dtRespuesta* ingresarDatosCasa(int ambientes, int dormitorios, int banios , bool garage, direccion * dir, int M2Verde);
-    dtRespuesta* ingresarPrecioAlquiler(int valorAlqui);
-    dtRespuesta* ingresarPrecioVenta(int valorVenta);
+    void ingresarEdificio(string nombre, int pisos, int gastosComunes); //👌
+    void listarEdificios(); //👌
+    void seleccionarEdificio(string edSelec); //👌
+    void ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2);
+    void ingresarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V);
+    void ingresarPrecioAlquiler(string codigo, int valorAlqui);
+    void ingresarPrecioVenta(string codigo, int valorVenta);
     void finalizarAlta();
-    List* listarPropiedades(string zonaSeleccionada);
+    void listarPropiedades(string zonaSeleccionada);
     dtPropiedadInmo* infoPropInmo(string propInmo);
     void ingresarCodigoProp(string codigo);
     void borrarPorp(string codigo);

@@ -55,3 +55,9 @@ void edificio::desvincularProp(string codigo){
         cout << "La propiedad con codigo " << codigo << " no se encontraba vinculada con el edificio " << this -> getNombre() << endl;
     }
 }
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, edificio* ed){
+    os << "  " << ed -> getNombre() << ") Cant pisos: " << ed -> getCantPisos() << " | Gastos comunes: " << ed -> getGastosComunes() << endl;
+    return os;
+}

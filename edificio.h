@@ -24,6 +24,7 @@ class edificio : public ICollectible{
     void setGastosComunes(int gastos);
     void agreagrPropiedad(propiedad* prop);
     void desvincularProp(string codigo);
+    friend ostream& operator<<(ostream& os, edificio *ed);
 };
 
 #endif
