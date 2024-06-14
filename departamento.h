@@ -2,10 +2,7 @@
 #define DEPARTAMENTO_H
 
 #include "zona.h"
-#include "DataTypes/dtZona.h"
 #include "ICollection/interfaces/IDictionary.h"
-
-class zona;
 
 class departamento : public ICollectible
 {

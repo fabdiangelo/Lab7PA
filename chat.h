@@ -6,7 +6,6 @@
 #include "DataTypes/fecha.h"
 #include "DataTypes/registroMensajes.h"
 #include "interesado.h"
-#include "ICollection/interfaces/IIterator.h"
 
 class chat : public ICollectible{
   private:

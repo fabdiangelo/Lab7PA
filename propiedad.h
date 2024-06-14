@@ -7,7 +7,6 @@
 #include "inmobiliaria.h"
 
 class zona;
-class inmobiliaria;
 
 class propiedad : public ICollectible
 {

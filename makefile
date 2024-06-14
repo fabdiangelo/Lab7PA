@@ -2,44 +2,44 @@ okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMens
 	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o interesado.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o list.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o programa
 
 
-# Data types 👌
-direccion.o: #👌
+# Data types
+direccion.o:
 	g++ -c "DataTypes/direccion.cpp"
 
-dtDepartamento.o: #👌
+dtDepartamento.o:
 	g++ -c "DataTypes/dtDepartamento.cpp"
 
-dtEdificio.o: #👌
+dtEdificio.o:
 	g++ -c "DataTypes/dtEdificio.cpp"
 
-dtInmobiliaria.o: direccion.o #👌
+dtInmobiliaria.o: direccion.o
 	g++ -c "DataTypes/dtInmobiliaria.cpp"
 
-dtMensaje.o: ICollectible.o #👌
+dtMensaje.o: ICollectible.o
 	g++ -c "DataTypes/dtMensaje.cpp"
 
-dtPropiedad.o: direccion.o #👌
+dtPropiedad.o: direccion.o
 	g++ -c "DataTypes/dtPropiedad.cpp"
 
-dtPropiedadInmo.o: direccion.o #👌
+dtPropiedadInmo.o: direccion.o
 	g++ -c "DataTypes/dtPropiedadInmo.cpp"
 
-dtRespuesta.o: #👌
+dtRespuesta.o:
 	g++ -c "DataTypes/dtRespuesta.cpp"
 
-dtZona.o: ICollectible.o #👌
+dtZona.o: ICollectible.o
 	g++ -c "DataTypes/dtZona.cpp"
 
-fecha.o: #👌
+fecha.o:
 	g++ -c "DataTypes/fecha.cpp"
 
-mensajesPropiedad.o: dtPropiedad.o ICollectible.o #👌
+mensajesPropiedad.o: dtPropiedad.o ICollectible.o
 	g++ -c "DataTypes/mensajesPropiedad.cpp"
 
-propZona.o: zona.o #👌
+propZona.o: zona.o
 	g++ -c "DataTypes/propZona.cpp"
 
-registroMensajes.o: dtMensaje.o lista.o IIterator.o #👌
+registroMensajes.o: dtMensaje.o list.o IIterator.o
 	g++ -c "DataTypes/registroMensajes.cpp"
 
 zonasDep.o: departamento.o propZona.o
@@ -47,50 +47,50 @@ zonasDep.o: departamento.o propZona.o
 
 
 # Clases
-administrador.o: usuario.o #👌
+administrador.o: usuario.o
 	g++ -c administrador.cpp
 
-apartamento.o: propiedad.o edificio.o
+apartamento.o: propiedad.o
 	g++ -c apartamento.cpp
 
 casa.o: propiedad.o
-	g++ -c casa.cpp	
+	g++ -c casa.cpp
 
-chat.o: mensaje.o fecha.o registroMensajes.o interesado.o IIterator.o #👌
-	g++ -c chat.cpp	
-	
-departamento.o: zona.o IDictionary.o dtZona.o #👌
-	g++ -c departamento.cpp	
-	
-edificio.o: OrderedDictionary.o String.o propiedad.o #👌
-	g++ -c edificio.cpp	
-	
+chat.o: mensaje.o fecha.o registroMensajes.o interesado.o
+	g++ -c chat.cpp
+
+departamento.o: zona.o IDictionary.o
+	g++ -c departamento.cpp
+
+edificio.o: apartamento.o OrderedDictionary.o String.o
+	g++ -c edificio.cpp
+
 # factory.o: sistema.o
 # 	g++ -c factory.cpp	
 
-inmobiliaria.o: usuario.o casa.o apartamento.o zonasDep.o#👌
-	g++ -c inmobiliaria.cpp	
-	
-interesado.o: usuario.o #👌
-	g++ -c interesado.cpp	
-	
+inmobiliaria.o: usuario.o casa.o apartamento.o zonasDep.o
+	g++ -c inmobiliaria.cpp
+
+interesado.o: usuario.o
+	g++ -c interesado.cpp
+
 # ISistema.o:
 # 	g++ -c ISistema.cpp	
-	
-mensaje.o: ICollectible.o #👌
-	g++ -c mensaje.cpp	
-	
-propiedad.o: chat.o zona.o direccion.o inmobiliaria.o
-	g++ -c propiedad.cpp	
-	
-sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o inmobiliaria.o administrador.o interesado.o 
-	g++ -c sistema.cpp	
-	
-usuario.o: ICollectible.o #👌
-	g++ -c usuario.cpp	
-	
-zona.o: departamento.o mensajesPropiedad.o IDictionary.o edificio.o #👌
-	g++ -c zona.cpp	
+
+mensaje.o: ICollectible.o
+	g++ -c mensaje.cpp
+
+propiedad.o: chat.o direccion.o inmobiliaria.o
+	g++ -c propiedad.cpp
+
+sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o inmobiliaria.o administrador.o interesado.o
+	g++ -c sistema.cpp
+
+usuario.o: ICollectible.o
+	g++ -c usuario.cpp
+
+zona.o: edificio.o
+	g++ -c zona.cpp
 
 
 # ICOLLECTION:
@@ -98,7 +98,7 @@ String.o: ICollectible.o OrderedKey.o
 	g++ -c "ICollection/String.cpp"
 
 ICollectible.o:
-	g++ -c "ICollection/interfaces/ICollectible.cpp" 
+	g++ -c "ICollection/interfaces/ICollectible.cpp"
 
 ICollection.o: IIterator.o
 	g++ -c "ICollection/interfaces/ICollection.cpp"
@@ -107,21 +107,21 @@ IDictionary.o: IKey.o ICollectible.o IIterator.o
 	g++ -c "ICollection/interfaces/IDictionary.cpp"
 
 IIterator.o: ICollectible.o
-	g++ -c "ICollection/interfaces/IIterator.cpp" 
+	g++ -c "ICollection/interfaces/IIterator.cpp"
 
 IKey.o: ListNode.o
-	g++ -c "ICollection/interfaces/IKey.cpp" 
+	g++ -c "ICollection/interfaces/IKey.cpp"
 
 OrderedKey.o: IKey.o
 	g++ -c "ICollection/interfaces/OrderedKey.cpp"
 
-list.o: ListNode
+list.o: ICollection.o ListIterator.o
 	g++ -c "ICollection/collections/List.cpp"
 
 ListIterator.o: ListNode.o
 	g++ -c "ICollection/collections/ListIterator.cpp"
 
-ListNode.o: ICollection.o
+ListNode.o: ICollectible.o
 	g++ -c "ICollection/collections/ListNode.cpp"
 
 OrderedDictionary.o: OrderedDictionaryEntry.o ListNode.o IDictionary.o
@@ -131,7 +131,7 @@ OrderedDictionaryEntry.o: OrderedKey.o ICollectible.o
 	g++ -c "ICollection/collections/OrderedDictionaryEntry.cpp"
 
 
-main.o: 
+main.o:
 	g++ -c main.cpp
 
 
