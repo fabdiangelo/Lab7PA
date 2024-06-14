@@ -64,3 +64,26 @@ string dtPropiedadInmo::getNombreInmo(){
 direccion *dtPropiedadInmo::getDireccionInmo(){
     return this -> direccionInmo;
 }
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, dtPropiedadInmo* dt){
+    os <<dt -> getCodigo() << ") Ubicada en:" << dt -> getDireccion() << endl;
+    os << "  Cant ambientes: " << dt -> getCantAmbientes() << " | Cant dormitorios: " << dt -> getCantDormitorios() << " | Cant baños: " << dt -> getCantBanios() << endl;
+    os << "   Metros cuadrados edificados: " << dt -> getM2Edificados() << "m ";
+    if (dt -> getGarage()){
+        os << "con garage" << endl;
+    }else{
+        os << "sin garage" << endl;
+    }
+    if(dt -> getEnAlquiler() && dt -> getEnVenta()){
+        os << "Tanto en venta como en alquiler";
+    }else if (dt -> getEnAlquiler()){
+        os << "En alquiler";
+    }else if (dt -> getEnVenta()){
+        os << "En venta";
+    }else{
+        os << "No disponible";
+    }
+    os << endl << "  Inmobiliaria:" << endl << "    Nombre: " << dt -> getNombreInmo() << " | Direccion: " << dt ->getDireccionInmo() << endl;
+    return os;
+}

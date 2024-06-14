@@ -8,8 +8,6 @@
 #include "interesado.h"
 #include "ICollection/interfaces/IIterator.h"
 
-using namespace std;
-
 class chat : public ICollectible{
   private:
     fecha* Fecha;

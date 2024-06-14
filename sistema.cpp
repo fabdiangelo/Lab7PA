@@ -282,15 +282,31 @@ void sistema::listarPropiedades(string zonaSeleccionada){
     }
 }
 
-dtPropiedadInmo* sistema::infoPropInmo(string propInmo){
-    return NULL;
+void sistema::infoPropInmo(string propiedadSelec){
+    IKey *k = new String(propiedadSelec.c_str());
+    propiedad *prop = (propiedad*) zonaActual -> listarPropiedades() -> find(k);
+    if(prop == NULL){
+        cout << "Se ingresó una propiedad no válida" << endl;
+    }else{
+        dtPropiedadInmo *dt = new dtPropiedadInmo(prop -> getCodigo(), prop -> getCantAmbientes(), prop -> getCantDormitorios(), prop -> getCantBanios(), prop -> getGarage(), prop -> getM2Edificados(), prop -> getDireccion(), prop -> getPrecioVenta() > 0, prop -> getPrecioAlquiler() > 0, prop -> getInmobiliaria() -> getNombre(), prop -> getInmobiliaria() -> getDireccion());
+        cout << dt;
+        dt -> ~dtPropiedadInmo();
+    }
 }
 
 void sistema::ingresarCodigoProp(string codigo){
-
+    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
+    if(inmo == NULL){
+        cout << "debes ingresar como un usuario inmobiliaria" << endl;
+    }else{
+        propiedad* prop = inmo -> encontrarPropiedad(codigo);
+        if(prop == NULL){
+            cout << "debes ingresar el código de una propiedad previamente registrada" << endl;
+        }
+    }
 }
 
-void sistema::borrarPorp(string codigo){
+void sistema::borrarProp(string codigo){
 
 }
 

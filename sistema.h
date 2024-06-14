@@ -1,7 +1,6 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
-#include <iostream>
 #include "DataTypes/dtRespuesta.h"
 #include "DataTypes/direccion.h"
 #include "DataTypes/registroMensajes.h"
@@ -12,8 +11,6 @@
 #include "inmobiliaria.h"
 #include "administrador.h"
 #include "interesado.h"
-
-using namespace std;
 
 class sistema
 {
@@ -47,9 +44,9 @@ public:
     void ingresarPrecioVenta(string codigo, int valorVenta); //👌
     void finalizarAlta(); //👌
     void listarPropiedades(string zonaSeleccionada); //
-    dtPropiedadInmo* infoPropInmo(string propInmo);
+    void infoPropInmo(string propiedadSelec); //
     void ingresarCodigoProp(string codigo);
-    void borrarPorp(string codigo);
+    void borrarProp(string codigo);
     List* listarPropMens(string zonaSeleccionada);
     registroMensajes* listarMensajes(string propSeleccionada);
     void crearChat();

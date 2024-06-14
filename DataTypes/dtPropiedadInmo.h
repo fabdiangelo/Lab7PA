@@ -1,10 +1,7 @@
 #ifndef DTPROPIEDADINMO_H
 #define DTPROPIEDADINMO_H
 
-#include <iostream>
 #include "direccion.h"
-
-using namespace std;
 
 class dtPropiedadInmo
 {
@@ -28,6 +25,7 @@ public:
     bool getEnAlquiler();
     string getNombreInmo();
     direccion *getDireccionInmo();
+    friend ostream& operator<<(ostream& os, dtPropiedadInmo* propInmo);
 };
 
 #endif

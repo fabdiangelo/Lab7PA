@@ -109,8 +109,9 @@ void pruebaPropZona(){
     zona * z = new zona("zona1", "l1", d);
     propZona *pz = new propZona(z);
     direccion* dir = new direccion("a", "b", "c");
-    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z, ed);
-    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z, ed);
+    inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
+    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z, ed, inmo);
+    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z, ed, inmo);
     
     pz->agregarProp(p1);
     pz->agregarProp(p2);
@@ -269,10 +270,10 @@ void pruebaEdificio(){
 
     departamento* dep1 = new departamento("Colonia", 'L');
     zona * z1= new zona("COL1", "L1", dep1);
-
     direccion *dir = new direccion("a", "b", "c");
-    propiedad *prop1 = new apartamento("cod1", 1, 1, 1, true, dir, 1, z1, ed);
-    propiedad *prop2 = new apartamento("cod2", 2, 2, 1, true, dir, 2, z1, ed);
+    inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
+    propiedad *prop1 = new apartamento("cod1", 1, 1, 1, true, dir, 1, z1, ed, inmo);
+    propiedad *prop2 = new apartamento("cod2", 2, 2, 1, true, dir, 2, z1, ed, inmo);
 
     ed -> agreagrPropiedad(prop1);
     ed -> agreagrPropiedad(prop2);
@@ -379,9 +380,10 @@ void pruebaPropiedad(){
     direccion* dir = new direccion("a", "b", "c");
     departamento* dep = new departamento("San José", 'M');
     zona *z = new zona("zonita", "123", dep);
+    inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
     
-    propiedad *ca = new casa("casa1", 1, 1, 1, true, dir, 1, 1, z);
-    propiedad *ap = new apartamento("apartamento", 2, 2, 2, false, dir, 2, z, ed);
+    propiedad *ca = new casa("casa1", 1, 1, 1, true, dir, 1, 1, z, inmo);
+    propiedad *ap = new apartamento("apartamento", 2, 2, 2, false, dir, 2, z, ed, inmo);
 
     ca -> CrearChat ("juan@gmail.com");
     ca -> CrearChat ("juan@gmail.com");
@@ -504,8 +506,10 @@ void pruebaZona(){
     z -> desvincularEdifico("ed2");
 
     direccion* dir = new direccion("a", "b", "c");
-    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z, ed);
-    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z, ed);
+    inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
+
+    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z, ed, inmo);
+    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z, ed, inmo);
     z -> agegarPropiedad(prop1);
     z -> agegarPropiedad(prop2);
     IDictionary *propiedades = z -> listarPropiedades();

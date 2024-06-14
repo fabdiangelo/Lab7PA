@@ -1,10 +1,7 @@
 #ifndef INTERESADO_H
 #define INTERESADO_H
 
-#include <iostream>
 #include "usuario.h"
-
-using namespace std;
 
 class interesado : public usuario
 {

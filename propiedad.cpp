@@ -1,7 +1,7 @@
 #include "propiedad.h"
 
 // CONSTRUCTOR:
-propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z){
+propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z, inmobiliaria* inmo){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -14,6 +14,7 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> precioVenta = 0;
     this -> chats = new OrderedDictionary();
     z -> agegarPropiedad(this);
+    this -> inmo = inmo;
 }
 
 // DESTRUCTOR:
@@ -146,7 +147,7 @@ int propiedad::obtenerCantMensajes(string correo){
 
 // SOBRECARGA:
 ostream& operator<<(ostream& os, propiedad* prop){
-    os << "  " << prop -> getCodigo() << ") Metros totales: " << prop -> getM2Edificados() <<"    ";
+    os << "  " << prop -> getCodigo() << ") Direccion: " << prop -> getDireccion() <<"    ";
     if(prop -> getPrecioAlquiler() > 0){
         os << "Precio Alquiler: " << prop -> getPrecioAlquiler() << "    ";
     }

@@ -1,8 +1,6 @@
 #ifndef PROPZONA_H
 #define PROPZONA_H
 
-#include <iostream>
-
 #include "../zona.h"
 
 class propZona : public ICollectible

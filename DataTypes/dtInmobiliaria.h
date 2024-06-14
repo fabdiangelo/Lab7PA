@@ -1,10 +1,7 @@
 #ifndef DTINMOBILIARIA_H
 #define DTINMOBILIARIA_H
 
-#include <iostream>
 #include "direccion.h"
-
-using namespace std;
 
 class dtInmobiliaria
 {

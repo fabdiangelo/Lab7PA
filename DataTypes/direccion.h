@@ -15,6 +15,7 @@ public:
     string getCiudad();
     string getCalle();
     string getNumero();
+    friend ostream& operator<<(ostream& os, direccion *dir);
 };
 
 #endif

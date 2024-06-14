@@ -4,8 +4,10 @@
 #include "chat.h"
 #include "zona.h"
 #include "DataTypes/direccion.h"
+#include "inmobiliaria.h"
 
 class zona;
+class inmobiliaria;
 
 class propiedad : public ICollectible
 {
@@ -16,8 +18,9 @@ private:
     direccion *dir;
     zona *z;
     IDictionary *chats;
+    inmobiliaria *inmo;
 public:
-    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z);
+    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z, inmobiliaria* inmo);
     ~propiedad();
     string getCodigo();
     int getCantAmbientes();
@@ -30,6 +33,7 @@ public:
     int getPrecioVenta();
     zona* getZona();
     IDictionary* getChats();
+    inmobiliaria *getInmobiliaria();
     void setCantAmbientes(int cant);
     void setCantDormitorios(int cant);
     void setCantBanios(int cant);

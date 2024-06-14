@@ -1,7 +1,6 @@
 #ifndef ZONASDEP_H
 #define ZONASDEP_H
 
-#include <iostream>
 #include "../departamento.h"
 #include "propZona.h"
 

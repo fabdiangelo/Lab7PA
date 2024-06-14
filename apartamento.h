@@ -11,7 +11,7 @@ class apartamento : public propiedad{
 		int M2Totales;
 		edificio* ed;
 	public:
-		apartamento(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, zona *z, edificio* ed);
+		apartamento(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, zona *z, edificio* ed, inmobiliaria* inmo);
 		~apartamento();
 		int getM2Totales();
 		void setM2Totales(int);

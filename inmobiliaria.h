@@ -6,6 +6,8 @@
 #include "apartamento.h"
 #include "DataTypes/zonasDep.h"
 
+class propiedad;
+
 class inmobiliaria : public usuario
 {
 private:
@@ -27,6 +29,7 @@ public:
     void ModificarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta);
     void ModifiarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V);
     void MostrarDatos();
+    propiedad * encontrarPropiedad(string codigo);
 };
 
 #endif

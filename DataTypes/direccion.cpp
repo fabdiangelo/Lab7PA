@@ -26,3 +26,9 @@ string direccion::getCalle(){
 string direccion::getNumero(){
     return this -> numero;
 }
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, direccion* dir){
+    os << dir -> getCiudad() << ", " << dir -> getCalle() << " Nro " << dir -> getNumero();
+    return os;
+}
