@@ -346,7 +346,23 @@ void sistema::crearChat(string propSeleccionada){
 }
 
 dtRespuesta* sistema::ingresarMensaje(string mensaje){
-    return NULL;
+    if (this->usuarioActual == NULL) {
+        cout << "Debe iniciar sesión para enviar un mensaje" << endl;
+        return new dtRespuesta("Error: sesión no iniciada");
+    }
+    if (this->zonaActual == NULL) {
+        cout << "Debe seleccionar una zona antes de enviar un mensaje" << endl;
+        return new dtRespuesta("Error: zona no seleccionada");
+    }
+    if (this->propiedadActual == NULL) {
+        cout << "Debe seleccionar una propiedad antes de enviar un mensaje" << endl;
+        return new dtRespuesta("Error: propiedad no seleccionada");
+    }
+    string emisor = this->usuarioActual->getCorreo();
+    string receptor = this->propiedadActual->getInmobiliaria()->getCorreo();
+    Mensaje *mensaje = new Mensaje(emisor, receptor, mensaje);
+    this->propiedadActual->agregarMensaje(mensaje);
+    return new dtRespuesta("Mensaje enviado correctamente");
 }
 
 List* sistema::listarMensajesRecientes(){
