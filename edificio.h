@@ -5,6 +5,8 @@
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/String.h"
 
+class apartamento;
+
 class edificio : public ICollectible{
   private:
     string nombre;

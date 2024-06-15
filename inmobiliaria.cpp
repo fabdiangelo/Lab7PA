@@ -68,7 +68,10 @@ void inmobiliaria::IngresarPrecioVenta(string codigo, int precio){
 void inmobiliaria::BorrarPropiedad(string codigo){
     IKey *k = new String(codigo.c_str());
     if(this -> propiedades -> member(k)){
+        propiedad *prop = (propiedad*) this -> propiedades -> find(k);
+        prop -> CortarLazos();
         propiedades -> remove (k);
+        delete prop;
     }else{
         cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
     }

@@ -6,6 +6,7 @@
 #include "DataTypes/direccion.h"
 #include "inmobiliaria.h"
 
+class inmobiliaria;
 class zona;
 
 class propiedad : public ICollectible

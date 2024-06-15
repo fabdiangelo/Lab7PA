@@ -59,16 +59,16 @@ casa.o: propiedad.o
 chat.o: mensaje.o fecha.o registroMensajes.o interesado.o
 	g++ -c chat.cpp
 
-departamento.o: zona.o IDictionary.o
+departamento.o: IDictionary.o zona.o
 	g++ -c departamento.cpp
 
-edificio.o: apartamento.o OrderedDictionary.o String.o
+edificio.o: OrderedDictionary.o String.o apartamento.o propiedad.o
 	g++ -c edificio.cpp
 
 # factory.o: sistema.o
 # 	g++ -c factory.cpp	
 
-inmobiliaria.o: usuario.o casa.o apartamento.o zonasDep.o
+inmobiliaria.o: usuario.o zonasDep.o propiedad.o
 	g++ -c inmobiliaria.cpp
 
 interesado.o: usuario.o
@@ -80,16 +80,16 @@ interesado.o: usuario.o
 mensaje.o: ICollectible.o
 	g++ -c mensaje.cpp
 
-propiedad.o: chat.o direccion.o inmobiliaria.o
+propiedad.o: chat.o direccion.o
 	g++ -c propiedad.cpp
 
-sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o inmobiliaria.o administrador.o interesado.o
+sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o usuario.o departamento.o
 	g++ -c sistema.cpp
 
 usuario.o: ICollectible.o
 	g++ -c usuario.cpp
 
-zona.o: edificio.o
+zona.o: edificio.o propiedad.o
 	g++ -c zona.cpp
 
 

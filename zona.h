@@ -3,8 +3,14 @@
 
 #include "departamento.h"
 #include "edificio.h"
+#include "DataTypes/dtPropiedad.h"
+#include "DataTypes/mensajesPropiedad.h"
 
 class departamento;
+class edificio;
+class propiedad;
+class dtPropiedad;
+class mensajesPropiedad;
 
 class zona : public ICollectible{
   private:

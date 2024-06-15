@@ -47,9 +47,9 @@ public:
     void infoPropInmo(string propiedadSelec); //
     void ingresarCodigoProp(string codigo);
     void borrarProp(string codigo);
-    List* listarPropMens(string zonaSeleccionada);
-    registroMensajes* listarMensajes(string propSeleccionada);
-    void crearChat();
+    void listarPropMens(string zonaSeleccionada);
+    void listarMensajes(string propSeleccionada);
+    void crearChat(string propSeleccionada);
     dtRespuesta* ingresarMensaje(string mensaje);
     List* listarMensajesRecientes();
     dtInmobiliaria* mostrarDatosInmo();

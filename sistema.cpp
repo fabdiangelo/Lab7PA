@@ -302,24 +302,47 @@ void sistema::ingresarCodigoProp(string codigo){
         propiedad* prop = inmo -> encontrarPropiedad(codigo);
         if(prop == NULL){
             cout << "debes ingresar el código de una propiedad previamente registrada" << endl;
+        }else{
+            // modificar
         }
     }
 }
 
 void sistema::borrarProp(string codigo){
-
+    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
+    if(inmo == NULL){
+        cout << "Debes ingresar como un usuario inmobiliaria" << endl;
+    }else{
+        inmo -> BorrarPropiedad(codigo);
+    }
 }
 
-List* sistema::listarPropMens(string zonaSeleccionada){
-    return NULL;
+void sistema::listarPropMens(string zonaSeleccionada){
+    seleccionarZona(zonaSeleccionada);
+    List* lista = zonaActual -> listarPropMens(this -> usuarioActual -> getCorreo());
+
+    IIterator *iter = lista -> getIterator();
+    while(iter -> hasCurrent()){
+        cout << iter -> getCurrent();
+        iter -> next();
+    }
 }
 
-registroMensajes* sistema::listarMensajes(string propSeleccionada){
-    return NULL;
+void sistema::listarMensajes(string propSeleccionada){
+    propiedad *prop = this -> zonaActual -> seleccionarPropiedad(propSeleccionada);
+    registroMensajes *mensj = prop -> MostrarMensajes(this -> usuarioActual -> getCorreo());
+    List *lista = mensj -> getMensajes();
+    
+    IIterator *iter = lista -> getIterator();
+    while(iter -> hasCurrent()){
+        cout << iter -> getCurrent();
+        iter -> next();
+    }
 }
 
-void sistema::crearChat(){
-
+void sistema::crearChat(string propSeleccionada){
+    propiedad *prop = this -> zonaActual -> seleccionarPropiedad(propSeleccionada);
+    prop -> CrearChat(this -> usuarioActual -> getCorreo());
 }
 
 dtRespuesta* sistema::ingresarMensaje(string mensaje){

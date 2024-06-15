@@ -7,6 +7,8 @@
 #include "DataTypes/zonasDep.h"
 
 class propiedad;
+class casa;
+class apartamento;
 
 class inmobiliaria : public usuario
 {
