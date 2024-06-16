@@ -2,6 +2,7 @@
 #define PROPZONA_H
 
 #include "../zona.h"
+#include "../propiedad.h"
 
 class zona;
 class propiedad;

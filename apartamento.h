@@ -1,11 +1,15 @@
 #ifndef APARTAMENTO_H
 #define APARTAMENTO_H
 
-#include "edificio.h"
 #include "propiedad.h"
+#include "edificio.h"
+
+using namespace std;
 
 class edificio;
-class propiedad;
+class inmobiliaria;
+class direccion;
+class zona;
 
 class apartamento : public propiedad{
 	private:

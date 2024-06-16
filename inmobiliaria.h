@@ -8,11 +8,14 @@
 #include "DataTypes/zonasDep.h"
 #include "edificio.h"
 #include "zona.h"
+#include "propiedad.h"
 
 class casa;
 class apartamento;
 class edificio;
 class zona;
+class apartamento;
+class propiedad;
 
 class inmobiliaria : public usuario
 {

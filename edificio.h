@@ -1,11 +1,11 @@
 #ifndef EDIFICIO_H
 #define EDIFICIO_H
 
-#include "apartamento.h"
+#include "propiedad.h"
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/String.h"
 
-class apartamento;
+class propiedad;
 
 class edificio : public ICollectible{
   private:
