@@ -1,10 +1,11 @@
 #ifndef APARTAMENTO_H
 #define APARTAMENTO_H
 
-#include "propiedad.h"
 #include "edificio.h"
+#include "propiedad.h"
 
 class edificio;
+class propiedad;
 
 class apartamento : public propiedad{
 	private:

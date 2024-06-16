@@ -1,5 +1,44 @@
-okall: fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o interesado.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o list.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
-	g++ fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o interesado.o mensaje.o propiedad.o sistema.o usuario.o zona.o main.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o list.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o programa
+okall: mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o apartamento.o inmobiliaria.o propiedad.o casa.o apartamento.o sistema.o main.o fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o list.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
+	g++ mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o apartamento.o inmobiliaria.o propiedad.o casa.o apartamento.o sistema.o main.o fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o list.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o programa
+
+# Clases
+apartamento.o: edificio.o propiedad.o
+	g++ -c apartamento.cpp
+
+casa.o: propiedad.o
+	g++ -c casa.cpp
+
+inmobiliaria.o: zonasDep.o usuario.o propiedad.o
+	g++ -c inmobiliaria.cpp
+
+propiedad.o: chat.o direccion.o
+	g++ -c propiedad.cpp
+
+# -----------------------------------------------------------
+
+mensaje.o: ICollectible.o
+	g++ -c mensaje.cpp
+
+usuario.o: ICollectible.o
+	g++ -c usuario.cpp
+
+administrador.o: usuario.o
+	g++ -c administrador.cpp
+
+interesado.o: usuario.o
+	g++ -c interesado.cpp
+
+chat.o: mensaje.o fecha.o registroMensajes.o interesado.o
+	g++ -c chat.cpp
+
+departamento.o: IDictionary.o
+	g++ -c departamento.cpp
+
+edificio.o: OrderedDictionary.o String.o
+	g++ -c edificio.cpp
+
+zona.o: edificio.o departamento.o
+	g++ -c zona.cpp
 
 
 # Data types
@@ -42,55 +81,8 @@ propZona.o: zona.o
 registroMensajes.o: dtMensaje.o list.o IIterator.o
 	g++ -c "DataTypes/registroMensajes.cpp"
 
-zonasDep.o: departamento.o propZona.o
-	g++ -c "DataTypes/zonasDep"
-
-
-# Clases
-administrador.o: usuario.o
-	g++ -c administrador.cpp
-
-apartamento.o: propiedad.o
-	g++ -c apartamento.cpp
-
-casa.o: propiedad.o
-	g++ -c casa.cpp
-
-chat.o: mensaje.o fecha.o registroMensajes.o interesado.o
-	g++ -c chat.cpp
-
-departamento.o: IDictionary.o zona.o
-	g++ -c departamento.cpp
-
-edificio.o: OrderedDictionary.o String.o apartamento.o propiedad.o
-	g++ -c edificio.cpp
-
-# factory.o: sistema.o
-# 	g++ -c factory.cpp	
-
-inmobiliaria.o: usuario.o zonasDep.o propiedad.o
-	g++ -c inmobiliaria.cpp
-
-interesado.o: usuario.o
-	g++ -c interesado.cpp
-
-# ISistema.o:
-# 	g++ -c ISistema.cpp	
-
-mensaje.o: ICollectible.o
-	g++ -c mensaje.cpp
-
-propiedad.o: chat.o direccion.o
-	g++ -c propiedad.cpp
-
-sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o usuario.o departamento.o
-	g++ -c sistema.cpp
-
-usuario.o: ICollectible.o
-	g++ -c usuario.cpp
-
-zona.o: edificio.o propiedad.o
-	g++ -c zona.cpp
+zonasDep.o: propZona.o departamento.o
+	g++ -c "DataTypes/zonasDep.cpp"
 
 
 # ICOLLECTION:
@@ -130,6 +122,17 @@ OrderedDictionary.o: OrderedDictionaryEntry.o ListNode.o IDictionary.o
 OrderedDictionaryEntry.o: OrderedKey.o ICollectible.o
 	g++ -c "ICollection/collections/OrderedDictionaryEntry.cpp"
 
+
+
+# SISTEMA:
+# factory.o: sistema.o
+# 	g++ -c factory.cpp	
+
+# ISistema.o:
+# 	g++ -c ISistema.cpp	
+
+sistema.o: dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o usuario.o departamento.o
+	g++ -c sistema.cpp
 
 main.o:
 	g++ -c main.cpp

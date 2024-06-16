@@ -2,13 +2,17 @@
 #define INMOBILIARIA_H
 
 #include "usuario.h"
-#include "casa.h"
-#include "apartamento.h"
+#include "DataTypes/direccion.h"
+#include "ICollection/interfaces/IDictionary.h"
+#include "ICollection/collections/OrderedDictionary.h"
 #include "DataTypes/zonasDep.h"
+#include "edificio.h"
+#include "zona.h"
 
-class propiedad;
 class casa;
 class apartamento;
+class edificio;
+class zona;
 
 class inmobiliaria : public usuario
 {

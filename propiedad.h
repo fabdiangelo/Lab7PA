@@ -6,6 +6,7 @@
 #include "DataTypes/direccion.h"
 #include "inmobiliaria.h"
 
+class chat;
 class inmobiliaria;
 class zona;
 

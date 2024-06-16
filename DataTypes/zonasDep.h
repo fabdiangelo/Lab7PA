@@ -4,6 +4,8 @@
 #include "../departamento.h"
 #include "propZona.h"
 
+class departamento;
+
 class zonasDep : public ICollectible
 {
 private:

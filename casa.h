@@ -3,6 +3,10 @@
 
 #include "propiedad.h"
 
+class zona;
+class direccion;
+class inmobiliaria;
+
 class casa : public propiedad{
 	private:
     	int M2Verdes;

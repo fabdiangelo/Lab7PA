@@ -1,4 +1,5 @@
 #include "zona.h"
+#include "departamento.h"
 
 // CONSTRUCTOR:
 zona::zona(string nombre, string codigo, departamento* dep){

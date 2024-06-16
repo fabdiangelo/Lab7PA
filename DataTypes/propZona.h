@@ -3,6 +3,9 @@
 
 #include "../zona.h"
 
+class zona;
+class propiedad;
+
 class propZona : public ICollectible
 {
 private:

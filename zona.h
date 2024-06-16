@@ -1,10 +1,11 @@
 #ifndef ZONA_H
 #define ZONA_H
 
-#include "departamento.h"
 #include "edificio.h"
 #include "DataTypes/dtPropiedad.h"
 #include "DataTypes/mensajesPropiedad.h"
+#include "departamento.h"
+#include "propiedad.h"
 
 class departamento;
 class edificio;

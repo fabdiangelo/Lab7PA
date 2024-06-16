@@ -1,13 +1,10 @@
 #ifndef DEPARTAMENTO_H
 #define DEPARTAMENTO_H
 
-#include <iostream>
 #include "zona.h"
 #include "ICollection/interfaces/IDictionary.h"
 
 class zona;
-
-using namespace std;
 
 class departamento : public ICollectible
 {
