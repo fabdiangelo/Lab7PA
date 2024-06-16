@@ -44,7 +44,7 @@ void edificio::setGastosComunes(int gastos){
 }
 
 // FUNCIONALIDAD:
-void edificio::agreagrPropiedad(apartamento* prop){
+void edificio::agreagrPropiedad(propiedad* prop){
     string codigo = prop -> getCodigo();
     IKey *k = new String(codigo.c_str());
     this -> apartamentos -> add(k, prop);

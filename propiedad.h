@@ -3,28 +3,26 @@
 
 #include "chat.h"
 #include "DataTypes/direccion.h"
-#include "inmobiliaria.h"
 #include "zona.h"
+#include "ICollection/interfaces/IDictionary.h"
 #include <iostream>
 
 using namespace std;
 
 class chat;
-class inmobiliaria;
 class zona;
 
 class propiedad : public ICollectible
 {
 private:
-    string codigo;
+    string codigo, nombreInmo;
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados, precioAlquiler, precioVenta;
     bool garage;
     direccion *dir;
     zona *z;
     IDictionary *chats;
-    inmobiliaria *inmo;
 public:
-    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z, inmobiliaria* inmo);
+    propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, zona* z, string nombreInmo);
     ~propiedad();
     string getCodigo();
     int getCantAmbientes();
@@ -37,7 +35,7 @@ public:
     int getPrecioVenta();
     zona* getZona();
     IDictionary* getChats();
-    inmobiliaria *getInmobiliaria();
+    string getInmobiliaria();
     void setCantAmbientes(int cant);
     void setCantDormitorios(int cant);
     void setCantBanios(int cant);

@@ -8,10 +8,10 @@ apartamento.o: edificio.o propiedad.o
 casa.o: propiedad.o
 	g++ -c casa.cpp
 
-inmobiliaria.o: zonasDep.o usuario.o casa.o apartamento.o
+inmobiliaria.o: zonasDep.o usuario.o propiedad.o
 	g++ -c inmobiliaria.cpp
 
-propiedad.o: chat.o direccion.o edificio.o zona.o
+propiedad.o: chat.o direccion.o zona.o IDictionary.o
 	g++ -c propiedad.cpp
 
 # -----------------------------------------------------------

@@ -1,6 +1,6 @@
 #include "apartamento.h"
 
-apartamento::apartamento(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, zona* z, edificio* ed, inmobiliaria* inmo) : propiedad(codigo, cantAmbientes, cantDormitorios, cantBanios, garage, direccion, m2Edificados, z, inmo){
+apartamento::apartamento(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* direccion, int m2Edificados, zona* z, edificio* ed, string nombreInmo) : propiedad(codigo, cantAmbientes, cantDormitorios, cantBanios, garage, direccion, m2Edificados, z, nombreInmo){
     this -> M2Totales = m2Edificados;
     this -> ed = ed;
     ed ->agreagrPropiedad(this);

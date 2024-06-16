@@ -288,7 +288,7 @@ void sistema::infoPropInmo(string propiedadSelec){
     if(prop == NULL){
         cout << "Se ingresó una propiedad no válida" << endl;
     }else{
-        dtPropiedadInmo *dt = new dtPropiedadInmo(prop -> getCodigo(), prop -> getCantAmbientes(), prop -> getCantDormitorios(), prop -> getCantBanios(), prop -> getGarage(), prop -> getM2Edificados(), prop -> getDireccion(), prop -> getPrecioVenta() > 0, prop -> getPrecioAlquiler() > 0, prop -> getInmobiliaria() -> getNombre(), prop -> getInmobiliaria() -> getDireccion());
+        dtPropiedadInmo *dt = new dtPropiedadInmo(prop -> getCodigo(), prop -> getCantAmbientes(), prop -> getCantDormitorios(), prop -> getCantBanios(), prop -> getGarage(), prop -> getM2Edificados(), prop -> getDireccion(), prop -> getPrecioVenta() > 0, prop -> getPrecioAlquiler() > 0, prop -> getInmobiliaria());
         cout << dt;
         dt -> ~dtPropiedadInmo();
     }
@@ -354,14 +354,14 @@ dtRespuesta* sistema::ingresarMensaje(string mensaje){
         cout << "Debe seleccionar una zona antes de enviar un mensaje" << endl;
         return new dtRespuesta("Error: zona no seleccionada");
     }
-    if (this->propiedadActual == NULL) {
-        cout << "Debe seleccionar una propiedad antes de enviar un mensaje" << endl;
-        return new dtRespuesta("Error: propiedad no seleccionada");
-    }
-    string emisor = this->usuarioActual->getCorreo();
-    string receptor = this->propiedadActual->getInmobiliaria()->getCorreo();
-    Mensaje *mensaje = new Mensaje(emisor, receptor, mensaje);
-    this->propiedadActual->agregarMensaje(mensaje);
+    // if (this->propiedadActual == NULL) {
+    //     cout << "Debe seleccionar una propiedad antes de enviar un mensaje" << endl;
+    //     return new dtRespuesta("Error: propiedad no seleccionada");
+    // }
+    // string emisor = this->usuarioActual->getCorreo();
+    // string receptor = this->propiedadActual->getInmobiliaria()->getCorreo();
+    // Mensaje *mensaje = new Mensaje(emisor, receptor, mensaje);
+    // this->propiedadActual->agregarMensaje(mensaje);
     return new dtRespuesta("Mensaje enviado correctamente");
 }
 

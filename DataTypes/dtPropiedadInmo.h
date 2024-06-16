@@ -10,9 +10,8 @@ private:
     int cantAmbientes, cantDormitorios, cantBanios, m2Edificados;
     bool garage, enVenta, enAlquiler;
     direccion * dir;
-    direccion * direccionInmo;
 public:
-    dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo);
+    dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo);
     ~dtPropiedadInmo();
     string getCodigo();
     int getCantAmbientes();

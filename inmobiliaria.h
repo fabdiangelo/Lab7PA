@@ -5,12 +5,12 @@
 #include "DataTypes/direccion.h"
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/collections/OrderedDictionary.h"
+#include "propiedad.h"
 #include "casa.h"
 #include "apartamento.h"
 #include "DataTypes/zonasDep.h"
 #include "edificio.h"
 #include "zona.h"
-#include "propiedad.h"
 
 class casa;
 class apartamento;

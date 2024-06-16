@@ -62,16 +62,14 @@ void pruebaDtPropiedad(){
 void pruebaDtPropiedadInmo(){
     direccion* dir = new direccion("a", "b", "c");
     cout << dir->getCalle() << " - " << dir->getCiudad() << " - " << dir->getNumero() << endl;   
-    direccion* dirInmo = new direccion("d", "e", "f");
     
 
-    dtPropiedadInmo *prop = new dtPropiedadInmo("123", 3, 4, 1, true, 23, dir, true, false, "propsSA", dirInmo);
+    dtPropiedadInmo *prop = new dtPropiedadInmo("123", 3, 4, 1, true, 23, dir, true, false, "propsSA");
 
-    cout << prop->getCantAmbientes() << " - " << prop->getCantBanios() << " - " << prop->getCantDormitorios() << " - " << prop->getCodigo() << " - " << prop->getDireccion() << " - " << prop->getDireccionInmo() << " - " << prop->getEnAlquiler() << " - " << prop->getEnVenta() << " - " << prop->getGarage() << " - " << prop->getM2Edificados() << " - " << prop->getNombreInmo() << endl;
+    cout << prop << endl;
     
     prop->~dtPropiedadInmo();
     dir->~direccion();
-    dirInmo->~direccion();
 }
 void pruebaDtRespuesta(){
     dtRespuesta *res = new dtRespuesta("mens");
@@ -110,8 +108,8 @@ void pruebaPropZona(){
     propZona *pz = new propZona(z);
     direccion* dir = new direccion("a", "b", "c");
     inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
-    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z, ed, inmo);
-    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z, ed, inmo);
+    propiedad* p1 = new apartamento("prop1 - apartamento", 1, 1, 1, true, dir, 1, z, ed, inmo -> getNombre());
+    propiedad* p2 = new apartamento("prop2 - apartamento", 2, 2, 2, true, dir, 2, z, ed, inmo -> getNombre());
     
     pz->agregarProp(p1);
     pz->agregarProp(p2);
@@ -272,8 +270,8 @@ void pruebaEdificio(){
     zona * z1= new zona("COL1", "L1", dep1);
     direccion *dir = new direccion("a", "b", "c");
     inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
-    propiedad *prop1 = new apartamento("cod1", 1, 1, 1, true, dir, 1, z1, ed, inmo);
-    propiedad *prop2 = new apartamento("cod2", 2, 2, 1, true, dir, 2, z1, ed, inmo);
+    propiedad *prop1 = new apartamento("cod1", 1, 1, 1, true, dir, 1, z1, ed, inmo->getNombre());
+    propiedad *prop2 = new apartamento("cod2", 2, 2, 1, true, dir, 2, z1, ed, inmo->getNombre());
 
     ed -> agreagrPropiedad(prop1);
     ed -> agreagrPropiedad(prop2);
@@ -382,8 +380,8 @@ void pruebaPropiedad(){
     zona *z = new zona("zonita", "123", dep);
     inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
     
-    propiedad *ca = new casa("casa1", 1, 1, 1, true, dir, 1, 1, z, inmo);
-    propiedad *ap = new apartamento("apartamento", 2, 2, 2, false, dir, 2, z, ed, inmo);
+    propiedad *ca = new casa("casa1", 1, 1, 1, true, dir, 1, 1, z, inmo->getNombre());
+    propiedad *ap = new apartamento("apartamento", 2, 2, 2, false, dir, 2, z, ed, inmo->getNombre());
 
     ca -> CrearChat ("juan@gmail.com");
     ca -> CrearChat ("juan@gmail.com");
@@ -508,8 +506,8 @@ void pruebaZona(){
     direccion* dir = new direccion("a", "b", "c");
     inmobiliaria* inmo = new inmobiliaria("correo", "contr", "nom", dir);
 
-    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z, ed, inmo);
-    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z, ed, inmo);
+    propiedad* prop1 = new apartamento("123", 2, 2, 2, true, dir, 3, z, ed, inmo->getNombre());
+    propiedad* prop2 = new apartamento("456", 4, 4, 4, false, dir, 6, z, ed, inmo->getNombre());
     z -> agegarPropiedad(prop1);
     z -> agegarPropiedad(prop2);
     IDictionary *propiedades = z -> listarPropiedades();

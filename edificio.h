@@ -1,11 +1,11 @@
 #ifndef EDIFICIO_H
 #define EDIFICIO_H
 
-#include "inmobiliaria.h"
+#include "propiedad.h"
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/String.h"
 
-class apartamento;
+class propiedad;
 
 class edificio : public ICollectible{
   private:
@@ -23,7 +23,7 @@ class edificio : public ICollectible{
     void setNombre(string nombre);
     void setCantPisos(int cantPisos);
     void setGastosComunes(int gastos);
-    void agreagrPropiedad(apartamento* prop);
+    void agreagrPropiedad(propiedad* prop);
     void desvincularProp(string codigo);
     friend ostream& operator<<(ostream& os, edificio *ed);
 };
