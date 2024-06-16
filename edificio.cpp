@@ -1,7 +1,7 @@
 #include "edificio.h"
 
 // CONSTRUCTOR:
-edificio::edificio(string nombre,int cantPisos,int gastosComunes){
+edificio::edificio(string nombre, int cantPisos, int gastosComunes){
     this -> nombre = nombre;
     this -> cantPisos = cantPisos;
     this -> gastosComunes = gastosComunes;
@@ -44,7 +44,7 @@ void edificio::setGastosComunes(int gastos){
 }
 
 // FUNCIONALIDAD:
-void edificio::agreagrPropiedad(propiedad* prop){
+void edificio::agreagrPropiedad(apartamento* prop){
     string codigo = prop -> getCodigo();
     IKey *k = new String(codigo.c_str());
     this -> apartamentos -> add(k, prop);

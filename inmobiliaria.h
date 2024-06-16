@@ -5,6 +5,8 @@
 #include "DataTypes/direccion.h"
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/collections/OrderedDictionary.h"
+#include "casa.h"
+#include "apartamento.h"
 #include "DataTypes/zonasDep.h"
 #include "edificio.h"
 #include "zona.h"

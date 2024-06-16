@@ -1,7 +1,7 @@
 #ifndef APARTAMENTO_H
 #define APARTAMENTO_H
 
-#include "propiedad.h"
+#include "inmobiliaria.h"
 #include "edificio.h"
 
 using namespace std;

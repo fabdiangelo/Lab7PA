@@ -3,7 +3,6 @@
 
 #include "chat.h"
 #include "DataTypes/direccion.h"
-#include "edificio.h"
 #include "inmobiliaria.h"
 #include "zona.h"
 #include <iostream>
@@ -13,7 +12,6 @@ using namespace std;
 class chat;
 class inmobiliaria;
 class zona;
-class edificio;
 
 class propiedad : public ICollectible
 {

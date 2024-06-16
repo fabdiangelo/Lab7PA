@@ -1,8 +1,10 @@
 #ifndef CASA_H
 #define CASA_H
 
+#include "inmobiliaria.h"
 #include "propiedad.h"
 
+class propiedad;
 class zona;
 class direccion;
 class inmobiliaria;
