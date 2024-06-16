@@ -44,7 +44,7 @@ public:
     void ingresarPrecioVenta(string codigo, int valorVenta); //👌
     void finalizarAlta(); //👌
     void listarPropiedades(string zonaSeleccionada); //
-    void infoPropInmo(string propiedadSelec); //
+    void infoPropInmo(string propiedadSelec); //👌
     void ingresarCodigoProp(string codigo);
     void borrarProp(string codigo);
     void listarPropMens(string zonaSeleccionada);

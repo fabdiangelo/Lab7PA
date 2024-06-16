@@ -79,6 +79,6 @@ ostream& operator<<(ostream& os, dtPropiedadInmo* dt){
     }else{
         os << "No disponible";
     }
-    os << endl << "  Inmobiliaria:" << dt -> getNombreInmo() << endl;
+    os << endl << "  Inmobiliaria: " << dt -> getNombreInmo() << endl;
     return os;
 }

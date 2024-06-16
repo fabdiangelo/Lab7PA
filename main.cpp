@@ -469,6 +469,9 @@ void pruebaSistema(){
     sis -> finalizarAlta();
     sis -> seleccionarDepartamento("L");
     sis -> listarPropiedades("L1");
+    cout << endl << endl;
+
+    sis -> infoPropInmo("ca2");
 }
 void pruebaUsuario(){
     usuario *user = new usuario("pepe@mail", "pepito123");
