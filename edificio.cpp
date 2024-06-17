@@ -1,7 +1,7 @@
 #include "edificio.h"
 
 // CONSTRUCTOR:
-edificio::edificio(string nombre,int cantPisos,int gastosComunes){
+edificio::edificio(string nombre, int cantPisos, int gastosComunes){
     this -> nombre = nombre;
     this -> cantPisos = cantPisos;
     this -> gastosComunes = gastosComunes;

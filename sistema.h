@@ -1,20 +1,19 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
-#include "DataTypes/dtRespuesta.h"
-#include "DataTypes/direccion.h"
 #include "DataTypes/registroMensajes.h"
-#include "DataTypes/dtPropiedad.h"
-#include "DataTypes/dtInmobiliaria.h"
 #include "DataTypes/dtPropiedadInmo.h"
 #include "ICollection/collections/OrderedDictionary.h"
 #include "inmobiliaria.h"
 #include "administrador.h"
 #include "interesado.h"
+#include "ISistema.h"
 
-class sistema
+class sistema : public ISistema
 {
 private:
+    sistema();
+    static sistema * instance;
     IDictionary *departamentos;
     IDictionary *usuarios;
     usuario *usuarioActual;
@@ -22,7 +21,7 @@ private:
     zona *zonaActual;
     edificio *edificioActual;
 public:
-    sistema();
+    static sistema * getInstance();
     ~sistema();
     void enviarCorreo(string correo);  //👌
     void establecerContra(string contra, string repContra);  //👌
@@ -44,14 +43,14 @@ public:
     void ingresarPrecioVenta(string codigo, int valorVenta); //👌
     void finalizarAlta(); //👌
     void listarPropiedades(string zonaSeleccionada); //
-    void infoPropInmo(string propiedadSelec); //
+    void infoPropInmo(string propiedadSelec); //👌
     void ingresarCodigoProp(string codigo);
     void borrarProp(string codigo);
     void listarPropMens(string zonaSeleccionada);
     void listarMensajes(string propSeleccionada);
     void crearChat(string propSeleccionada);
     dtRespuesta* ingresarMensaje(string mensaje);
-    List* listarMensajesRecientes();
+    void listarMensajesRecientes();
     dtInmobiliaria* mostrarDatosInmo();
     dtPropiedad* mostrarPropiedad();
 };

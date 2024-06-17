@@ -1,7 +1,7 @@
 #include "propiedad.h"
 
 // CONSTRUCTOR:
-propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados , zona* z, inmobiliaria* inmo){
+propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, zona* z, string nombreInmo){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -13,8 +13,8 @@ propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int 
     this -> precioAlquiler = 0;
     this -> precioVenta = 0;
     this -> chats = new OrderedDictionary();
+    this -> nombreInmo = nombreInmo;
     z -> agegarPropiedad(this);
-    this -> inmo = inmo;
 }
 
 // DESTRUCTOR:
@@ -67,6 +67,9 @@ IDictionary* propiedad::getChats(){
     return this -> chats;
 }
 
+string propiedad::getInmobiliaria(){
+    return this -> nombreInmo;
+}
 
 // SETTERS:
 void propiedad::setCantAmbientes(int cant){

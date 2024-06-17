@@ -7,7 +7,7 @@ List::List():
 
 void List::add(ICollectible* c)
 {
-    if(head == NULL){ // list vacía; tamaño = 1
+    if(head == NULL){ // List vacía; tamaño = 1
         head = new ListNode(c);
         size = 1;
         return;

@@ -1,10 +1,13 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+#include "ISistema.h"
 #include "sistema.h"
 
 class factory {
     public:
-        static sistema * getSistema(); 
+        static ISistema * getSistema(); 
 };
+
+
 #endif

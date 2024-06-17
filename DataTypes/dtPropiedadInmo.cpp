@@ -1,7 +1,7 @@
 #include "dtPropiedadInmo.h"
 
 // CONSTRUCTOR:
-dtPropiedadInmo::dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo, direccion *direccionInmo){
+dtPropiedadInmo::dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, int m2Edificados, direccion* dir, bool enVenta, bool enAlquiler, string nombreInmo){
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;
@@ -12,7 +12,6 @@ dtPropiedadInmo::dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormi
     this -> enVenta = enVenta;
     this -> enAlquiler = enAlquiler;
     this -> nombreInmo = nombreInmo;
-    this -> direccionInmo = direccionInmo;
 }
 
 // DESTRUCTOR:
@@ -61,10 +60,6 @@ string dtPropiedadInmo::getNombreInmo(){
     return this -> nombreInmo;
 }
 
-direccion *dtPropiedadInmo::getDireccionInmo(){
-    return this -> direccionInmo;
-}
-
 // SOBRECARGA:
 ostream& operator<<(ostream& os, dtPropiedadInmo* dt){
     os <<dt -> getCodigo() << ") Ubicada en:" << dt -> getDireccion() << endl;
@@ -84,6 +79,6 @@ ostream& operator<<(ostream& os, dtPropiedadInmo* dt){
     }else{
         os << "No disponible";
     }
-    os << endl << "  Inmobiliaria:" << endl << "    Nombre: " << dt -> getNombreInmo() << " | Direccion: " << dt ->getDireccionInmo() << endl;
+    os << endl << "  Inmobiliaria: " << dt -> getNombreInmo() << endl;
     return os;
 }
