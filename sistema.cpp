@@ -86,16 +86,17 @@ sistema::~sistema(){
 }
 
 // FUNCIONALIDADES:
-void sistema::enviarCorreo(string correo){
+bool sistema::enviarCorreo(string correo){
     if(this -> usuarioActual != NULL){
-        cout << "Ya hay una sesión iniciada" << endl;
+        throw invalid_argument("Ya hay una sesión iniciada, cierre la seisón actual y vuelva a intentarlo\n");
     }else{
         IKey * k = new String(correo.c_str());
         usuario *user =(usuario*) usuarios -> find(k);
         if(user == NULL){
-            cout << "Ningun administrador ha registrado este correo" << endl;
+            throw invalid_argument("Ningun administrador ha registrado este correo, contáctese con administración y vuelva a intentarlo\n");
         }else{
             usuarioActual = user;
+            return user -> getContrasenia() == "";
         }
     }
 }
@@ -103,12 +104,14 @@ void sistema::enviarCorreo(string correo){
 void sistema::establecerContra(string contra, string repContra){
     if(contra == repContra){
         usuarioActual -> setContrasenia(contra);
+    }else{
+        throw invalid_argument ("Las contraseñas ingresadas no coinciden\n");
     }
 }
 
 void sistema::verificarContra(string contra){
     if(contra != usuarioActual -> getContrasenia()){
-        cout << "La contrasenia o el usuario es incorrecto" << endl;
+        throw invalid_argument ("La contrasenia o el usuario es incorrecto\n");
     }
 }
 

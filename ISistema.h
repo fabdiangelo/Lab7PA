@@ -11,7 +11,7 @@ using namespace std;
 class ISistema 
 {
 public:
-    virtual void enviarCorreo(string correo) = 0;  //👌
+    virtual bool enviarCorreo(string correo) = 0;  //👌
     virtual void establecerContra(string contra, string repContra) = 0;  //👌
     virtual void verificarContra(string contra) = 0;  //👌
     virtual void cerrarSesion() = 0; //👌

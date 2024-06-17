@@ -23,7 +23,7 @@ private:
 public:
     static sistema * getInstance();
     ~sistema();
-    void enviarCorreo(string correo);  //👌
+    bool enviarCorreo(string correo);  //👌
     void establecerContra(string contra, string repContra);  //👌
     void verificarContra(string contra);  //👌
     void cerrarSesion(); //👌
