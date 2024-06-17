@@ -28,6 +28,7 @@ public:
     void establecerContra(string contra, string repContra);  //👌
     void verificarContra(string contra);  //👌
     void sesionAbierta();
+    void sesionCerrada();
     void cerrarSesion(); //👌
     void confirmarAdmin();
     void confirmarInmobiliaria();
@@ -46,7 +47,7 @@ public:
     void ingresarPrecioAlquiler(string codigo, int valorAlqui); //👌
     void ingresarPrecioVenta(string codigo, int valorVenta); //👌
     void finalizarAlta(); //👌
-    void listarPropiedades(string zonaSeleccionada); //
+    void listarPropiedades(); //
     void infoPropInmo(string propiedadSelec); //👌
     void ingresarCodigoProp(string codigo);
     void borrarProp(string codigo);

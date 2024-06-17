@@ -56,6 +56,7 @@ propiedad* inmobiliaria::IngresarDatosCasa(string cod, int cantAmb, int cantDorm
 void inmobiliaria::IngresarPrecioAlquiler(string codigo, int precio){
     IKey *k = new String(codigo.c_str());
     if(!this -> propiedades -> member(k)){
+        delete k;
         throw invalid_argument("No se encontró una propiedad con codigo " + codigo + " dentro de la zona con nombre " + this -> getNombre());
     }
     propiedad* prop =(propiedad*) this -> propiedades -> find(k);
@@ -65,6 +66,7 @@ void inmobiliaria::IngresarPrecioAlquiler(string codigo, int precio){
 void inmobiliaria::IngresarPrecioVenta(string codigo, int precio){
     IKey *k = new String(codigo.c_str());
     if(!this -> propiedades -> member(k)){
+        delete k;
         throw invalid_argument("No se encontró una propiedad con codigo " + codigo + " dentro de la zona con nombre " + this -> getNombre());
     }
     propiedad* prop =(propiedad*) this -> propiedades -> find(k);

@@ -8,6 +8,7 @@ void altaInmobiliaria(ISistema *s);
 void altaInteresado(ISistema *s);
 void altaEdificio(ISistema *s);
 void altaPropiedad(ISistema *s);
+void consultarPropiedad(ISistema *s);
 
 // FUNCIONALIDADES AUXILIARES:
 string ingresarZona(ISistema *s);
@@ -28,6 +29,7 @@ int main() {
         cout << "4) Alta Interesado \x1B[95m(admin)\033[0m\t" << endl;
         cout << "5) Alta Edificio \x1B[93m(inmobiliaria)\033[0m\t" << endl;
         cout << "6) Alta Propiedad \x1B[93m(inmobiliaria)\033[0m\t" << endl;
+        cout << "7) Consultar Propiedad" << endl;
 
         cout << "e) Salir\n\n\n\x1B[36m(char):\033[0m Ingrese una de las opciones dadas: ";
 
@@ -42,6 +44,7 @@ int main() {
             case '4': altaInteresado(s); break;
             case '5': altaEdificio(s); break;
             case '6': altaPropiedad(s); break;
+            case '7': consultarPropiedad(s); break;
             case 'e': continuar = false; break;
             default: cout << "Opción no válida\n"; break;
         }
@@ -54,9 +57,10 @@ int main() {
 // Todo OK: cout << "Se ha registrado como \x1B[92m" << correo << "\033[0m\n";
 // Tipo de dato: \x1B[36m(String):\033[0m 
 
+// PRINCIPALES:
 void iniciarSesion(ISistema *s){
     try{
-        s -> sesionAbierta();
+        s -> sesionCerrada();
         cout << "\x1B[36m(string):\033[0m Ingrese su correo electrónico: ";
         string correo;
         cin >> correo;
@@ -281,6 +285,38 @@ void altaPropiedad(ISistema *s){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
     s -> finalizarAlta();
+}
+void consultarPropiedad(ISistema *s){
+    try{
+        s -> sesionAbierta();
+        s -> listarDepartamentos();
+        cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que se ubique la propiedad: ";
+        char d;
+        cin >> d;
+        if(d >= 97){
+            d -= 32;
+        }
+        string dep (1, d);
+        s -> seleccionarDepartamento(dep);
+        if(){
+            throw invalid_argument("No hay zonas registradas en este departamento");
+        }
+        s -> listarZonas();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
+        string z;
+        cin >> z;
+        s -> seleccionarZona(z);
+        if(){
+            throw invalid_argument("No hay propiedades registradas en esta zona");
+        }
+        s -> listarPropiedades();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
+        string prop;
+        cin >> prop;
+        s -> infoPropInmo(prop);
+    }catch (exception &e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
 }
 
 // AUXILIARES:

@@ -16,7 +16,7 @@ dtPropiedadInmo::dtPropiedadInmo(string codigo, int cantAmbientes, int cantDormi
 
 // DESTRUCTOR:
 dtPropiedadInmo::~dtPropiedadInmo(){
-    cout << "destruct de dtPropiedadInmo" << endl;
+    // cout << "destruct de dtPropiedadInmo" << endl;
 }
 
 // GETTERS:

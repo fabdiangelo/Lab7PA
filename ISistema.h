@@ -15,6 +15,7 @@ public:
     virtual void establecerContra(string contra, string repContra) = 0;  //👌
     virtual void verificarContra(string contra) = 0;  //👌
     virtual void sesionAbierta() = 0;
+    virtual void sesionCerrada() = 0;
     virtual void cerrarSesion() = 0; //👌
     virtual void confirmarAdmin() = 0;
     virtual void confirmarInmobiliaria() = 0;
@@ -33,7 +34,7 @@ public:
     virtual void ingresarPrecioAlquiler(string codigo, int valorAlqui) = 0; //👌
     virtual void ingresarPrecioVenta(string codigo, int valorVenta) = 0; //👌
     virtual void finalizarAlta() = 0; //👌
-    virtual void listarPropiedades(string zonaSeleccionada) = 0; //
+    virtual void listarPropiedades() = 0; //
     virtual void infoPropInmo(string propiedadSelec) = 0; //👌
     virtual void ingresarCodigoProp(string codigo) = 0;
     virtual void borrarProp(string codigo) = 0;
