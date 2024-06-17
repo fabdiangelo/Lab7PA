@@ -32,37 +32,43 @@ void inmobiliaria::setDireccion(direccion* dir){
 
 // FUNCIONALIDAD:
 propiedad* inmobiliaria::IngresarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, zona* z, edificio* ed){
-    propiedad *prop = new apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, z, ed, this -> getNombre());
     IKey *k = new String(cod.c_str());
+    if(propiedades -> member(k)){
+        delete k;
+        throw invalid_argument("Ya existe una propiedad con este código");
+    }
+    propiedad *prop = new apartamento(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, z, ed, this -> getNombre());
     this -> propiedades -> add (k, prop);
     return prop;
 }
 
 propiedad* inmobiliaria::IngresarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V, zona* z){
-    propiedad *ca = new casa(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, m2V, z, this -> getNombre());
     IKey *k = new String(cod.c_str());
+    if(propiedades -> member(k)){
+        delete k;
+        throw invalid_argument("Ya existe una propiedad con este código");
+    }
+    propiedad *ca = new casa(cod, cantAmb, cantDorm, cantBa, garage, dir, m2, m2V, z, this -> getNombre());
     this -> propiedades -> add (k, ca);
     return ca;
 }
 
 void inmobiliaria::IngresarPrecioAlquiler(string codigo, int precio){
     IKey *k = new String(codigo.c_str());
-    if(this -> propiedades -> member(k)){
-        propiedad* prop =(propiedad*) this -> propiedades -> find(k);
-        prop -> setPrecioAlquiler(precio);
-    }else{
-        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
+    if(!this -> propiedades -> member(k)){
+        throw invalid_argument("No se encontró una propiedad con codigo " + codigo + " dentro de la zona con nombre " + this -> getNombre());
     }
+    propiedad* prop =(propiedad*) this -> propiedades -> find(k);
+    prop -> setPrecioAlquiler(precio);
 }
 
 void inmobiliaria::IngresarPrecioVenta(string codigo, int precio){
     IKey *k = new String(codigo.c_str());
-    if(this -> propiedades -> member(k)){
-        propiedad* prop =(propiedad*) this -> propiedades -> find(k);
-        prop -> setPrecioVenta(precio);
-    }else{
-        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
+    if(!this -> propiedades -> member(k)){
+        throw invalid_argument("No se encontró una propiedad con codigo " + codigo + " dentro de la zona con nombre " + this -> getNombre());
     }
+    propiedad* prop =(propiedad*) this -> propiedades -> find(k);
+    prop -> setPrecioVenta(precio);
 }
 
 void inmobiliaria::BorrarPropiedad(string codigo){

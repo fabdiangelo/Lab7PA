@@ -7,9 +7,12 @@ void cerrarSesion(ISistema *s);
 void altaInmobiliaria(ISistema *s);
 void altaInteresado(ISistema *s);
 void altaEdificio(ISistema *s);
+void altaPropiedad(ISistema *s);
 
 // FUNCIONALIDADES AUXILIARES:
 string ingresarZona(ISistema *s);
+string ingresarEdificio(ISistema *s);
+direccion *crearDireccion(string objeto);
 
 int main() {
     ISistema *s = factory::getSistema();
@@ -24,8 +27,9 @@ int main() {
         cout << "3) Alta Inmobiliaria \x1B[95m(admin)\033[0m\t" << endl;
         cout << "4) Alta Interesado \x1B[95m(admin)\033[0m\t" << endl;
         cout << "5) Alta Edificio \x1B[93m(inmobiliaria)\033[0m\t" << endl;
+        cout << "6) Alta Propiedad \x1B[93m(inmobiliaria)\033[0m\t" << endl;
 
-        cout << "e) Salir\n\n\n\x1B[36m(char):\033[0m Ingrese una de las opciones dadas:";
+        cout << "e) Salir\n\n\n\x1B[36m(char):\033[0m Ingrese una de las opciones dadas: ";
 
 
         char e;
@@ -37,6 +41,7 @@ int main() {
             case '3': altaInmobiliaria(s); break;
             case '4': altaInteresado(s); break;
             case '5': altaEdificio(s); break;
+            case '6': altaPropiedad(s); break;
             case 'e': continuar = false; break;
             default: cout << "Opción no válida\n"; break;
         }
@@ -121,15 +126,9 @@ void altaInmobiliaria(ISistema *s){
         string correo, nombre, ciudad, calle, numero;
         cout << "\n\x1B[36m(string):\033[0m Ingerese el correo de la nueva inmobiliaria: ";
         cin >> correo;
-        cout << "\n\x1B[36m(string):\033[0m Ingerese la ciudad en la que se ubica la nueva inmobiliaria: ";
-        cin >> ciudad;
-        cout << "\n\x1B[36m(string):\033[0m Ingerese la calle en la que se ubica la nueva inmobiliaria: ";
-        cin >> calle;
-        cout << "\n\x1B[36m(string):\033[0m Ingerese el numero en el que se ubica la nueva inmobiliaria: ";
-        cin >> numero;
+        direccion *dir = crearDireccion("la nueva inmobiliaria");
         cout << "\n\x1B[36m(string):\033[0m Ingerese el nombre de la nueva inmobiliaria: ";
         cin >> nombre;
-        direccion *dir = new direccion(ciudad, calle, numero);
         s -> ingresarInmobiliaria(correo, dir, nombre);
         cout << "\nSe ha registrado a la inmobiliairia \x1B[92m" << nombre << "\033[0m\n";
     }catch (exception & e){
@@ -176,21 +175,113 @@ void altaEdificio(ISistema *s){
         }
         s -> seleccionarZona(z);
 
-        string nombre;
-        int cantPisos, gastosComunes;
-        cout << "\n\n\x1B[36m(string):\033[0m Ingresa el nombre del nuevo edificio: ";
-        cin >> nombre;
-        cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de pisos del nuevo edificio: ";
-        cin >> cantPisos;
-        cout << "\n\x1B[36m(integer):\033[0m Ingresa los gastos comunes del nuevo edificio: ";
-        cin >> gastosComunes;
-        s -> ingresarEdificio(nombre, cantPisos, gastosComunes);
-        cout << "Se ha registrado el edificio \x1B[92m" << nombre << "\033[0m en la zona \x1B[92m" << z << "\033[0m\n";
+        ingresarEdificio(s);
+        cout << "\033[0m en la zona \x1B[92m" << z << "\033[0m\n";
     }catch(exception& e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
+    s -> finalizarAlta();
 }
+void altaPropiedad(ISistema *s){
+    try{
+        s -> confirmarInmobiliaria();
+        s -> listarDepartamentos();
+        cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que quieras asignar al edificio: ";
+        char d;
+        cin >> d;
+        if(d >= 97){
+            d -= 32;
+        }
+        string dep (1, d);
+        s -> seleccionarDepartamento(dep);
+        s -> listarZonas();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
+        string z;
+        cin >> z;
+        if (z == "1"){
+            z = ingresarZona(s);
+        }
+        s -> seleccionarZona(z);
 
+        cout << "\n\x1B[36m(char):\033[0m Ingrese 0 si desesa dar de alta a una casa y 1 si desea dar de alta a un apartamento: ";
+        char casaApart;
+        cin >> casaApart;
+
+        string codigo;
+        if(casaApart == '1'){ // Apartamento
+            s -> listarEdificios();
+            cout << "\n\x1B[36m(string):\033[0m Ingresa el edificio en la que quieras asignar al apartamento, o presiona 1 para ingresar un edificio nuevo: ";
+            string ed;
+            cin >> ed;
+            if(ed == "1"){
+                ed = ingresarEdificio(s);
+                cout << "\033[0m en la zona \x1B[92m" << z << "\033[0m\n";
+            }
+            s -> seleccionarEdificio(ed);
+
+            int cantAmb, cantDorm, cantBa, m2;
+            bool garage;
+            cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo del nuevo apartamento: ";
+            cin >> codigo;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
+            cin >> cantAmb;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios del nuevo apartamento: ";
+            cin >> cantDorm;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
+            cin >> cantBa;
+            cout << "\n\x1B[36m(bool):\033[0m Indica si el nuevo apartamento tiene garage (1 | 0): ";
+            cin >> garage;
+            direccion *dir = crearDireccion("el nuevo apartamento");
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados del nuevo apartamento: ";
+            cin >> m2;
+            s -> ingresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2);
+        }else if(casaApart == '0'){ // Casa
+            int cantAmb, cantDorm, cantBa, m2, m2V;
+            bool garage;
+            cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo de la nueva casa: ";
+            cin >> codigo;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
+            cin >> cantAmb;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios de la nueva casa: ";
+            cin >> cantDorm;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
+            cin >> cantBa;
+            cout << "\n\x1B[36m(bool):\033[0m Indica si la nueva casa tiene garage (1 | 0): ";
+            cin >> garage;
+            direccion *dir = crearDireccion("la nueva casa");
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados de la nueva casa: ";
+            cin >> m2;
+            cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados verdes de la nueva casa: ";
+            cin >> m2V;
+            s -> ingresarDatosCasa(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, m2V);
+        }else{
+            throw invalid_argument("Opción no válida\n");
+        }
+
+        cout << "\n\x1B[36m(char):\033[0m Ingrese 0 si desesa asignarle un valor de alquiler, 1 si desesa asignarle un valor de venta, o 2 si desesa asignarle un valor tanto de venta como de alquiler: ";
+        char tipo;
+        cin >> tipo;
+        if (tipo == '0' || tipo == '2'){
+            cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de alquiler: ";
+            int valorAlq;
+            cin >> valorAlq;
+            s -> ingresarPrecioAlquiler(codigo, valorAlq);
+        }
+        if (tipo == '1' || tipo == '2'){
+            cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de venta: ";
+            int valorvent;
+            cin >> valorvent;
+            s -> ingresarPrecioAlquiler(codigo, valorvent);
+        }
+        if(tipo != '0' && tipo != '1' && tipo != '2'){
+            throw invalid_argument("Opción no válida\n");
+        }
+        cout << "\nSe ha registrado la propiedad \x1B[92m" << codigo << "\033[0m\n";
+    }catch(exception& e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
+    s -> finalizarAlta();
+}
 
 // AUXILIARES:
 string ingresarZona(ISistema *s){
@@ -201,10 +292,33 @@ string ingresarZona(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingrese el codigo de la nueva zona: ";
         cin >> codigo;
         s -> ingresarZona(nombre, codigo);
-        cout << "Se ha ingresado la zona \x1B[92m" << nombre << "\033[0m\n";
+        cout << "\nSe ha ingresado la zona \x1B[92m" << nombre << "\033[0m\n";
         return codigo;
     }catch(exception& e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
     return "";
+}
+string ingresarEdificio(ISistema *s){
+    string nombre;
+    int cantPisos, gastosComunes;
+    cout << "\n\n\x1B[36m(string):\033[0m Ingresa el nombre del nuevo edificio: ";
+    cin >> nombre;
+    cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de pisos del nuevo edificio: ";
+    cin >> cantPisos;
+    cout << "\n\x1B[36m(integer):\033[0m Ingresa los gastos comunes del nuevo edificio: ";
+    cin >> gastosComunes;
+    s -> ingresarEdificio(nombre, cantPisos, gastosComunes);
+    cout << "\nSe ha registrado el edificio \x1B[92m" << nombre;
+    return nombre;
+}
+direccion *crearDireccion(string objeto){
+    string ciudad, calle, numero;
+    cout << "\n\x1B[36m(string):\033[0m Ingerese la ciudad en la que se ubica " + objeto + ": ";
+    cin >> ciudad;
+    cout << "\n\x1B[36m(string):\033[0m Ingerese la calle en la que se ubica " + objeto + ": ";
+    cin >> calle;
+    cout << "\n\x1B[36m(string):\033[0m Ingerese el numero en el que se ubica " + objeto + ": ";
+    cin >> numero;
+    return new direccion(ciudad, calle, numero);
 }

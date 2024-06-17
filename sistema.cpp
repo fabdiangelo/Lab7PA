@@ -216,7 +216,7 @@ void sistema::listarZonas(){
     if(departamentoActual == NULL){
         throw invalid_argument("Debes seleccionar un departamento antes de poder realizar esta acción\n");
     }
-    cout << "Departamento: " << departamentoActual -> getNombre() << endl;
+    cout << "\nDepartamento: " << departamentoActual -> getNombre() << endl;
     cout << "Zonas:" << endl;
     if (departamentoActual -> getZonas() -> getSize() == 0){
         cout << "\tNo hay zonas registradas en este departamento" << endl;
@@ -239,7 +239,6 @@ void sistema::seleccionarZona(string zonaSeleccionada){
     }
     zona *z = (zona*) departamentoActual -> getZonas() -> find(k);
     this -> zonaActual = z;
-
 }
 
 void sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
@@ -251,35 +250,44 @@ void sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
 
 void sistema::listarEdificios(){
     if(zonaActual == NULL){
-        cout << "Debes seleccionar una zona antes" << endl;
+        throw invalid_argument("Debe ingresar una zona antes de poder realizar esta acción\n");
+    }
+    cout << "\nDepartamento: " << departamentoActual -> getNombre() << endl;
+    cout << "Zona: " << zonaActual -> getNombre() << endl;
+    cout << "Edificios:" << endl;
+    if(zonaActual -> listarEdificios() -> getSize() == 0){
+        cout << "\tNo hay edificios registrados en esta zona\n";
     }else{
-        cout << "Departamento: " << departamentoActual -> getNombre() << endl;
-        cout << "Zona: " << zonaActual -> getNombre() << endl;
-        cout << "Edificios:" << endl;
-        for(IIterator* iter = zonaActual -> listarEdificios() -> getIterator(); iter -> hasCurrent(); iter -> next()){
+        IIterator* iter = zonaActual -> listarEdificios() -> getIterator();
+        while(iter -> hasCurrent()){
             edificio *ed = (edificio*) iter -> getCurrent();
             cout << ed;
+            iter -> next();
         }
+        delete iter;
     }
 }
 
 void sistema::seleccionarEdificio(string edSelec){
     IKey *k = new String(edSelec.c_str());
-    edificio *ed = (edificio*) zonaActual -> listarEdificios() -> find(k);
-    if(ed == NULL){
-        cout << "Se ingresó una zona no válida" << endl;
-    }else{
-        this -> edificioActual = ed;
+    if(!zonaActual -> listarEdificios() -> member(k)){
+        delete k;
+        throw invalid_argument("Se ingresó un edificio no válido\n");
     }
+    edificio *ed = (edificio*) zonaActual -> listarEdificios() -> find(k);
+    this -> edificioActual = ed;
 }
 
 void sistema::ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2){
     inmobiliaria* inmo = (inmobiliaria*) this -> usuarioActual;
-    if(inmo == NULL || zonaActual == NULL || edificioActual == NULL){
-        cout << "Debe ingresar con una inmobiliaria y un edificio" << endl;
-    }else{
-        inmo -> IngresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, this -> zonaActual, this -> edificioActual);
+    if(inmo == NULL){
+        throw invalid_argument("Debe ingresar con un usuario inmobiliaria\n");
     }
+    if( zonaActual == NULL || edificioActual == NULL){
+        throw invalid_argument("Debe seleccionar un edificio para continuar con el proceso\n");
+    }
+    inmo -> IngresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, this -> zonaActual, this -> edificioActual);
+    
 }
 
 void sistema::ingresarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int m2V){
