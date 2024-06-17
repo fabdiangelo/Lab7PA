@@ -129,7 +129,6 @@ void sistema::confirmarAdmin(){
         throw invalid_argument("Debes registrarte como administrador para realizar esta acción\n");
     }
 }
-                // cout <<( e.what() == "nombre duplicado") << " - " << (e.what() == (invalid_argument("nombre duplicado")).what()) << endl;
 
 void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre){
     if(correo == "" || nombre == "" || dir->getCalle() == "" || dir->getCiudad() == "" || dir->getNumero() == ""){
@@ -140,6 +139,7 @@ void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre
         inmobiliaria* inmo = (inmobiliaria*) iter -> getCurrent();
         if(inmo != NULL){
             try{
+                direccion * dir = inmo -> getDireccion();
                 if(inmo -> getNombre() == nombre){
                     throw invalid_argument("nombre duplicado");
                 }
@@ -162,8 +162,14 @@ void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre
 }
 
 void sistema::ingresarInteresado(string correo, int edad, string nombre, string apellido){
+    if(correo == "" || nombre == "" || apellido == "" || edad < 18){
+        throw invalid_argument("Alguno de los datos ingresados no es válido\n");
+    }
+    IKey *k = new String(correo.c_str());
+    if(this -> usuarios -> member(k)){
+        throw invalid_argument("Ya se ha ingresado un usuario con este correo\n");
+    }
     interesado *inter = new interesado(correo, "", edad, nombre, apellido);
-    IKey *k = new String(inter -> getCorreo().c_str());
     this -> usuarios -> add(k, inter);
 }
 
