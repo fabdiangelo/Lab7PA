@@ -8,6 +8,7 @@
 #include "administrador.h"
 #include "interesado.h"
 #include "ISistema.h"
+#include <cstring>
 
 class sistema : public ISistema
 {
@@ -27,8 +28,9 @@ public:
     void establecerContra(string contra, string repContra);  //👌
     void verificarContra(string contra);  //👌
     void cerrarSesion(); //👌
-    dtRespuesta* ingresarInmobiliaria(string correo, direccion * dir, string nombre); //👌
-    dtRespuesta* ingresarInteresado(string correo, int edad, string nombre, string apellido); //👌
+    void confirmarAdmin();
+    void ingresarInmobiliaria(string correo, direccion * dir, string nombre); //👌
+    void ingresarInteresado(string correo, int edad, string nombre, string apellido); //👌
     void listarDepartamentos(); //👌
     void seleccionarDepartamento(string depSelec); //👌
     void ingresarZona(string nombre, string codigo); //👌

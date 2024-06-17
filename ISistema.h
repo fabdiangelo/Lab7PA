@@ -15,8 +15,9 @@ public:
     virtual void establecerContra(string contra, string repContra) = 0;  //👌
     virtual void verificarContra(string contra) = 0;  //👌
     virtual void cerrarSesion() = 0; //👌
-    virtual dtRespuesta* ingresarInmobiliaria(string correo, direccion * dir, string nombre) = 0; //👌
-    virtual dtRespuesta* ingresarInteresado(string correo, int edad, string nombre, string apellido) = 0; //👌
+    virtual void confirmarAdmin() = 0;
+    virtual void ingresarInmobiliaria(string correo, direccion * dir, string nombre) = 0; //👌
+    virtual void ingresarInteresado(string correo, int edad, string nombre, string apellido) = 0; //👌
     virtual void listarDepartamentos() = 0; //👌
     virtual void seleccionarDepartamento(string depSelec) = 0; //👌
     virtual void ingresarZona(string nombre, string codigo) = 0; //👌

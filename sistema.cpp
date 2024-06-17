@@ -92,6 +92,7 @@ bool sistema::enviarCorreo(string correo){
     }else{
         IKey * k = new String(correo.c_str());
         usuario *user =(usuario*) usuarios -> find(k);
+        delete k;
         if(user == NULL){
             throw invalid_argument("Ningun administrador ha registrado este correo, contáctese con administración y vuelva a intentarlo\n");
         }else{
@@ -123,18 +124,47 @@ void sistema::cerrarSesion(){
     }
 }
 
-dtRespuesta* sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre){
+void sistema::confirmarAdmin(){
+    if(usuarioActual == NULL || usuarioActual -> getCorreo() != "admin"){
+        throw invalid_argument("Debes registrarte como administrador para realizar esta acción\n");
+    }
+}
+                // cout <<( e.what() == "nombre duplicado") << " - " << (e.what() == (invalid_argument("nombre duplicado")).what()) << endl;
+
+void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre){
+    if(correo == "" || nombre == "" || dir->getCalle() == "" || dir->getCiudad() == "" || dir->getNumero() == ""){
+        throw invalid_argument("Alguno de los datos ingresados no es válido\n");
+    }
+    IIterator *iter = this -> usuarios -> getIterator();
+    while(iter -> hasCurrent()){
+        inmobiliaria* inmo = (inmobiliaria*) iter -> getCurrent();
+        if(inmo != NULL){
+            try{
+                if(inmo -> getNombre() == nombre){
+                    throw invalid_argument("nombre duplicado");
+                }
+            }catch(exception& e){
+                if(strcmp(e.what(), "nombre duplicado") == 0){
+                    throw invalid_argument("Ya se ha ingresado una inmobiliaria con este nombre\n");
+                }
+            }
+        }
+        iter -> next();
+    }
+
+    IKey *k = new String(correo.c_str());
+    if(this -> usuarios -> member(k)){
+        throw invalid_argument("Ya se ha ingresado un usuario con este correo\n");
+    }
+
     inmobiliaria *inmo = new inmobiliaria(correo, "", nombre, dir);
-    IKey *k = new String(inmo -> getCorreo().c_str());
     this -> usuarios -> add(k, inmo);
-    return new dtRespuesta("Todo OK");
 }
 
-dtRespuesta* sistema::ingresarInteresado(string correo, int edad, string nombre, string apellido){
+void sistema::ingresarInteresado(string correo, int edad, string nombre, string apellido){
     interesado *inter = new interesado(correo, "", edad, nombre, apellido);
     IKey *k = new String(inter -> getCorreo().c_str());
     this -> usuarios -> add(k, inter);
-    return new dtRespuesta("Todo OK");
 }
 
 void sistema::listarDepartamentos(){
