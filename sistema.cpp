@@ -117,10 +117,9 @@ void sistema::verificarContra(string contra){
 
 void sistema::cerrarSesion(){
     if(this -> usuarioActual == NULL){
-        cout << "No había una sesión iniciada" << endl;
+        throw invalid_argument ("No había una sesión iniciada\n");
     }else{
         this -> usuarioActual = NULL;
-        cout << "La sesión se ha cerrado" << endl;
     }
 }
 

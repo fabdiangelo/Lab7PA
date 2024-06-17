@@ -2,34 +2,36 @@
 #include "ISistema.h"
 
 void iniciarSesion(ISistema *s);
+void cerrarSesion(ISistema *s);
 
 int main() {
     ISistema *s = factory::getSistema();
     system("clear");
+    cout << "\n\tBienvenido";
     bool continuar = true;
     while(continuar){
-        cout << "\n\tBienvenido\n\n";
-        cout << "Que es lo que desesa hacer?" << endl;
+        cout << "\n\nQue es lo que desesa hacer?" << endl;
 
         cout << "1) Iniciar sesión" << endl;
+        cout << "2) Cerrar sesión" << endl;
 
         cout << "e) Salir" << endl;
 
         char e;
         cin >> e;
         switch(e){
-            case '1': iniciarSesion(s);
-            break;
-            case 'e': continuar = false;
-            break;
-            default:
-                cout << "Opción no válida" << endl;
-            break;
+            case '1': iniciarSesion(s); break;
+            case '2': cerrarSesion(s); break;
+            case 'e': continuar = false; break;
+            default: cout << "Opción no válida\n"; break;
         }
     }
     return 0;
 }
 
+
+// Errores: cout <<"\x1B[91mError:\033[0m\t" << e.what();
+// Todo OK cout << "Se ha registrado como \x1B[92m" << correo << "\033[0m\n";
 
 void iniciarSesion(ISistema *s){
     cout << "Ingrese su correo electrónico " << endl;
@@ -49,7 +51,7 @@ void iniciarSesion(ISistema *s){
                 try {
                     s -> establecerContra(contr, repContr);
                     x = false;
-                    cout << "Se ha registrado como \x1B[21m" << correo << "\033[0m\n";
+                    cout << "Se ha registrado como \x1B[92m" << correo << "\033[0m\n";
                 }catch (exception& e){
                     cout <<"\x1B[91mError:\033[0m\t" << e.what();
                     cout << "Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
@@ -57,6 +59,7 @@ void iniciarSesion(ISistema *s){
                     cin >> continuar;
                     if (continuar != '1'){
                         x = false;
+                        s -> cerrarSesion();
                     }
                 }
             }
@@ -69,7 +72,7 @@ void iniciarSesion(ISistema *s){
                 try {
                     s -> verificarContra(contr);
                     x = true;
-                    cout << "Se ha registrado como \x1B[21m" << correo << "\033[0m\n";
+                    cout << "Se ha registrado como \x1B[92m" << correo << "\033[0m\n";
                 }catch (exception& e){
                     cout <<"\x1B[91mError:\033[0m\t" << e.what();
                     cout << "Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
@@ -77,10 +80,19 @@ void iniciarSesion(ISistema *s){
                     cin >> continuar;
                     if (continuar != '1'){
                         x = false;
+                        s -> cerrarSesion();
                     }
                 }
             }
         }
+    }catch (exception& e){
+        cout <<"\x1B[91mError:\033[0m\t" << e.what();
+    }
+}
+void cerrarSesion(ISistema *s){
+    try {
+        s -> cerrarSesion();
+        cout << "\x1B[92mLa sesión se ha cerrado\033[0m\n";
     }catch (exception& e){
         cout <<"\x1B[91mError:\033[0m\t" << e.what();
     }
