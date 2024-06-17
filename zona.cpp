@@ -52,9 +52,13 @@ edificio* zona::seleccionarEdificio(string nombre){
     return NULL;
 }
 
-void zona::agegarEdificio(edificio* ed){
-    string codigo = ed -> getNombre();
-    IKey *k = new String(codigo.c_str());
+void zona::agegarEdificio(string nombre, int cantPisos, int gastosComunes){
+    IKey *k = new String(nombre.c_str());
+    if(this -> edificios -> member(k)){
+        delete k;
+        throw invalid_argument("Ya existe un edificio con este nombre dentro de la zona " + this -> nombre + "\n");
+    }
+    edificio* ed = new edificio(nombre, cantPisos, gastosComunes);
     this -> edificios -> add(k, ed);
 }
 

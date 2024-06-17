@@ -14,8 +14,10 @@ public:
     virtual bool enviarCorreo(string correo) = 0;  //👌
     virtual void establecerContra(string contra, string repContra) = 0;  //👌
     virtual void verificarContra(string contra) = 0;  //👌
+    virtual void sesionAbierta() = 0;
     virtual void cerrarSesion() = 0; //👌
     virtual void confirmarAdmin() = 0;
+    virtual void confirmarInmobiliaria() = 0;
     virtual void ingresarInmobiliaria(string correo, direccion * dir, string nombre) = 0; //👌
     virtual void ingresarInteresado(string correo, int edad, string nombre, string apellido) = 0; //👌
     virtual void listarDepartamentos() = 0; //👌

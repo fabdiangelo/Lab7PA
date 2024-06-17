@@ -30,7 +30,7 @@ class zona : public ICollectible{
     void setCodigo(string codigo);
     IDictionary* listarEdificios();
     edificio* seleccionarEdificio(string nombre);
-    void agegarEdificio(edificio* ed);
+    void agegarEdificio(string nombre, int cantPisos, int gastosComunes);
     void desvincularEdifico(string nombre);
     IDictionary* listarPropiedades();
     propiedad* seleccionarPropiedad(string codigo);

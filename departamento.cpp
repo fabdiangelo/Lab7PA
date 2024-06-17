@@ -36,8 +36,11 @@ void departamento::setId(char id){
 
 // FUNCIONALIDADES:
 void departamento::agregarZona(string nombre, string codigo){
-    zona* z = new zona(nombre, codigo, this);
     IKey *k = new String(codigo.c_str());
+    if(this -> zonas -> member(k)){
+        throw invalid_argument("Ya existe una zona con este código dentro de el departamento " + this -> getNombre() + "\n");
+    }
+    zona *z = new zona(nombre, codigo, this);
     this -> zonas -> add(k, z);
 }
 

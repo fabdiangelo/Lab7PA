@@ -27,8 +27,10 @@ public:
     bool enviarCorreo(string correo);  //👌
     void establecerContra(string contra, string repContra);  //👌
     void verificarContra(string contra);  //👌
+    void sesionAbierta();
     void cerrarSesion(); //👌
     void confirmarAdmin();
+    void confirmarInmobiliaria();
     void ingresarInmobiliaria(string correo, direccion * dir, string nombre); //👌
     void ingresarInteresado(string correo, int edad, string nombre, string apellido); //👌
     void listarDepartamentos(); //👌

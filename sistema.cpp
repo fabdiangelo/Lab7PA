@@ -89,25 +89,22 @@ sistema::~sistema(){
 bool sistema::enviarCorreo(string correo){
     if(this -> usuarioActual != NULL){
         throw invalid_argument("Ya hay una sesión iniciada, cierre la seisón actual y vuelva a intentarlo\n");
-    }else{
-        IKey * k = new String(correo.c_str());
-        usuario *user =(usuario*) usuarios -> find(k);
-        delete k;
-        if(user == NULL){
-            throw invalid_argument("Ningun administrador ha registrado este correo, contáctese con administración y vuelva a intentarlo\n");
-        }else{
-            usuarioActual = user;
-            return user -> getContrasenia() == "";
-        }
     }
+    IKey * k = new String(correo.c_str());
+    usuario *user =(usuario*) usuarios -> find(k);
+    delete k;
+    if(user == NULL){
+        throw invalid_argument("Ningun administrador ha registrado este correo, contáctese con administración y vuelva a intentarlo\n");
+    }
+    usuarioActual = user;
+    return user -> getContrasenia() == "";
 }
 
 void sistema::establecerContra(string contra, string repContra){
-    if(contra == repContra){
-        usuarioActual -> setContrasenia(contra);
-    }else{
+    if(contra != repContra){
         throw invalid_argument ("Las contraseñas ingresadas no coinciden\n");
     }
+    usuarioActual -> setContrasenia(contra);
 }
 
 void sistema::verificarContra(string contra){
@@ -116,17 +113,28 @@ void sistema::verificarContra(string contra){
     }
 }
 
+void sistema::sesionAbierta(){
+    if (usuarioActual != NULL){
+        throw invalid_argument ("Ya hay sesión iniciada, cierre sesión y vuelva a intentarlo\n");
+    }
+}
+
 void sistema::cerrarSesion(){
     if(this -> usuarioActual == NULL){
         throw invalid_argument ("No había una sesión iniciada\n");
-    }else{
-        this -> usuarioActual = NULL;
     }
+    this -> usuarioActual = NULL;
 }
 
 void sistema::confirmarAdmin(){
     if(usuarioActual == NULL || usuarioActual -> getCorreo() != "admin"){
         throw invalid_argument("Debes registrarte como administrador para realizar esta acción\n");
+    }
+}
+
+void sistema::confirmarInmobiliaria(){
+    if(usuarioActual == NULL || ! dynamic_cast<inmobiliaria*>(usuarioActual)){
+        throw invalid_argument("Debes registrarte como inmobiliaira para realizar esta acción\n");
     }
 }
 
@@ -151,9 +159,11 @@ void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre
         }
         iter -> next();
     }
+    delete iter;
 
     IKey *k = new String(correo.c_str());
     if(this -> usuarios -> member(k)){
+        delete k;
         throw invalid_argument("Ya se ha ingresado un usuario con este correo\n");
     }
 
@@ -175,60 +185,68 @@ void sistema::ingresarInteresado(string correo, int edad, string nombre, string 
 
 void sistema::listarDepartamentos(){
     cout << "Departamentos:" << endl;
-    for(IIterator* iter = departamentos -> getIterator(); iter -> hasCurrent(); iter -> next()){
+    IIterator* iter = departamentos -> getIterator();
+    while(iter -> hasCurrent()){
         departamento *dep = (departamento*) iter -> getCurrent();
         cout << dep;
+        iter -> next();
     }
+    delete iter;
 }
 
 void sistema::seleccionarDepartamento(string depSelec){
     IKey *k = new String(depSelec.c_str());
-    departamento *dep = (departamento*) departamentos -> find(k);
-    if(dep == NULL){
-        cout << "Se ingresó un departamento no válido" << endl;
-    }else{
-        this -> departamentoActual = dep;
+    if(!departamentos -> member(k)){
+        delete k;
+        throw invalid_argument("Se ingresó un departamento no válido\n");
     }
+    departamento *dep = (departamento*) departamentos -> find(k);
+    this -> departamentoActual = dep;
+
 }
 
 void sistema::ingresarZona(string nombre, string codigo){
     if(this -> departamentoActual == NULL){
-        cout << "Debes seleccionar un departamento antes" << endl;
-    }else{
-        departamentoActual -> agregarZona(nombre, codigo);
+        throw invalid_argument("Debes seleccionar un departamento antes de poder realizar esta acción\n");
     }
+    departamentoActual -> agregarZona(nombre, codigo);
 }
 
 void sistema::listarZonas(){
     if(departamentoActual == NULL){
-        cout << "Debes seleccionar un departamento antes" << endl;
+        throw invalid_argument("Debes seleccionar un departamento antes de poder realizar esta acción\n");
+    }
+    cout << "Departamento: " << departamentoActual -> getNombre() << endl;
+    cout << "Zonas:" << endl;
+    if (departamentoActual -> getZonas() -> getSize() == 0){
+        cout << "\tNo hay zonas registradas en este departamento" << endl;
     }else{
-        cout << "Departamento: " << departamentoActual -> getNombre() << endl;
-        cout << "Zonas:" << endl;
-        for(IIterator* iter = departamentoActual -> getZonas() -> getIterator(); iter -> hasCurrent(); iter -> next()){
+        IIterator* iter = departamentoActual -> getZonas() -> getIterator();
+        while(iter -> hasCurrent()){
             zona *z = (zona*) iter -> getCurrent();
             cout << z;
+            iter -> next();
         }
+        delete iter;
     }
 }
 
 void sistema::seleccionarZona(string zonaSeleccionada){
     IKey *k = new String(zonaSeleccionada.c_str());
-    zona *z = (zona*) departamentoActual -> getZonas() -> find(k);
-    if(z == NULL){
-        cout << "Se ingresó una zona no válida" << endl;
-    }else{
-        this -> zonaActual = z;
+    if(!departamentoActual -> getZonas() -> member(k)){
+        delete k;
+        throw invalid_argument("Se ingresó una zona no válida\n");
     }
+    zona *z = (zona*) departamentoActual -> getZonas() -> find(k);
+    this -> zonaActual = z;
+
 }
 
 void sistema::ingresarEdificio(string nombre, int cantPisos, int gastosComunes){
     if(this -> zonaActual == NULL){
-        cout << "Debe seleccionar una zona antes de poder ingresar un edificio" << endl;
-    }else{
-        edificio* ed = new edificio(nombre, cantPisos, gastosComunes);
-        this -> zonaActual -> agegarEdificio(ed);
+        throw invalid_argument("Debe ingresar una zona antes de poder realizar esta acción\n");
     }
+    this -> zonaActual -> agegarEdificio(nombre, cantPisos, gastosComunes);
 }
 
 void sistema::listarEdificios(){
@@ -320,9 +338,11 @@ void sistema::listarPropiedades(string zonaSeleccionada){
         }
         cout << "Casas:" << endl;
         for(IIterator* iter = zonaActual -> listarPropiedades() -> getIterator(); iter -> hasCurrent(); iter -> next()){
-            casa *c = (casa*) iter -> getCurrent();           
-            if(c != NULL){
-                cout << c;
+            if(dynamic_cast<casa*>(iter -> getCurrent())){
+                casa *c = (casa*) iter -> getCurrent();           
+                if(c != NULL){
+                    cout << c;
+                }
             }
         }
     }
