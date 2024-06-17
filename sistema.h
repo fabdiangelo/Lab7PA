@@ -50,7 +50,7 @@ public:
     void listarMensajes(string propSeleccionada);
     void crearChat(string propSeleccionada);
     dtRespuesta* ingresarMensaje(string mensaje);
-    List* listarMensajesRecientes();
+    void listarMensajesRecientes();
     dtInmobiliaria* mostrarDatosInmo();
     dtPropiedad* mostrarPropiedad();
 };

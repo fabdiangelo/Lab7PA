@@ -373,8 +373,7 @@ dtRespuesta* sistema::ingresarMensaje(string mensaje){
     return new dtRespuesta("Mensaje enviado correctamente");
 }
 
-List* sistema::listarMensajesRecientes(){
-    return NULL;
+void sistema::listarMensajesRecientes(){
 }
 
 dtInmobiliaria* sistema::mostrarDatosInmo(){

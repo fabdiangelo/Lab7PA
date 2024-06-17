@@ -38,7 +38,7 @@ public:
     virtual void listarMensajes(string propSeleccionada) = 0;
     virtual void crearChat(string propSeleccionada) = 0;
     virtual dtRespuesta* ingresarMensaje(string mensaje) = 0;
-    virtual List* listarMensajesRecientes() = 0;
+    virtual void listarMensajesRecientes() = 0;
     virtual dtInmobiliaria* mostrarDatosInmo() = 0;
     virtual dtPropiedad* mostrarPropiedad() = 0;
     ~ISistema();
