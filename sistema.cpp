@@ -1,6 +1,14 @@
 #include "sistema.h"
 
 // CONSTRUCTOR:
+sistema * sistema::instance = NULL;
+
+sistema * sistema::getInstance() {
+    if (instance == NULL)
+        instance = new sistema();
+    return instance;
+}
+
 sistema::sistema(){
     this -> departamentos = new OrderedDictionary();
     this -> usuarios = new OrderedDictionary();
