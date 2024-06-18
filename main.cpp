@@ -2,6 +2,7 @@
 #include "ISistema.h"
 #include <cctype>
 #include <algorithm>
+#include <limits>
 
 // FUNCIONALIDADES PRINCIPALES:
 void iniciarSesion(ISistema *s);
@@ -14,6 +15,7 @@ void consultarPropiedad(ISistema *s);
 void modificarPropiedad(ISistema *s);
 void eliminarPropiedad(ISistema *s);
 void mensajeInteresado(ISistema *s);
+void mensajeInmobiliaria(ISistema * s);
 
 // FUNCIONALIDADES AUXILIARES:
 string ingresarZona(ISistema *s);
@@ -42,24 +44,26 @@ int main() {
         cout << "8) Modificar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
         cout << "9) Eliminar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
         cout << "10) Enviar Mensaje \x1B[94m(interesado)\033[0m" << endl;
+        cout << "11) Enviar Mensaje \x1B[93m(inmobiliaria)\033[0m" << endl;
 
         cout << "e) Salir\n\n\n\x1B[36m(string):\033[0m Ingrese una de las opciones dadas: ";
-
         string e;
-        cin >> e;
+        getline(cin, e, '\n');
         cout << endl;
-        if(e == "1") iniciarSesion(s); 
-        else if(e == "2") cerrarSesion(s); 
-        else if(e == "3") altaInmobiliaria(s); 
-        else if(e == "4") altaInteresado(s); 
-        else if(e == "5") altaEdificio(s); 
-        else if(e == "6") altaPropiedad(s); 
+
+        if(e == "1") iniciarSesion(s);
+        else if(e == "2") cerrarSesion(s);
+        else if(e == "3") altaInmobiliaria(s);
+        else if(e == "4") altaInteresado(s);
+        else if(e == "5") altaEdificio(s);
+        else if(e == "6") altaPropiedad(s);
         else if(e == "7") consultarPropiedad(s);
-        else if(e == "8") modificarPropiedad(s); 
-        else if(e == "9") eliminarPropiedad(s); 
-        else if(e == "10") mensajeInteresado(s); 
-        else if(e == "e") continuar = false; 
-        else cout << "Opción no válida\n"; 
+        else if(e == "8") modificarPropiedad(s);
+        else if(e == "9") eliminarPropiedad(s);
+        else if(e == "10") mensajeInteresado(s);
+        else if(e == "11") mensajeInmobiliaria(s);
+        else if(e == "e") continuar = false;
+        else cout << "\x1B[91mError:\033[0m\tOpción no válida\n";
     }
     return 0;
 }
@@ -76,16 +80,16 @@ void iniciarSesion(ISistema *s){
         s -> sesionCerrada();
         cout << "\x1B[36m(string):\033[0m Ingrese su correo electrónico: ";
         string correo;
-        cin >> correo;
+        getline(cin, correo, '\n');
         bool x = s -> enviarCorreo(correo);
         if(x){
             while(x){
                 string contr;
                 string repContr;
                 cout << "\n\x1B[36m(string):\033[0m Ingrese su nueva contraseña: ";
-                cin >> contr;
+                getline(cin, contr, '\n');
                 cout << endl << "\x1B[36m(string):\033[0m Repita la contraseña: ";
-                cin >> repContr;
+                getline(cin, repContr, '\n');
                 cout << endl;
                 try {
                     s -> establecerContra(contr, repContr);
@@ -104,9 +108,9 @@ void iniciarSesion(ISistema *s){
             }
         }else{
             while(!x){
-                string contr;
                 cout << "\n\x1B[36m(string):\033[0m Ingrese su contraseña: ";
-                cin >> contr;
+                string contr;
+                getline(cin, contr, '\n');
                 cout << endl;
                 try {
                     s -> verificarContra(contr);
@@ -142,10 +146,10 @@ void altaInmobiliaria(ISistema *s){
         s -> confirmarAdmin();
         string correo, nombre, ciudad, calle, numero;
         cout << "\n\x1B[36m(string):\033[0m Ingerese el correo de la nueva inmobiliaria: ";
-        cin >> correo;
+        getline(cin, correo, '\n');
         direccion *dir = crearDireccion("la nueva inmobiliaria");
         cout << "\n\x1B[36m(string):\033[0m Ingerese el nombre de la nueva inmobiliaria: ";
-        cin >> nombre;
+        getline(cin, nombre, '\n');
         s -> ingresarInmobiliaria(correo, dir, nombre);
         cout << "\nSe ha registrado a la inmobiliairia \x1B[92m" << nombre << "\033[0m\n";
     }catch (exception & e){
@@ -158,13 +162,18 @@ void altaInteresado(ISistema *s){
         string correo, nombre, apellido;
         int edad;
         cout << "\n\x1B[36m(string):\033[0m Ingerese el correo del nuevo interesado: ";
-        cin >> correo;
+        getline(cin, correo, '\n');
         cout << "\n\x1B[36m(string):\033[0m Ingerese el nombre del nuevo interesado: ";
-        cin >> nombre;
+        getline(cin, nombre, '\n');
         cout << "\n\x1B[36m(string):\033[0m Ingerese el apellido del nuevo interesado: ";
-        cin >> apellido;
+        getline(cin, apellido, '\n');
         cout << "\n\x1B[36m(integer):\033[0m Ingerese la edad del nuevo interesado: ";
         cin >> edad;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         s -> ingresarInteresado(correo, edad, nombre, apellido);
         cout << "\nSe ha registrado al interesado \x1B[92m" << nombre << " " << apellido << "\033[0m\n";
     }catch (exception & e){
@@ -186,7 +195,7 @@ void altaEdificio(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
-        cin >> z;
+        getline(cin, z, '\n');
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
@@ -215,7 +224,7 @@ void altaPropiedad(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
-        cin >> z;
+        getline(cin, z, '\n');
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
@@ -231,7 +240,7 @@ void altaPropiedad(ISistema *s){
             s -> listarEdificios();
             cout << "\n\x1B[36m(string):\033[0m Ingresa el edificio en la que quieras asignar al apartamento, o presiona 1 para ingresar un edificio nuevo: ";
             string ed;
-            cin >> ed;
+            getline(cin, ed, '\n');
             transform(ed.begin(), ed.end(), ed.begin(), ::toupper);
             if(ed == "1"){
                 ed = ingresarEdificio(s);
@@ -242,37 +251,92 @@ void altaPropiedad(ISistema *s){
             int cantAmb, cantDorm, cantBa, m2;
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo del nuevo apartamento: ";
-            cin >> codigo;
+            getline(cin, codigo, '\n');
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
             cin >> cantAmb;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios del nuevo apartamento: ";
             cin >> cantDorm;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
             cin >> cantBa;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(bool):\033[0m Indica si el nuevo apartamento tiene garage (1 | 0): ";
             cin >> garage;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'bool' (0 | 1)\n");
+            }
             direccion *dir = crearDireccion("el nuevo apartamento");
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados del nuevo apartamento: ";
             cin >> m2;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             s -> ingresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2);
         }else if(casaApart == '0'){ // Casa
             int cantAmb, cantDorm, cantBa, m2, m2V;
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo de la nueva casa: ";
-            cin >> codigo;
+            getline(cin, codigo, '\n');
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
             cin >> cantAmb;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios de la nueva casa: ";
             cin >> cantDorm;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
             cin >> cantBa;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(bool):\033[0m Indica si la nueva casa tiene garage (1 | 0): ";
             cin >> garage;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'bool' (0 | 1)\n");
+            }
             direccion *dir = crearDireccion("la nueva casa");
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados de la nueva casa: ";
             cin >> m2;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados verdes de la nueva casa: ";
             cin >> m2V;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             s -> ingresarDatosCasa(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, m2V);
         }else{
             throw invalid_argument("Opción no válida\n");
@@ -285,12 +349,22 @@ void altaPropiedad(ISistema *s){
             cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de alquiler: ";
             int valorAlq;
             cin >> valorAlq;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             s -> ingresarPrecioAlquiler(codigo, valorAlq);
         }
         if (tipo == '1' || tipo == '2'){
             cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de venta: ";
             int valorvent;
             cin >> valorvent;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             s -> ingresarPrecioAlquiler(codigo, valorvent);
         }
         if(tipo != '0' && tipo != '1' && tipo != '2'){
@@ -320,7 +394,7 @@ void consultarPropiedad(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
-        cin >> z;
+        getline(cin, z, '\n');
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
@@ -329,7 +403,7 @@ void consultarPropiedad(ISistema *s){
         s -> listarPropiedades();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
         string prop;
-        cin >> prop;
+        getline(cin, prop, '\n');
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> infoPropInmo(prop);
     }catch (exception &e){
@@ -343,7 +417,7 @@ void modificarPropiedad(ISistema *s){
         s -> imprimirPropsInmo();
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas modificar: ";
         string codigo;
-        cin >> codigo;
+        getline(cin, codigo, '\n');
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         bool esCasa = s -> ingresarCodigoProp(codigo);
 
@@ -351,22 +425,62 @@ void modificarPropiedad(ISistema *s){
         bool garage;
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de ambientes de la propiedad: ";
         cin >> cantAmb;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de dormitorios de la propiedad: ";
         cin >> cantDorm;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de ambientes de la propiedad: ";
         cin >> cantBa;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         cout << "\n\x1B[36m(bool):\033[0m Indica si la propiedad tiene garage (1 | 0): ";
         cin >> garage;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'bool' (0 | 1)\n");
+        }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de metros cuadrados de la propiedad: ";
         cin >> m2;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa el nuevo precio de venta de la propiedad (o 0 en caso de no tenerlo): ";
         cin >> precioVenta;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa el nuevo precio de alquiler de la propiedad (o 0 en caso de no tenerlo): ";
         cin >> precioAlq;
+        if( !cin.good() ){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+        }
         if(esCasa){
             int m2v;
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de metros cuadrados verdes de la propiedad: ";
             cin >> m2v;
+            if( !cin.good() ){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+            }
             s -> modificarCasa(codigo, cantAmb, cantDorm, cantBa, garage, m2, m2v, precioAlq, precioVenta);
         }else{
             s -> modificarApartamento(codigo, cantAmb, cantDorm, cantBa, garage, m2, precioAlq, precioVenta);
@@ -381,7 +495,7 @@ void eliminarPropiedad(ISistema *s){
         s -> confirmarInmobiliaria();
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas eliminar: ";
         string codigo;
-        cin >> codigo;
+        getline(cin, codigo, '\n');
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> borrarProp(codigo);
     }catch (exception& e){
@@ -406,7 +520,7 @@ void mensajeInteresado(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
-        cin >> z;
+        getline(cin, z, '\n');
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
@@ -415,12 +529,12 @@ void mensajeInteresado(ISistema *s){
         s -> listarPropMens();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad a la que quieras enviar un mensaje: ";
         string prop;
-        cin >> prop;
+        getline(cin, prop, '\n');
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> listarMensajes(prop);
         cout << "\n\x1B[36m(string):\033[0m Ingresa el mensaje que quieras enviar, o pulsa 'e' para abortar: ";
         string mens;
-        cin >> mens;
+        getline(cin, mens, '\n');
         if(mens != "e"){
             s -> ingresarMensaje(mens, prop);
             cout << "\nSe envío el mensaje \x1B[92m" << mens << "\033[0m con éxito\n";
@@ -430,16 +544,18 @@ void mensajeInteresado(ISistema *s){
     }
     s -> finalizarAlta();
 }
+void mensajeInmobiliaria(ISistema * s){
 
+}
 
 // AUXILIARES:
 string ingresarZona(ISistema *s){
     try{
         string nombre, codigo;
         cout << "\n\n\x1B[36m(string):\033[0m Ingrese el nombre de la nueva zona: ";
-        cin >> nombre;
+        getline(cin, nombre, '\n');
         cout << "\n\x1B[36m(string):\033[0m Ingrese el codigo de la nueva zona: ";
-        cin >> codigo;
+        getline(cin, codigo, '\n');
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> ingresarZona(nombre, codigo);
         cout << "\nSe ha ingresado la zona \x1B[92m" << nombre << "\033[0m\n";
@@ -453,10 +569,20 @@ string ingresarEdificio(ISistema *s){
     string nombre;
     int cantPisos, gastosComunes;
     cout << "\n\n\x1B[36m(string):\033[0m Ingresa el nombre del nuevo edificio: ";
-    cin >> nombre;
+    getline(cin, nombre, '\n');
     cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de pisos del nuevo edificio: ";
+    if( !cin.good() ){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+    }
     cin >> cantPisos;
     cout << "\n\x1B[36m(integer):\033[0m Ingresa los gastos comunes del nuevo edificio: ";
+    if( !cin.good() ){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
+    }
     cin >> gastosComunes;
     s -> ingresarEdificio(nombre, cantPisos, gastosComunes);
     cout << "\nSe ha registrado el edificio \x1B[92m" << nombre;
@@ -465,11 +591,11 @@ string ingresarEdificio(ISistema *s){
 direccion *crearDireccion(string objeto){
     string ciudad, calle, numero;
     cout << "\n\x1B[36m(string):\033[0m Ingerese la ciudad en la que se ubica " + objeto + ": ";
-    cin >> ciudad;
+    getline(cin, ciudad, '\n');
     cout << "\n\x1B[36m(string):\033[0m Ingerese la calle en la que se ubica " + objeto + ": ";
-    cin >> calle;
+    getline(cin, calle, '\n');
     cout << "\n\x1B[36m(string):\033[0m Ingerese el numero en el que se ubica " + objeto + ": ";
-    cin >> numero;
+    getline(cin, numero, '\n');
     return new direccion(ciudad, calle, numero);
 }
 
