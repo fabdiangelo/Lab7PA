@@ -37,8 +37,8 @@ public:
     void IngresarPrecioAlquiler(string cod, int precio);
     void IngresarPrecioVenta(string cod, int precio);
     void BorrarPropiedad(string codigo);
-    void ModificarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta);
-    void ModifiarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V);
+    void ModificarDatosApartamento(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlquiler, int precioVenta);
+    void ModifiarDatosCasa(string cod, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlquiler, int precioVenta, int m2V);
     void MostrarDatos();
     propiedad * encontrarPropiedad(string codigo);
 };

@@ -36,7 +36,11 @@ public:
     virtual void finalizarAlta() = 0; //👌
     virtual void listarPropiedades() = 0; //
     virtual void infoPropInmo(string propiedadSelec) = 0; //👌
-    virtual void ingresarCodigoProp(string codigo) = 0;
+    virtual bool depTieneZona() = 0;
+    virtual bool zonaTieneProp() = 0;
+    virtual bool ingresarCodigoProp(string codigo) = 0;
+    virtual void modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta) = 0;
+    virtual void modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int m2V, int precioAlq, int precioVenta) = 0;
     virtual void borrarProp(string codigo) = 0;
     virtual void listarPropMens(string zonaSeleccionada) = 0;
     virtual void listarMensajes(string propSeleccionada) = 0;

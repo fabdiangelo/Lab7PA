@@ -286,6 +286,12 @@ void sistema::ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm,
     if( zonaActual == NULL || edificioActual == NULL){
         throw invalid_argument("Debe seleccionar un edificio para continuar con el proceso\n");
     }
+    IKey *k = new String(codigo.c_str());
+    if (zonaActual -> listarPropiedades() -> member(k)){
+        delete k;
+        throw invalid_argument("Ya existe una propiedad con este código");
+    }
+    delete k;
     ((inmobiliaria*) usuarioActual) -> IngresarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, dir, m2, this -> zonaActual, this -> edificioActual);
     
 }
@@ -332,7 +338,7 @@ void sistema::listarPropiedades(){
                 IIterator *iterProp = ed -> getApartamentos() -> getIterator();
                 while(iterProp -> hasCurrent()){
                     apartamento* ap = (apartamento*) iterProp -> getCurrent();
-                    cout << "  " << ap;
+                    cout << "\t\t" << ap;
                     iterProp -> next();
                 }
                 delete iterProp;
@@ -343,7 +349,7 @@ void sistema::listarPropiedades(){
     }
     cout << "Casas:" << endl;
     if(zonaActual -> listarPropiedades() -> getSize() == 0){
-        cout << "\tNo hay casas en esta zona\n";
+        cout << "\tNo hay propiedades en esta zona\n";
     }else{
         for(IIterator* iter = zonaActual -> listarPropiedades() -> getIterator(); iter -> hasCurrent(); iter -> next()){
             if(dynamic_cast<casa*>(iter -> getCurrent())){
@@ -357,29 +363,47 @@ void sistema::listarPropiedades(){
 }
 
 void sistema::infoPropInmo(string propiedadSelec){
-    IKey *k = new String(propiedadSelec.c_str());
-    if(zonaActual -> listarPropiedades() -> member(k)){
-        delete k;
+    propiedad* prop = zonaActual -> seleccionarPropiedad(propiedadSelec);
+    if(prop == NULL){
         throw invalid_argument("Se ingresó una propiedad no válida\n");
     }
-    propiedad *prop = (propiedad*) zonaActual -> listarPropiedades() -> find(k);
     dtPropiedadInmo *dt = new dtPropiedadInmo(prop -> getCodigo(), prop -> getCantAmbientes(), prop -> getCantDormitorios(), prop -> getCantBanios(), prop -> getGarage(), prop -> getM2Edificados(), prop -> getDireccion(), prop -> getPrecioVenta() > 0, prop -> getPrecioAlquiler() > 0, prop -> getInmobiliaria());
     cout << dt;
     dt -> ~dtPropiedadInmo();
 }
 
-void sistema::ingresarCodigoProp(string codigo){
-    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
-    if(inmo == NULL){
-        cout << "debes ingresar como un usuario inmobiliaria" << endl;
-    }else{
-        propiedad* prop = inmo -> encontrarPropiedad(codigo);
-        if(prop == NULL){
-            cout << "debes ingresar el código de una propiedad previamente registrada" << endl;
-        }else{
-            // modificar
-        }
+bool sistema::depTieneZona(){
+    if(this -> departamentoActual == NULL){
+        throw invalid_argument("Debes seleccionar un departamento antes de poder realizar esta acción\n");
     }
+    return this -> departamentoActual -> getZonas() -> getSize() > 0;
+}
+
+bool sistema::zonaTieneProp(){
+    if(this -> zonaActual == NULL){
+        throw invalid_argument("Debes seleccionar una zona antes de poder realizar esta acción\n");
+    }
+    return this -> zonaActual -> listarPropiedades() -> getSize() > 0;
+}
+
+bool sistema::ingresarCodigoProp(string codigo){
+    confirmarInmobiliaria();
+    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
+    propiedad* prop = inmo -> encontrarPropiedad(codigo);
+    if(prop == NULL){
+        throw invalid_argument("Se ingresó una propiedad no válida\n");
+    }
+    return dynamic_cast<casa*>(prop);
+}
+
+void sistema::modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta){
+    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
+    inmo -> ModificarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, m2, precioAlq, precioVenta);
+}
+
+void sistema::modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int m2V, int precioAlq, int precioVenta){
+    inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
+    inmo -> ModificarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, m2, precioAlq, precioVenta);
 }
 
 void sistema::borrarProp(string codigo){

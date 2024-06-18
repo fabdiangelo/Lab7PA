@@ -62,6 +62,6 @@ void edificio::desvincularProp(string codigo){
 
 // SOBRECARGA:
 ostream& operator<<(ostream& os, edificio* ed){
-    os << "\t" << ed -> getNombre() << ") Cant pisos: " << ed -> getCantPisos() << " | Gastos comunes: " << ed -> getGastosComunes() << endl;
+    os << "\t" << ed -> getNombre() << ") Cant pisos: " << ed -> getCantPisos() << "  -  Gastos comunes: " << ed -> getGastosComunes() << endl;
     return os;
 }

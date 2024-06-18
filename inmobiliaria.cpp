@@ -85,7 +85,7 @@ void inmobiliaria::BorrarPropiedad(string codigo){
     }
 }
 
-void inmobiliaria::ModificarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta){
+void inmobiliaria::ModificarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlquiler, int precioVenta){
     IKey *k = new String(codigo.c_str());
     if(this -> propiedades -> member(k)){
         apartamento* prop =(apartamento*) this -> propiedades -> find(k);
@@ -103,7 +103,7 @@ void inmobiliaria::ModificarDatosApartamento(string codigo, int cantAmb, int can
     }
 }
 
-void inmobiliaria::ModifiarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2, int precioAlquiler, int precioVenta, int m2V){
+void inmobiliaria::ModifiarDatosCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlquiler, int precioVenta, int m2V){
     IKey *k = new String(codigo.c_str());
     if(this -> propiedades -> member(k)){
         casa* prop =(casa*) this -> propiedades -> find(k);
