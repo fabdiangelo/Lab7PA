@@ -1,5 +1,5 @@
-okall: mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o propiedad.o apartamento.o casa.o inmobiliaria.o sistema.o ISistema.o factory.o main.o fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o Integer.o
-	g++ mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o propiedad.o apartamento.o casa.o inmobiliaria.o sistema.o ISistema.o factory.o main.o fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o Integer.o -o programa
+okall: mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o propiedad.o apartamento.o casa.o inmobiliaria.o sistema.o ISistema.o factory.o main.o fecha.o direccion.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
+	g++ mensaje.o usuario.o administrador.o interesado.o chat.o departamento.o edificio.o zona.o propiedad.o apartamento.o casa.o inmobiliaria.o sistema.o ISistema.o factory.o main.o fecha.o direccion.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o programa
 
 # Clases
 apartamento.o: edificio.o propiedad.o
@@ -35,22 +35,13 @@ departamento.o: IDictionary.o
 edificio.o: OrderedDictionary.o String.o
 	g++ -c edificio.cpp
 
-zona.o: edificio.o departamento.o
+zona.o: edificio.o departamento.o mensajesPropiedad.o
 	g++ -c zona.cpp
 
 
 # Data types
 direccion.o:
 	g++ -c "DataTypes/direccion.cpp"
-
-dtDepartamento.o:
-	g++ -c "DataTypes/dtDepartamento.cpp"
-
-dtEdificio.o:
-	g++ -c "DataTypes/dtEdificio.cpp"
-
-dtInmobiliaria.o: direccion.o
-	g++ -c "DataTypes/dtInmobiliaria.cpp"
 
 dtMensaje.o: ICollectible.o
 	g++ -c "DataTypes/dtMensaje.cpp"
@@ -60,12 +51,6 @@ dtPropiedad.o: direccion.o
 
 dtPropiedadInmo.o: direccion.o
 	g++ -c "DataTypes/dtPropiedadInmo.cpp"
-
-dtRespuesta.o:
-	g++ -c "DataTypes/dtRespuesta.cpp"
-
-dtZona.o: ICollectible.o
-	g++ -c "DataTypes/dtZona.cpp"
 
 fecha.o:
 	g++ -c "DataTypes/fecha.cpp"
@@ -86,9 +71,6 @@ zonasDep.o: propZona.o departamento.o
 # ICOLLECTION:
 String.o: ICollectible.o OrderedKey.o
 	g++ -c "ICollection/String.cpp"
-
-Integer.o: ICollectible.o OrderedKey.o
-	g++ -c "ICollection/Integer.cpp"
 
 ICollectible.o:
 	g++ -c "ICollection/interfaces/ICollectible.cpp"
@@ -129,10 +111,10 @@ OrderedDictionaryEntry.o: OrderedKey.o ICollectible.o
 factory.o: ISistema.o sistema.o
 	g++ -c factory.cpp	
 
-ISistema.o:
+ISistema.o: direccion.o
 	g++ -c ISistema.cpp
 
-sistema.o: ISistema.o dtRespuesta.o direccion.o registroMensajes.o dtPropiedad.o dtInmobiliaria.o dtPropiedadInmo.o OrderedDictionary.o usuario.o departamento.o
+sistema.o: ISistema.o interesado.o administrador.o inmobiliaria.o dtPropiedadInmo.o registroMensajes.o
 	g++ -c sistema.cpp
 
 main.o: ISistema.o factory.o
@@ -140,9 +122,9 @@ main.o: ISistema.o factory.o
 
 
 clean:
-	rm -f fecha.o direccion.o dtDepartamento.o dtEdificio.o dtInmobiliaria.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o dtRespuesta.o dtZona.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o inmobiliaria.o sistema.o usuario.o zona.o main.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o Integer.o
+	rm -f fecha.o direccion.o dtMensaje.o dtPropiedadInmo.o dtPropiedad.o mensajesPropiedad.o propZona.o registroMensajes.o zonasDep.o administrador.o apartamento.o casa.o chat.o departamento.o edificio.o factory.o interesado.o ISistema.o mensaje.o propiedad.o inmobiliaria.o sistema.o usuario.o zona.o main.o String.o ICollectible.o ICollection.o IDictionary.o IIterator.o IKey.o OrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
 run:
 	make clean
 	make
-	clear
+# clear
 	./programa

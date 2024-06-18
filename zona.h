@@ -2,7 +2,6 @@
 #define ZONA_H
 
 #include "edificio.h"
-#include "DataTypes/dtPropiedad.h"
 #include "DataTypes/mensajesPropiedad.h"
 #include "departamento.h"
 #include "propiedad.h"

@@ -16,6 +16,7 @@ void modificarPropiedad(ISistema *s);
 void eliminarPropiedad(ISistema *s);
 void mensajeInteresado(ISistema *s);
 void mensajeInmobiliaria(ISistema * s);
+void reporteInmobiliarias(ISistema *s);
 
 // FUNCIONALIDADES AUXILIARES:
 string ingresarZona(ISistema *s);
@@ -27,9 +28,9 @@ void precarga(ISistema* s);
 
 int main() {
     ISistema *s = factory::getSistema();
-    system("clear");
+    // system("clear");
     precarga(s);
-    cout << "\n\tBienvenido";
+    cout << "\n\t\x1B[97mBienvenido!\033[0m";
     bool continuar = true;
     while(continuar){
         cout << "\n\nQue es lo que desesa hacer?" << endl;
@@ -45,6 +46,7 @@ int main() {
         cout << "9) Eliminar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
         cout << "10) Enviar Mensaje \x1B[94m(interesado)\033[0m" << endl;
         cout << "11) Enviar Mensaje \x1B[93m(inmobiliaria)\033[0m" << endl;
+        cout << "12) Obtener Reporte de Inmobiliarias \x1B[95m(admin)\033[0m" << endl;
 
         cout << "e) Salir\n\n\n\x1B[36m(string):\033[0m Ingrese una de las opciones dadas: ";
         string e;
@@ -62,9 +64,11 @@ int main() {
         else if(e == "9") eliminarPropiedad(s);
         else if(e == "10") mensajeInteresado(s);
         else if(e == "11") mensajeInmobiliaria(s);
+        else if(e == "12") reporteInmobiliarias(s);
         else if(e == "e") continuar = false;
         else cout << "\x1B[91mError:\033[0m\tOpción no válida\n";
     }
+    cout << "\n\n\n\n\n\n\t\x1B[97mNos Vemos!\033[0m";
     return 0;
 }
 
@@ -599,6 +603,13 @@ void mensajeInmobiliaria(ISistema * s){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
 
+}
+void reporteInmobiliarias(ISistema *s){
+    try{
+        s -> mostrarDatosInmo();
+    }catch(exception &e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
 }
 
 // AUXILIARES:

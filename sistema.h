@@ -3,7 +3,6 @@
 
 #include "DataTypes/registroMensajes.h"
 #include "DataTypes/dtPropiedadInmo.h"
-#include "ICollection/collections/OrderedDictionary.h"
 #include "inmobiliaria.h"
 #include "administrador.h"
 #include "interesado.h"
@@ -64,8 +63,7 @@ public:
     void ingresarMensaje(string mensaje, string codigo);
     void listarMensajesRecientes();
     void enviarMensajeA(string codigo, string correo, string mensaje);
-    dtInmobiliaria* mostrarDatosInmo();
-    dtPropiedad* mostrarPropiedad();
+    void mostrarDatosInmo();
 };
 
 

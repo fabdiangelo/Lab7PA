@@ -5,14 +5,9 @@
 pruebas.cpp
 fecha.o 
 direccion.o 
-dtDepartamento.o 
-dtEdificio.o 
-dtInmobiliaria.o 
 dtMensaje.o 
 dtPropiedadInmo.o 
 dtPropiedad.o 
-dtRespuesta.o 
-dtZona.o 
 mensajesPropiedad.o 
 propZona.o 
 registroMensajes.o 
@@ -45,5 +40,3 @@ ListIterator.o
 ListNode.o 
 OrderedDictionary.o 
 OrderedDictionaryEntry.o
-Integer.o
-programa

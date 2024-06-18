@@ -542,10 +542,16 @@ void sistema::enviarMensajeA(string codigo, string correo, string mensaje){
     delete iterDep;
 }
 
-dtInmobiliaria* sistema::mostrarDatosInmo(){
-    return NULL;
-}
-
-dtPropiedad* sistema::mostrarPropiedad(){
-    return NULL;
+void sistema::mostrarDatosInmo(){
+    confirmarAdmin();
+    IIterator *iter = usuarios -> getIterator();
+    while (iter -> hasCurrent()){
+        inmobiliaria* inmo = dynamic_cast<inmobiliaria*>(iter -> getCurrent());
+        if(inmo){
+            cout << endl;
+            inmo -> MostrarDatos();
+        }
+        iter -> next();
+    }
+    delete iter;
 }

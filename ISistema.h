@@ -2,10 +2,7 @@
 #define ISISTEMA_H
 
 #include <iostream>
-#include "DataTypes/dtRespuesta.h"
 #include "DataTypes/direccion.h"
-#include "DataTypes/dtInmobiliaria.h"
-#include "DataTypes/dtPropiedad.h"
 using namespace std;
 
 class ISistema 
@@ -50,8 +47,7 @@ public:
     virtual void ingresarMensaje(string mensaje, string codigo) = 0;
     virtual void listarMensajesRecientes() = 0;
     virtual void enviarMensajeA(string codigo, string correo, string mensaje) = 0;
-    virtual dtInmobiliaria* mostrarDatosInmo() = 0;
-    virtual dtPropiedad* mostrarPropiedad() = 0;
+    virtual void mostrarDatosInmo() = 0;
     ~ISistema();
 };
 

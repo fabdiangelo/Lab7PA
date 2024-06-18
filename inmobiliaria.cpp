@@ -124,12 +124,12 @@ void inmobiliaria::ModifiarDatosCasa(string codigo, int cantAmb, int cantDorm, i
 }
 
 void inmobiliaria::MostrarDatos(){
-    cout << "Nombre: " << this -> getNombre() << endl;
+    cout << "\nNombre: " << this -> getNombre() << endl;
     cout << "Mail: " << this -> getCorreo() << endl;
     direccion * dir = this -> getDireccion();
     cout << "Direccion: " << dir -> getCiudad() << ", " << dir -> getCalle() << " Nro " << dir -> getNumero() << endl;
     cout << "Propiedades:" << endl;
-
+    int count = 0;
     IDictionary *lista = new OrderedDictionary(); // guarda zonasDep
 
     for (IIterator* pi = this -> propiedades -> getIterator(); pi -> hasCurrent(); pi -> next()){
@@ -154,21 +154,26 @@ void inmobiliaria::MostrarDatos(){
 
     for(IIterator* iterDep = lista -> getIterator(); iterDep -> hasCurrent(); iterDep -> next()){
         zonasDep *zonaDep = (zonasDep*) iterDep -> getCurrent();
-        cout << "  - Departamento: " << zonaDep -> getDepartamento() -> getNombre() << endl;
+        cout << "\n  - Departamento: " << zonaDep -> getDepartamento() -> getNombre() << endl;
 
         IIterator* iterZona = zonaDep -> getZonas() -> getIterator();
         while(iterZona -> hasCurrent()){
             propZona *proZon = (propZona *) iterZona -> getCurrent();
-            cout << "    - Zona: " << proZon -> getZona() -> getNombre() << endl;
+            cout << "\n    - Zona: " << proZon -> getZona() -> getNombre() << endl;
 
             IIterator* iterProp = proZon -> getPropiedades() -> getIterator();
             while(iterProp -> hasCurrent()){
                 propiedad * prop = (propiedad*) iterProp -> getCurrent();
-                cout << "      - Propiedad: " << prop -> getCodigo() << endl;
+                cout << "      - Propiedad:" << prop;
+                count ++;
                 iterProp -> next();
             }
             iterZona -> next();
         }
+    }
+
+    if(count == 0){
+        cout << "      - Esta inmobiliaria no tiene propiedades publicadas" << endl;
     }
 }
 
