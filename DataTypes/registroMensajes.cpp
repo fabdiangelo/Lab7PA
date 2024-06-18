@@ -31,7 +31,7 @@ ostream& operator<<(ostream& os, registroMensajes* reg){
         IIterator* iter = reg -> getMensajes() -> getIterator();
         while (iter -> hasCurrent()){
             dtMensaje *men = (dtMensaje*) iter -> getCurrent();
-            os << men -> getHora() << "hs: " << men -> getMensaje() << endl;
+            os << "\t\t" << men -> getHora() << "hs: " << men -> getMensaje() << endl;
             iter -> next();
         }
         delete iter;

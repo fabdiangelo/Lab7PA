@@ -577,6 +577,27 @@ void mensajeInteresado(ISistema *s){
     s -> finalizarAlta();
 }
 void mensajeInmobiliaria(ISistema * s){
+    try{
+        s -> listarMensajesRecientes();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad sobre la que trata la conversación: ";
+        string prop;
+        getline(cin, prop);
+        transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
+        cout << "\n\x1B[36m(string):\033[0m Ingresa al interesado al que quieres contestar: ";
+        string correo;
+        getline(cin, correo);
+        cout << "\n\x1B[36m(string):\033[0m Ingresa el mensaje que quieres enviar, o pulsa 'e' para abortar: ";
+        string mens;
+        getline(cin, mens);
+        if(mens != "e"){
+            s -> enviarMensajeA(prop, correo, mens);
+            cout << "\nSe envío el mensaje \x1B[92m" << mens << "\033[0m con éxito\n";
+        }else{
+            cout << "\n\x1B[92mNo se envió ningún mensaje\033[0m\n";
+        }
+    }catch(exception &e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
 
 }
 

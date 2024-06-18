@@ -1,7 +1,7 @@
 #include "chat.h"
 
 // CONSTRUCTOR:
-chat::chat(string correo){
+chat::chat(string correo, propiedad*prop){
     time_t t;
     struct tm *tm;
     t = time(NULL);
@@ -18,6 +18,7 @@ chat::chat(string correo){
     this -> CantMensajes = 0;
     this -> MisMensajes = new List();
     this -> persona = correo;
+    this -> prop = prop;
 }
 
 // DESTRUCTOR:
@@ -41,6 +42,10 @@ int chat::getCantMensajes(){
 string chat::getInteresado(){
     return this -> persona;
 } 
+
+propiedad* chat::getPropiedad(){
+    return this -> prop;
+}
 
 
 // FUNCIONALIDAD:
@@ -82,8 +87,22 @@ void chat::CrearMensaje(string contenido){
     tm = localtime(&t);
     int hora = tm -> tm_hour;
 
-    mensaje *mens = new mensaje(hora, contenido);
+    auto now = chrono::system_clock::now();
+    time_t now_time = chrono::system_clock::to_time_t(now);
+    string ahora = ctime(&now_time);
+
+    mensaje *mens = new mensaje(hora, contenido, ahora);
     MisMensajes -> add(mens);
 
     this -> CantMensajes++;
+}
+
+string chat::ultimoMens(){
+    IIterator *iter = this -> MisMensajes -> getIterator();
+    int size = this -> MisMensajes -> getSize();
+    for (int i = 0; i < size - 1; i++){
+        iter -> next();
+    }
+    mensaje *mens =(mensaje*) iter -> getCurrent();
+    return mens -> getMomento();
 }

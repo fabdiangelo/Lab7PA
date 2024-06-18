@@ -473,11 +473,73 @@ void sistema::ingresarMensaje(string mensaje, string codigo){
     }
     IKey* k = new String(codigo.c_str());
     propiedad* prop = (propiedad*) zonaActual -> listarPropiedades() -> find(k);
-    prop -> IngresarMensaje(usuarioActual -> getCorreo(), mensaje);
+    prop -> IngresarMensaje(usuarioActual -> getCorreo(), usuarioActual->getCorreo() + ": " + mensaje);
     delete k;
 }
 
 void sistema::listarMensajesRecientes(){
+    confirmarInmobiliaria();
+    IDictionary *chatsInmo = new OrderedDictionary();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            zona* z = (zona*) iterZ -> getCurrent();
+            IIterator* iterProp = z -> listarPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                propiedad* prop = (propiedad *) iterProp -> getCurrent();
+                if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
+                    IIterator *iterChat = prop -> getChats() -> getIterator();
+                    while(iterChat -> hasCurrent()){
+                        chat* c = (chat *) iterChat -> getCurrent();
+                        IKey *k = new String ((c -> ultimoMens()).c_str());
+                        chatsInmo -> add(k, c);
+                        iterChat -> next();
+                    }
+                    delete iterChat;
+                }
+                iterProp -> next();
+            }
+            delete iterProp;
+            iterZ -> next();
+        }
+        delete iterZ;
+        iterDep -> next();
+    }
+    delete iterDep;
+    IIterator *iter = chatsInmo -> getIterator();
+    while(iter -> hasCurrent()){
+        chat * c= (chat *) iter -> getCurrent();
+        cout << c -> getPropiedad() << "\tINTERESADO: " << c -> getInteresado() << "\n" << c -> ObtenerRegistro() << endl;
+        iter -> next();
+    }
+    delete iter;
+}
+
+void sistema::enviarMensajeA(string codigo, string correo, string mensaje){
+    confirmarInmobiliaria();
+    IKey *k = new String(codigo.c_str());
+    IDictionary *chatsInmo = new OrderedDictionary();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            zona* z = (zona*) iterZ -> getCurrent();
+            if(z -> listarPropiedades() -> member(k)){
+                propiedad* prop = (propiedad *) z -> listarPropiedades() -> find(k);
+                delete k;
+                departamentoActual = dep;
+                zonaActual = z;
+                prop -> IngresarMensaje(correo, usuarioActual -> getCorreo() + ": " + mensaje);
+            }
+            iterZ -> next();
+        }
+        delete iterZ;
+        iterDep -> next();
+    }
+    delete iterDep;
 }
 
 dtInmobiliaria* sistema::mostrarDatosInmo(){

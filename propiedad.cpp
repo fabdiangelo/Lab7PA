@@ -123,7 +123,7 @@ void propiedad::CrearChat(string correo){
     if(chats -> member(k)){
         cout << "El usuario " << correo << " ya ha creado un chat con la propiedad " << this -> getCodigo() << endl;
     }else{
-        chat * c = new chat(correo);
+        chat * c = new chat(correo, this);
         chats -> add(k, c);
     }
 }

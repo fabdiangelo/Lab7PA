@@ -63,6 +63,7 @@ public:
     void crearChat(string propSeleccionada);
     void ingresarMensaje(string mensaje, string codigo);
     void listarMensajesRecientes();
+    void enviarMensajeA(string codigo, string correo, string mensaje);
     dtInmobiliaria* mostrarDatosInmo();
     dtPropiedad* mostrarPropiedad();
 };

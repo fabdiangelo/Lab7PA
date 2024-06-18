@@ -11,11 +11,13 @@ class mensaje : public ICollectible
 private:
     int hora;
     string contenido;
+    string momento;
 public:
-    mensaje(int hora, string cont);
+    mensaje(int hora, string cont, string ahora);
     ~mensaje();
     int getHora();
     string getMensaje();
+    string getMomento();
     void setMensaje(string mens);
 };
 

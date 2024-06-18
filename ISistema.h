@@ -49,6 +49,7 @@ public:
     virtual void crearChat(string propSeleccionada) = 0;
     virtual void ingresarMensaje(string mensaje, string codigo) = 0;
     virtual void listarMensajesRecientes() = 0;
+    virtual void enviarMensajeA(string codigo, string correo, string mensaje) = 0;
     virtual dtInmobiliaria* mostrarDatosInmo() = 0;
     virtual dtPropiedad* mostrarPropiedad() = 0;
     ~ISistema();

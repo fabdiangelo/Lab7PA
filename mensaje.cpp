@@ -1,9 +1,10 @@
 #include "mensaje.h"
 
 // CONTRUCTOR:
-mensaje::mensaje(int hora, string cont){
+mensaje::mensaje(int hora, string cont, string ahora){
     this -> contenido = cont;
     this -> hora = hora;
+    this -> momento = ahora;
 }
 
 // DESTRUCTOR:
@@ -18,6 +19,10 @@ int mensaje::getHora(){
 
 string mensaje::getMensaje(){
     return this -> contenido;
+}
+
+string mensaje::getMomento(){
+    return this -> momento;
 }
 
 // SETTERS:
