@@ -429,7 +429,9 @@ void sistema::listarPropMens(){
 void sistema::listarMensajes(string propSeleccionada){
     propiedad *prop = this -> zonaActual -> seleccionarPropiedad(propSeleccionada);
     registroMensajes *mensj = prop -> MostrarMensajes(this -> usuarioActual -> getCorreo());
-    
+    if(mensj == NULL){
+        crearChat(propSeleccionada);
+    }
     IIterator *iter = mensj -> getMensajes() -> getIterator();
     while(iter -> hasCurrent()){
         cout << iter -> getCurrent();

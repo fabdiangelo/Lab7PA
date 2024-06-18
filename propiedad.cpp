@@ -113,7 +113,6 @@ registroMensajes *propiedad::MostrarMensajes(string correo){
     }else{
         chat *c =(chat*) chats -> find(k);
         return c -> ObtenerRegistro();
-
     }
 }
 

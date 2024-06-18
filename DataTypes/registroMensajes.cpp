@@ -20,7 +20,20 @@ List *registroMensajes::getMensajes(){
 void registroMensajes::agregarMensaje(dtMensaje * mens){
     if (this -> mensajes -> getSize() < 5){
         this -> mensajes -> add(mens);
-    }else{
-        cout << "Limite de mensajes superado" << endl; 
     }
+}
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, registroMensajes* reg){
+    IIterator* iter = reg -> getMensajes() -> getIterator();
+    if(reg -> getMensajes() -> getSize() == 0){
+        cout << "No haz enviado mensajes a esta propiedad anteriormente\n";
+    }else{
+        while (iter -> hasCurrent()){
+            mensaje* men = (mensaje*) iter -> getCurrent();
+            os << men -> getHora() << "hs: " << men -> getMensaje() << endl;
+        }
+        os << reg -> getMensajes();
+    }
+    return os;
 }

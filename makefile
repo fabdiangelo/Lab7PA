@@ -76,7 +76,7 @@ mensajesPropiedad.o: dtPropiedad.o ICollectible.o
 propZona.o: zona.o
 	g++ -c "DataTypes/propZona.cpp"
 
-registroMensajes.o: dtMensaje.o List.o IIterator.o
+registroMensajes.o: dtMensaje.o List.o IIterator.o mensaje.o
 	g++ -c "DataTypes/registroMensajes.cpp"
 
 zonasDep.o: propZona.o departamento.o
