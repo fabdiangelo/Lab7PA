@@ -78,10 +78,11 @@ void inmobiliaria::BorrarPropiedad(string codigo){
     if(this -> propiedades -> member(k)){
         propiedad *prop = (propiedad*) this -> propiedades -> find(k);
         prop -> CortarLazos();
-        propiedades -> remove (k);
+        propiedades -> remove(k);
+        prop -> ~propiedad();
         delete prop;
     }else{
-        cout << "No se encontró una propiedad con codigo " << codigo << " dentro de la zona con nombre " << this -> getNombre() << endl;
+        throw invalid_argument("No se encontró una propiedad con codigo " + codigo + " dentro de la zona con nombre " + this -> getNombre() + "\n");
     }
 }
 

@@ -96,9 +96,7 @@ void zona::desvincularPropiedad(string codigo){
     IKey *k = new String(codigo.c_str());
     if(this -> propiedades -> member(k)){
         this -> propiedades -> remove(k);
-        cout << "La propiedad con codigo " << codigo << " se desvinculo de la zona " << this -> getNombre() << endl;
-    }else{
-        cout << "La propiedad con codigo " << codigo << " no se encontraba vinculada con la zona " << this -> getNombre() << endl;
+        cout << "La propiedad con codigo \x1B[92m" << codigo << "\033[0m se desvinculo de la zona \x1B[92m" << this -> getNombre() << "\033[0m\n";
     }
 }
 

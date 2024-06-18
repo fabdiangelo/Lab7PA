@@ -10,6 +10,8 @@ void altaEdificio(ISistema *s);
 void altaPropiedad(ISistema *s);
 void consultarPropiedad(ISistema *s);
 void modificarPropiedad(ISistema *s);
+void eliminarPropiedad(ISistema *s);
+void mensajeInteresado(ISistema *s);
 
 // FUNCIONALIDADES AUXILIARES:
 string ingresarZona(ISistema *s);
@@ -36,6 +38,8 @@ int main() {
         cout << "6) Alta Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
         cout << "7) Consultar Propiedad" << endl;
         cout << "8) Modificar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
+        cout << "9) Eliminar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
+        cout << "10) Enviar Mensaje \x1B[94m(interesado)\033[0m" << endl;
 
         cout << "e) Salir\n\n\n\x1B[36m(char):\033[0m Ingrese una de las opciones dadas: ";
 
@@ -52,6 +56,8 @@ int main() {
             case '6': altaPropiedad(s); break;
             case '7': consultarPropiedad(s); break;
             case '8': modificarPropiedad(s); break;
+            case '9': eliminarPropiedad(s); break;
+            case '10': mensajeInteresado(s); break;
             case 'e': continuar = false; break;
             default: cout << "Opción no válida\n"; break;
         }
@@ -362,6 +368,50 @@ void modificarPropiedad(ISistema *s){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
 }
+void eliminarPropiedad(ISistema *s){
+    try{
+        s -> confirmarInmobiliaria();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas eliminar: ";
+        string codigo;
+        cin >> codigo;
+        s -> borrarProp(codigo);
+    }catch (exception& e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
+}
+void mensajeInteresado(ISistema *s){
+    try{
+        s -> sesionAbierta();
+        s -> listarDepartamentos();
+        cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que se ubique la propiedad: ";
+        char d;
+        cin >> d;
+        if(d >= 97){
+            d -= 32;
+        }
+        string dep (1, d);
+        s -> seleccionarDepartamento(dep);
+        if(!s -> depTieneZona()){
+            throw invalid_argument("No hay zonas registradas en este departamento");
+        }
+        s -> listarZonas();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
+        string z;
+        cin >> z;
+        s -> seleccionarZona(z);
+        if(!s -> zonaTieneProp()){
+            throw invalid_argument("No hay propiedades registradas en esta zona");
+        }
+        s -> listarPropiedades();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
+        string prop;
+        cin >> prop;
+        s -> infoPropInmo(prop);
+    }catch(exception &e){
+        cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
+    }
+}
+
 
 // AUXILIARES:
 string ingresarZona(ISistema *s){

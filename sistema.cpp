@@ -408,11 +408,7 @@ void sistema::modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa
 
 void sistema::borrarProp(string codigo){
     inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
-    if(inmo == NULL){
-        cout << "Debes ingresar como un usuario inmobiliaria" << endl;
-    }else{
-        inmo -> BorrarPropiedad(codigo);
-    }
+    inmo -> BorrarPropiedad(codigo);
 }
 
 void sistema::listarPropMens(string zonaSeleccionada){
