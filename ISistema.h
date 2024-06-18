@@ -40,13 +40,14 @@ public:
     virtual bool depTieneZona() = 0;
     virtual bool zonaTieneProp() = 0;
     virtual bool ingresarCodigoProp(string codigo) = 0;
+    virtual void imprimirPropsInmo() = 0;
     virtual void modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta) = 0;
     virtual void modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int m2V, int precioAlq, int precioVenta) = 0;
     virtual void borrarProp(string codigo) = 0;
     virtual void listarPropMens() = 0;
     virtual void listarMensajes(string propSeleccionada) = 0;
     virtual void crearChat(string propSeleccionada) = 0;
-    virtual dtRespuesta* ingresarMensaje(string mensaje) = 0;
+    virtual void ingresarMensaje(string mensaje, string codigo) = 0;
     virtual void listarMensajesRecientes() = 0;
     virtual dtInmobiliaria* mostrarDatosInmo() = 0;
     virtual dtPropiedad* mostrarPropiedad() = 0;

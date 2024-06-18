@@ -402,6 +402,25 @@ bool sistema::ingresarCodigoProp(string codigo){
     return dynamic_cast<casa*>(prop);
 }
 
+void sistema::imprimirPropsInmo(){
+    confirmarInmobiliaria();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        zona *z = (zona *) iterDep -> getCurrent();
+        IIterator *iterZ = z -> listarPropiedades() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            propiedad* prop = (propiedad *) iterZ -> getCurrent();
+            if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
+                cout << prop;
+            }
+            iterZ -> next();
+        }
+        delete iterZ;
+        iterDep -> next();
+    }
+    delete iterDep;
+}
+
 void sistema::modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta){
     inmobiliaria *inmo = (inmobiliaria* ) usuarioActual;
     inmo -> ModificarDatosApartamento(codigo, cantAmb, cantDorm, cantBa, garage, m2, precioAlq, precioVenta);
@@ -431,12 +450,9 @@ void sistema::listarMensajes(string propSeleccionada){
     registroMensajes *mensj = prop -> MostrarMensajes(this -> usuarioActual -> getCorreo());
     if(mensj == NULL){
         crearChat(propSeleccionada);
+        mensj = prop -> MostrarMensajes(this -> usuarioActual -> getCorreo());
     }
-    IIterator *iter = mensj -> getMensajes() -> getIterator();
-    while(iter -> hasCurrent()){
-        cout << iter -> getCurrent();
-        iter -> next();
-    }
+    cout << mensj;
 }
 
 void sistema::crearChat(string propSeleccionada){
@@ -444,24 +460,15 @@ void sistema::crearChat(string propSeleccionada){
     prop -> CrearChat(this -> usuarioActual -> getCorreo());
 }
 
-dtRespuesta* sistema::ingresarMensaje(string mensaje){
-    if (this->usuarioActual == NULL) {
-        cout << "Debe iniciar sesión para enviar un mensaje" << endl;
-        return new dtRespuesta("Error: sesión no iniciada");
+void sistema::ingresarMensaje(string mensaje, string codigo){
+    confirmarInteresado();
+    if (this -> zonaActual == NULL) {
+        throw invalid_argument("Debe seleccionar una zona válida\n");
     }
-    if (this->zonaActual == NULL) {
-        cout << "Debe seleccionar una zona antes de enviar un mensaje" << endl;
-        return new dtRespuesta("Error: zona no seleccionada");
-    }
-    // if (this->propiedadActual == NULL) {
-    //     cout << "Debe seleccionar una propiedad antes de enviar un mensaje" << endl;
-    //     return new dtRespuesta("Error: propiedad no seleccionada");
-    // }
-    // string emisor = this->usuarioActual->getCorreo();
-    // string receptor = this->propiedadActual->getInmobiliaria()->getCorreo();
-    // Mensaje *mensaje = new Mensaje(emisor, receptor, mensaje);
-    // this->propiedadActual->agregarMensaje(mensaje);
-    return new dtRespuesta("Mensaje enviado correctamente");
+    IKey* k = new String(codigo.c_str());
+    propiedad* prop = (propiedad*) zonaActual -> listarPropiedades() -> find(k);
+    prop -> IngresarMensaje(usuarioActual -> getCorreo(), mensaje);
+    delete k;
 }
 
 void sistema::listarMensajesRecientes(){

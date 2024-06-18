@@ -15,7 +15,7 @@ class chat : public ICollectible{
     ICollection* MisMensajes; 
     string persona;
   public:
-    chat();
+    chat(string correo);
     fecha* getFecha();
     int getHora();
     int getCantMensajes();

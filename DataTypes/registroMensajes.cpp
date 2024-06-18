@@ -25,15 +25,16 @@ void registroMensajes::agregarMensaje(dtMensaje * mens){
 
 // SOBRECARGA:
 ostream& operator<<(ostream& os, registroMensajes* reg){
-    IIterator* iter = reg -> getMensajes() -> getIterator();
     if(reg -> getMensajes() -> getSize() == 0){
-        cout << "No haz enviado mensajes a esta propiedad anteriormente\n";
+        cout << "No has enviado mensajes a esta propiedad anteriormente\n";
     }else{
+        IIterator* iter = reg -> getMensajes() -> getIterator();
         while (iter -> hasCurrent()){
-            mensaje* men = (mensaje*) iter -> getCurrent();
+            dtMensaje *men = (dtMensaje*) iter -> getCurrent();
             os << men -> getHora() << "hs: " << men -> getMensaje() << endl;
+            iter -> next();
         }
-        os << reg -> getMensajes();
+        delete iter;
     }
     return os;
 }

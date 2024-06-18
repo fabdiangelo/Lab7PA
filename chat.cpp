@@ -1,7 +1,7 @@
 #include "chat.h"
 
 // CONSTRUCTOR:
-chat::chat(){
+chat::chat(string correo){
     time_t t;
     struct tm *tm;
     t = time(NULL);
@@ -17,7 +17,7 @@ chat::chat(){
     this -> Hora = hora;
     this -> CantMensajes = 0;
     this -> MisMensajes = new List();
-    this -> persona = "cambiar por actualUser"; // Cambiar de string a interesado*
+    this -> persona = correo;
 }
 
 // DESTRUCTOR:

@@ -321,6 +321,7 @@ void consultarPropiedad(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
         cin >> z;
+        transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
             throw invalid_argument("No hay propiedades registradas en esta zona");
@@ -329,14 +330,17 @@ void consultarPropiedad(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
         string prop;
         cin >> prop;
+        transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> infoPropInmo(prop);
     }catch (exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
+    s -> finalizarAlta();
 }
 void modificarPropiedad(ISistema *s){
     try{
         s -> confirmarInmobiliaria();
+        s -> imprimirPropsInmo();
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas modificar: ";
         string codigo;
         cin >> codigo;
@@ -403,6 +407,7 @@ void mensajeInteresado(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
         cin >> z;
+        transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
             throw invalid_argument("No hay propiedades registradas en esta zona");
@@ -413,9 +418,16 @@ void mensajeInteresado(ISistema *s){
         cin >> prop;
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> listarMensajes(prop);
+        cout << "\n\x1B[36m(string):\033[0m Ingresa el mensaje que quieras enviar, o pulsa 'e' para abortar: ";
+        string mens;
+        cin >> mens;
+        if(mens != "e"){
+            s -> ingresarMensaje(mens, prop);
+        }
     }catch(exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
+    s -> finalizarAlta();
 }
 
 

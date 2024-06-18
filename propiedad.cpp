@@ -111,7 +111,6 @@ void propiedad::setPrecioVenta(int precio){
 registroMensajes *propiedad::MostrarMensajes(string correo){
     IKey *k = new String(correo.c_str());
     if(!chats -> member(k)){
-        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
         return NULL;
     }else{
         chat *c =(chat*) chats -> find(k);
@@ -124,7 +123,7 @@ void propiedad::CrearChat(string correo){
     if(chats -> member(k)){
         cout << "El usuario " << correo << " ya ha creado un chat con la propiedad " << this -> getCodigo() << endl;
     }else{
-        chat * c = new chat();
+        chat * c = new chat(correo);
         chats -> add(k, c);
     }
 }

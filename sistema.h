@@ -53,13 +53,14 @@ public:
     bool depTieneZona();
     bool zonaTieneProp();
     bool ingresarCodigoProp(string codigo);
+    void imprimirPropsInmo();
     void modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta);
     void modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int m2V, int precioAlq, int precioVenta);
     void borrarProp(string codigo);
     void listarPropMens();
     void listarMensajes(string propSeleccionada);
     void crearChat(string propSeleccionada);
-    dtRespuesta* ingresarMensaje(string mensaje);
+    void ingresarMensaje(string mensaje, string codigo);
     void listarMensajesRecientes();
     dtInmobiliaria* mostrarDatosInmo();
     dtPropiedad* mostrarPropiedad();
