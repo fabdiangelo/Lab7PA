@@ -1,5 +1,7 @@
 #include "factory.h"
 #include "ISistema.h"
+#include <cctype>
+#include <algorithm>
 
 // FUNCIONALIDADES PRINCIPALES:
 void iniciarSesion(ISistema *s);
@@ -187,6 +189,7 @@ void altaEdificio(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
         cin >> z;
+        transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
         }
@@ -215,6 +218,7 @@ void altaPropiedad(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
         cin >> z;
+        transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
         }
@@ -230,6 +234,7 @@ void altaPropiedad(ISistema *s){
             cout << "\n\x1B[36m(string):\033[0m Ingresa el edificio en la que quieras asignar al apartamento, o presiona 1 para ingresar un edificio nuevo: ";
             string ed;
             cin >> ed;
+            transform(ed.begin(), ed.end(), ed.begin(), ::toupper);
             if(ed == "1"){
                 ed = ingresarEdificio(s);
                 cout << "\033[0m en la zona \x1B[92m" << z << "\033[0m\n";
@@ -337,6 +342,7 @@ void modificarPropiedad(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas modificar: ";
         string codigo;
         cin >> codigo;
+        transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         bool esCasa = s -> ingresarCodigoProp(codigo);
 
         int cantAmb, cantDorm, cantBa, m2, precioAlq, precioVenta;
@@ -374,6 +380,7 @@ void eliminarPropiedad(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas eliminar: ";
         string codigo;
         cin >> codigo;
+        transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> borrarProp(codigo);
     }catch (exception& e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
@@ -406,6 +413,7 @@ void mensajeInteresado(ISistema *s){
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
         string prop;
         cin >> prop;
+        transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> infoPropInmo(prop);
     }catch(exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
@@ -421,6 +429,7 @@ string ingresarZona(ISistema *s){
         cin >> nombre;
         cout << "\n\x1B[36m(string):\033[0m Ingrese el codigo de la nueva zona: ";
         cin >> codigo;
+        transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> ingresarZona(nombre, codigo);
         cout << "\nSe ha ingresado la zona \x1B[92m" << nombre << "\033[0m\n";
         return codigo;

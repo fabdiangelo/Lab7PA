@@ -1,7 +1,10 @@
 #include "propiedad.h"
+#include <cctype>
+#include <algorithm>
 
 // CONSTRUCTOR:
 propiedad::propiedad(string codigo, int cantAmbientes, int cantDormitorios, int cantBanios, bool garage, direccion* dir, int m2Edificados, zona* z, string nombreInmo){
+    transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
     this -> codigo = codigo;
     this -> cantAmbientes = cantAmbientes;
     this -> cantDormitorios = cantDormitorios;

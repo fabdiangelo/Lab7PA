@@ -1,8 +1,10 @@
 #include "zona.h"
 #include "departamento.h"
+#include <algorithm>
 
 // CONSTRUCTOR:
 zona::zona(string nombre, string codigo, departamento* dep){
+    transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
     this -> nombre = nombre;
     this -> codigo = codigo;
     this -> dep = dep;
