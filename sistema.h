@@ -9,6 +9,7 @@
 #include "interesado.h"
 #include "ISistema.h"
 #include <cstring>
+#include <algorithm>
 
 class sistema : public ISistema
 {

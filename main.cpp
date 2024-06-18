@@ -80,16 +80,16 @@ void iniciarSesion(ISistema *s){
         s -> sesionCerrada();
         cout << "\x1B[36m(string):\033[0m Ingrese su correo electrónico: ";
         string correo;
-        getline(cin, correo, '\n');
+        getline(cin, correo);
         bool x = s -> enviarCorreo(correo);
         if(x){
             while(x){
                 string contr;
                 string repContr;
                 cout << "\n\x1B[36m(string):\033[0m Ingrese su nueva contraseña: ";
-                getline(cin, contr, '\n');
+                getline(cin, contr);
                 cout << endl << "\x1B[36m(string):\033[0m Repita la contraseña: ";
-                getline(cin, repContr, '\n');
+                getline(cin, repContr);
                 cout << endl;
                 try {
                     s -> establecerContra(contr, repContr);
@@ -100,6 +100,7 @@ void iniciarSesion(ISistema *s){
                     cout << "\n\x1B[36m(char):\033[0m Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
                     char continuar;
                     cin >> continuar;
+                    cin.ignore();
                     if (continuar != '1'){
                         x = false;
                         s -> cerrarSesion();
@@ -110,7 +111,7 @@ void iniciarSesion(ISistema *s){
             while(!x){
                 cout << "\n\x1B[36m(string):\033[0m Ingrese su contraseña: ";
                 string contr;
-                getline(cin, contr, '\n');
+                getline(cin, contr);
                 cout << endl;
                 try {
                     s -> verificarContra(contr);
@@ -121,6 +122,7 @@ void iniciarSesion(ISistema *s){
                     cout << "\n\x1B[36m(char):\033[0m Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
                     char continuar;
                     cin >> continuar;
+                    cin.ignore();
                     if (continuar != '1'){
                         x = false;
                         s -> cerrarSesion();
@@ -146,10 +148,10 @@ void altaInmobiliaria(ISistema *s){
         s -> confirmarAdmin();
         string correo, nombre, ciudad, calle, numero;
         cout << "\n\x1B[36m(string):\033[0m Ingerese el correo de la nueva inmobiliaria: ";
-        getline(cin, correo, '\n');
+        getline(cin, correo);
         direccion *dir = crearDireccion("la nueva inmobiliaria");
         cout << "\n\x1B[36m(string):\033[0m Ingerese el nombre de la nueva inmobiliaria: ";
-        getline(cin, nombre, '\n');
+        getline(cin, nombre);
         s -> ingresarInmobiliaria(correo, dir, nombre);
         cout << "\nSe ha registrado a la inmobiliairia \x1B[92m" << nombre << "\033[0m\n";
     }catch (exception & e){
@@ -162,13 +164,14 @@ void altaInteresado(ISistema *s){
         string correo, nombre, apellido;
         int edad;
         cout << "\n\x1B[36m(string):\033[0m Ingerese el correo del nuevo interesado: ";
-        getline(cin, correo, '\n');
+        getline(cin, correo);
         cout << "\n\x1B[36m(string):\033[0m Ingerese el nombre del nuevo interesado: ";
-        getline(cin, nombre, '\n');
+        getline(cin, nombre);
         cout << "\n\x1B[36m(string):\033[0m Ingerese el apellido del nuevo interesado: ";
-        getline(cin, apellido, '\n');
+        getline(cin, apellido);
         cout << "\n\x1B[36m(integer):\033[0m Ingerese la edad del nuevo interesado: ";
         cin >> edad;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -187,6 +190,7 @@ void altaEdificio(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que quieras asignar al edificio: ";
         char d;
         cin >> d;
+        cin.ignore();
         if(d >= 97){
             d -= 32;
         }
@@ -195,7 +199,7 @@ void altaEdificio(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
-        getline(cin, z, '\n');
+        getline(cin, z);
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
@@ -216,6 +220,7 @@ void altaPropiedad(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que quieras asignar al edificio: ";
         char d;
         cin >> d;
+        cin.ignore();
         if(d >= 97){
             d -= 32;
         }
@@ -224,7 +229,7 @@ void altaPropiedad(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en la que quieras asignar al edificio, o presiona 1 para ingresar una zona nueva: ";
         string z;
-        getline(cin, z, '\n');
+        getline(cin, z);
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         if (z == "1"){
             z = ingresarZona(s);
@@ -234,13 +239,14 @@ void altaPropiedad(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingrese 0 si desesa dar de alta a una casa y 1 si desea dar de alta a un apartamento: ";
         char casaApart;
         cin >> casaApart;
+        cin.ignore();
 
         string codigo;
         if(casaApart == '1'){ // Apartamento
             s -> listarEdificios();
             cout << "\n\x1B[36m(string):\033[0m Ingresa el edificio en la que quieras asignar al apartamento, o presiona 1 para ingresar un edificio nuevo: ";
             string ed;
-            getline(cin, ed, '\n');
+            getline(cin, ed);
             transform(ed.begin(), ed.end(), ed.begin(), ::toupper);
             if(ed == "1"){
                 ed = ingresarEdificio(s);
@@ -251,9 +257,10 @@ void altaPropiedad(ISistema *s){
             int cantAmb, cantDorm, cantBa, m2;
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo del nuevo apartamento: ";
-            getline(cin, codigo, '\n');
+            getline(cin, codigo);
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
             cin >> cantAmb;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -261,6 +268,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios del nuevo apartamento: ";
             cin >> cantDorm;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -268,6 +276,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
             cin >> cantBa;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -275,6 +284,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(bool):\033[0m Indica si el nuevo apartamento tiene garage (1 | 0): ";
             cin >> garage;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -283,6 +293,7 @@ void altaPropiedad(ISistema *s){
             direccion *dir = crearDireccion("el nuevo apartamento");
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados del nuevo apartamento: ";
             cin >> m2;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -293,9 +304,10 @@ void altaPropiedad(ISistema *s){
             int cantAmb, cantDorm, cantBa, m2, m2V;
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo de la nueva casa: ";
-            getline(cin, codigo, '\n');
+            getline(cin, codigo);
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
             cin >> cantAmb;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -303,6 +315,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de dormitorios de la nueva casa: ";
             cin >> cantDorm;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -310,6 +323,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
             cin >> cantBa;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -317,6 +331,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(bool):\033[0m Indica si la nueva casa tiene garage (1 | 0): ";
             cin >> garage;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -325,6 +340,7 @@ void altaPropiedad(ISistema *s){
             direccion *dir = crearDireccion("la nueva casa");
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados de la nueva casa: ";
             cin >> m2;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -332,6 +348,7 @@ void altaPropiedad(ISistema *s){
             }
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de metros cuadrados verdes de la nueva casa: ";
             cin >> m2V;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -345,10 +362,12 @@ void altaPropiedad(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingrese 0 si desesa asignarle un valor de alquiler, 1 si desesa asignarle un valor de venta, o 2 si desesa asignarle un valor tanto de venta como de alquiler: ";
         char tipo;
         cin >> tipo;
+        cin.ignore();
         if (tipo == '0' || tipo == '2'){
             cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de alquiler: ";
             int valorAlq;
             cin >> valorAlq;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -360,6 +379,7 @@ void altaPropiedad(ISistema *s){
             cout << "\n\n\x1B[36m(integer):\033[0m Ingresa el precio de venta: ";
             int valorvent;
             cin >> valorvent;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -383,6 +403,7 @@ void consultarPropiedad(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que se ubique la propiedad: ";
         char d;
         cin >> d;
+        cin.ignore();
         if(d >= 97){
             d -= 32;
         }
@@ -394,7 +415,7 @@ void consultarPropiedad(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
-        getline(cin, z, '\n');
+        getline(cin, z);
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
@@ -403,7 +424,7 @@ void consultarPropiedad(ISistema *s){
         s -> listarPropiedades();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
         string prop;
-        getline(cin, prop, '\n');
+        getline(cin, prop);
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> infoPropInmo(prop);
     }catch (exception &e){
@@ -417,7 +438,7 @@ void modificarPropiedad(ISistema *s){
         s -> imprimirPropsInmo();
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas modificar: ";
         string codigo;
-        getline(cin, codigo, '\n');
+        getline(cin, codigo);
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         bool esCasa = s -> ingresarCodigoProp(codigo);
 
@@ -425,6 +446,7 @@ void modificarPropiedad(ISistema *s){
         bool garage;
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de ambientes de la propiedad: ";
         cin >> cantAmb;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -432,6 +454,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de dormitorios de la propiedad: ";
         cin >> cantDorm;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -439,6 +462,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de ambientes de la propiedad: ";
         cin >> cantBa;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -446,6 +470,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(bool):\033[0m Indica si la propiedad tiene garage (1 | 0): ";
         cin >> garage;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -453,6 +478,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de metros cuadrados de la propiedad: ";
         cin >> m2;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -460,6 +486,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa el nuevo precio de venta de la propiedad (o 0 en caso de no tenerlo): ";
         cin >> precioVenta;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -467,6 +494,7 @@ void modificarPropiedad(ISistema *s){
         }
         cout << "\n\x1B[36m(integer):\033[0m Ingresa el nuevo precio de alquiler de la propiedad (o 0 en caso de no tenerlo): ";
         cin >> precioAlq;
+        cin.ignore();
         if( !cin.good() ){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -476,6 +504,7 @@ void modificarPropiedad(ISistema *s){
             int m2v;
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la nueva cantidad de metros cuadrados verdes de la propiedad: ";
             cin >> m2v;
+            cin.ignore();
             if( !cin.good() ){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -492,10 +521,10 @@ void modificarPropiedad(ISistema *s){
 }
 void eliminarPropiedad(ISistema *s){
     try{
-        s -> confirmarInmobiliaria();
+        s -> imprimirPropsInmo();
         cout << "\n\x1B[36m(string):\033[0m Ingresa el código de la propiedad que desesas eliminar: ";
         string codigo;
-        getline(cin, codigo, '\n');
+        getline(cin, codigo);
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> borrarProp(codigo);
     }catch (exception& e){
@@ -509,6 +538,7 @@ void mensajeInteresado(ISistema *s){
         cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que se ubique la propiedad: ";
         char d;
         cin >> d;
+        cin.ignore();
         if(d >= 97){
             d -= 32;
         }
@@ -520,7 +550,7 @@ void mensajeInteresado(ISistema *s){
         s -> listarZonas();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la zona en el que se ubique la propiedad: ";
         string z;
-        getline(cin, z, '\n');
+        getline(cin, z);
         transform(z.begin(), z.end(), z.begin(), ::toupper);
         s -> seleccionarZona(z);
         if(!s -> zonaTieneProp()){
@@ -529,15 +559,17 @@ void mensajeInteresado(ISistema *s){
         s -> listarPropMens();
         cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad a la que quieras enviar un mensaje: ";
         string prop;
-        getline(cin, prop, '\n');
+        getline(cin, prop);
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
         s -> listarMensajes(prop);
         cout << "\n\x1B[36m(string):\033[0m Ingresa el mensaje que quieras enviar, o pulsa 'e' para abortar: ";
         string mens;
-        getline(cin, mens, '\n');
+        getline(cin, mens);
         if(mens != "e"){
             s -> ingresarMensaje(mens, prop);
             cout << "\nSe envío el mensaje \x1B[92m" << mens << "\033[0m con éxito\n";
+        }else{
+            cout << "\n\x1B[92mNo se envió ningún mensaje\033[0m\n";
         }
     }catch(exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
@@ -553,9 +585,9 @@ string ingresarZona(ISistema *s){
     try{
         string nombre, codigo;
         cout << "\n\n\x1B[36m(string):\033[0m Ingrese el nombre de la nueva zona: ";
-        getline(cin, nombre, '\n');
+        getline(cin, nombre);
         cout << "\n\x1B[36m(string):\033[0m Ingrese el codigo de la nueva zona: ";
-        getline(cin, codigo, '\n');
+        getline(cin, codigo);
         transform(codigo.begin(), codigo.end(), codigo.begin(), ::toupper);
         s -> ingresarZona(nombre, codigo);
         cout << "\nSe ha ingresado la zona \x1B[92m" << nombre << "\033[0m\n";
@@ -569,7 +601,8 @@ string ingresarEdificio(ISistema *s){
     string nombre;
     int cantPisos, gastosComunes;
     cout << "\n\n\x1B[36m(string):\033[0m Ingresa el nombre del nuevo edificio: ";
-    getline(cin, nombre, '\n');
+    getline(cin, nombre);
+    transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
     cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de pisos del nuevo edificio: ";
     if( !cin.good() ){
         cin.clear();
@@ -577,6 +610,7 @@ string ingresarEdificio(ISistema *s){
         throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
     }
     cin >> cantPisos;
+    cin.ignore();
     cout << "\n\x1B[36m(integer):\033[0m Ingresa los gastos comunes del nuevo edificio: ";
     if( !cin.good() ){
         cin.clear();
@@ -584,6 +618,7 @@ string ingresarEdificio(ISistema *s){
         throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
     }
     cin >> gastosComunes;
+    cin.ignore();
     s -> ingresarEdificio(nombre, cantPisos, gastosComunes);
     cout << "\nSe ha registrado el edificio \x1B[92m" << nombre;
     return nombre;
@@ -591,11 +626,11 @@ string ingresarEdificio(ISistema *s){
 direccion *crearDireccion(string objeto){
     string ciudad, calle, numero;
     cout << "\n\x1B[36m(string):\033[0m Ingerese la ciudad en la que se ubica " + objeto + ": ";
-    getline(cin, ciudad, '\n');
+    getline(cin, ciudad);
     cout << "\n\x1B[36m(string):\033[0m Ingerese la calle en la que se ubica " + objeto + ": ";
-    getline(cin, calle, '\n');
+    getline(cin, calle);
     cout << "\n\x1B[36m(string):\033[0m Ingerese el numero en el que se ubica " + objeto + ": ";
-    getline(cin, numero, '\n');
+    getline(cin, numero);
     return new direccion(ciudad, calle, numero);
 }
 
@@ -620,38 +655,38 @@ void precarga(ISistema* s){
     s -> ingresarZona("zona3", "L3");
     s -> ingresarZona("zona4", "L4");
     s -> seleccionarZona("L1");
-    s -> ingresarEdificio("ed1", 1, 1111);
-    s -> ingresarEdificio("ed2", 2, 2222);
-    s -> seleccionarEdificio("ed1");
-    s -> ingresarDatosApartamento("ap1", 1, 1, 1, true, dir, 1);
-    s -> seleccionarEdificio("ed2");
-    s -> ingresarDatosApartamento("ap2", 2, 2, 2, false, dir, 2);
-    s -> ingresarDatosCasa("ca1", 1, 1, 1, true, dir, 1, 1);
-    s -> ingresarDatosCasa("ca2", 2, 2, 2, false, dir, 2, 2);
-    s -> ingresarPrecioVenta("ap1", 11111);
-    s -> ingresarPrecioAlquiler("ap2", 2222);
-    s -> ingresarPrecioVenta("ca1", 111111);
-    s -> ingresarPrecioAlquiler("ca2", 22222);
+    s -> ingresarEdificio("ED1", 1, 1111);
+    s -> ingresarEdificio("ED2", 2, 2222);
+    s -> seleccionarEdificio("ED1");
+    s -> ingresarDatosApartamento("AP1", 1, 1, 1, true, dir, 1);
+    s -> seleccionarEdificio("ED2");
+    s -> ingresarDatosApartamento("AP2", 2, 2, 2, false, dir, 2);
+    s -> ingresarDatosCasa("CA1", 1, 1, 1, true, dir, 1, 1);
+    s -> ingresarDatosCasa("CA2", 2, 2, 2, false, dir, 2, 2);
+    s -> ingresarPrecioVenta("AP1", 11111);
+    s -> ingresarPrecioAlquiler("AP2", 2222);
+    s -> ingresarPrecioVenta("CA1", 111111);
+    s -> ingresarPrecioAlquiler("CA2", 22222);
     s -> seleccionarZona("L2");
-    s -> ingresarEdificio("ed1", 3, 3333);
-    s -> seleccionarEdificio("ed1");
-    s -> ingresarDatosApartamento("ap3", 1, 1, 1, true, dir, 1);
-    s -> ingresarDatosApartamento("ap4", 2, 2, 2, false, dir, 2);
-    s -> ingresarDatosApartamento("ap5", 3, 3, 3, true, dir, 3);
-    s -> ingresarDatosApartamento("ap6", 3, 4, 4, false, dir, 4);
-    s -> ingresarPrecioVenta("ap1", 11111);
-    s -> ingresarPrecioAlquiler("ap2", 2222);
-    s -> ingresarPrecioVenta("ap3", 33333);
-    s -> ingresarPrecioAlquiler("ap3", 3333);
+    s -> ingresarEdificio("ED1", 3, 3333);
+    s -> seleccionarEdificio("ED1");
+    s -> ingresarDatosApartamento("AP3", 1, 1, 1, true, dir, 1);
+    s -> ingresarDatosApartamento("AP4", 2, 2, 2, false, dir, 2);
+    s -> ingresarDatosApartamento("AP5", 3, 3, 3, true, dir, 3);
+    s -> ingresarDatosApartamento("AP6", 3, 4, 4, false, dir, 4);
+    s -> ingresarPrecioVenta("AP3", 11111);
+    s -> ingresarPrecioAlquiler("AP4", 2222);
+    s -> ingresarPrecioVenta("AP5", 33333);
+    s -> ingresarPrecioAlquiler("AP5", 3333);
     s -> seleccionarZona("L3");
-    s -> ingresarEdificio("ed1", 4, 4444);
-    s -> seleccionarEdificio("ed1");
-    s -> ingresarDatosApartamento("ap7", 1, 1, 1, true, dir, 1);
-    s -> ingresarDatosCasa("ca3", 1, 1, 1, false, dir, 1, 1);
-    s -> ingresarDatosCasa("ca4", 2, 2, 2, true, dir, 2, 2);
-    s -> ingresarPrecioVenta("ap1", 11111);
-    s -> ingresarPrecioVenta("ca1", 111111);
-    s -> ingresarPrecioAlquiler("ca2", 22222);
+    s -> ingresarEdificio("ED1", 4, 4444);
+    s -> seleccionarEdificio("ED1");
+    s -> ingresarDatosApartamento("AP7", 1, 1, 1, true, dir, 1);
+    s -> ingresarDatosCasa("CA3", 1, 1, 1, false, dir, 1, 1);
+    s -> ingresarDatosCasa("CA4", 2, 2, 2, true, dir, 2, 2);
+    s -> ingresarPrecioVenta("AP7", 11111);
+    s -> ingresarPrecioVenta("CA3", 111111);
+    s -> ingresarPrecioAlquiler("CA4", 22222);
     s -> cerrarSesion();
 
     s -> enviarCorreo("inmo2");
@@ -662,19 +697,19 @@ void precarga(ISistema* s){
     s -> ingresarZona("zona3", "M3");
     s -> ingresarZona("zona4", "M4");
     s -> seleccionarZona("M1");
-    s -> ingresarEdificio("ed1", 1, 1111);
-    s -> ingresarEdificio("ed2", 2, 2222);
-    s -> seleccionarEdificio("ed1");
-    s -> ingresarDatosApartamento("ap1", 1, 1, 1, false, dir, 1);
-    s -> ingresarDatosCasa("ca1", 1, 1, 1, true, dir, 1, 1);
-    s -> ingresarDatosCasa("ca2", 2, 2, 2, false, dir, 2, 2);
-    s -> ingresarPrecioVenta("ap1", 11111);
-    s -> ingresarPrecioAlquiler("ca1", 111111);
+    s -> ingresarEdificio("ED1", 1, 1111);
+    s -> ingresarEdificio("ED2", 2, 2222);
+    s -> seleccionarEdificio("ED1");
+    s -> ingresarDatosApartamento("AP1", 1, 1, 1, false, dir, 1);
+    s -> ingresarDatosCasa("CA1", 1, 1, 1, true, dir, 1, 1);
+    s -> ingresarDatosCasa("CA2", 2, 2, 2, false, dir, 2, 2);
+    s -> ingresarPrecioVenta("AP1", 11111);
+    s -> ingresarPrecioAlquiler("CA1", 111111);
     s -> seleccionarDepartamento("L");
     s -> seleccionarZona("L1");
-    s -> seleccionarEdificio("ed1");
-    s -> ingresarDatosApartamento("ap8", 1, 1, 1, true, dir, 1);
-    s -> ingresarDatosCasa("ca5", 1, 1, 1, false, dir, 1, 1);
+    s -> seleccionarEdificio("ED1");
+    s -> ingresarDatosApartamento("AP8", 1, 1, 1, true, dir, 1);
+    s -> ingresarDatosCasa("CA5", 1, 1, 1, false, dir, 1, 1);
     s -> cerrarSesion();
 
     s -> enviarCorreo("inmo3");

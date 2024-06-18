@@ -1,7 +1,9 @@
 #include "edificio.h"
+#include <algorithm>
 
 // CONSTRUCTOR:
 edificio::edificio(string nombre, int cantPisos, int gastosComunes){
+    transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
     this -> nombre = nombre;
     this -> cantPisos = cantPisos;
     this -> gastosComunes = gastosComunes;

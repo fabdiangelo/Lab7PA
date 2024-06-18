@@ -406,13 +406,19 @@ void sistema::imprimirPropsInmo(){
     confirmarInmobiliaria();
     IIterator *iterDep = departamentos -> getIterator();
     while (iterDep -> hasCurrent()){
-        zona *z = (zona *) iterDep -> getCurrent();
-        IIterator *iterZ = z -> listarPropiedades() -> getIterator();
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
         while(iterZ -> hasCurrent()){
-            propiedad* prop = (propiedad *) iterZ -> getCurrent();
-            if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
-                cout << prop;
+            zona* z = (zona*) iterZ -> getCurrent();
+            IIterator* iterProp = z -> listarPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                propiedad* prop = (propiedad *) iterProp -> getCurrent();
+                if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
+                    cout << prop;
+                }
+                iterProp -> next();
             }
+            delete iterProp;
             iterZ -> next();
         }
         delete iterZ;
