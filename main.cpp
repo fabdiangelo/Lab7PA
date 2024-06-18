@@ -28,7 +28,7 @@ void precarga(ISistema* s);
 
 int main() {
     ISistema *s = factory::getSistema();
-    // system("clear");
+    system("clear");
     precarga(s);
     cout << "\n\t\x1B[97mBienvenido!\033[0m";
     bool continuar = true;

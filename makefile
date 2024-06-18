@@ -126,5 +126,5 @@ clean:
 run:
 	make clean
 	make
-# clear
+	clear
 	./programa
