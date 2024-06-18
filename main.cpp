@@ -423,6 +423,7 @@ void mensajeInteresado(ISistema *s){
         cin >> mens;
         if(mens != "e"){
             s -> ingresarMensaje(mens, prop);
+            cout << "\nSe envío el mensaje \x1B[92m" << mens << "\033[0m con éxito\n";
         }
     }catch(exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
