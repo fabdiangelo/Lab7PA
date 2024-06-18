@@ -19,3 +19,10 @@ int mensajesPropiedad::getCantMensajes(){
 dtPropiedad *mensajesPropiedad::getPropiedad(){
     return this -> propiedad;
 }
+
+// SOBRECARGA:
+ostream& operator<<(ostream& os, mensajesPropiedad* prop){
+    os << "" << prop -> getPropiedad() -> getCodigo()<< ") Direccion: " << prop -> getPropiedad() -> getDir() << endl;
+    os << "\tCantidad de mensajes enviados: " << prop -> getCantMensajes() << endl << endl;
+    return os;
+}

@@ -19,6 +19,7 @@ public:
     virtual void cerrarSesion() = 0; //👌
     virtual void confirmarAdmin() = 0;
     virtual void confirmarInmobiliaria() = 0;
+    virtual void confirmarInteresado() = 0;
     virtual void ingresarInmobiliaria(string correo, direccion * dir, string nombre) = 0; //👌
     virtual void ingresarInteresado(string correo, int edad, string nombre, string apellido) = 0; //👌
     virtual void listarDepartamentos() = 0; //👌
@@ -42,7 +43,7 @@ public:
     virtual void modificarApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int precioAlq, int precioVenta) = 0;
     virtual void modificarCasa(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, int m2, int m2V, int precioAlq, int precioVenta) = 0;
     virtual void borrarProp(string codigo) = 0;
-    virtual void listarPropMens(string zonaSeleccionada) = 0;
+    virtual void listarPropMens() = 0;
     virtual void listarMensajes(string propSeleccionada) = 0;
     virtual void crearChat(string propSeleccionada) = 0;
     virtual dtRespuesta* ingresarMensaje(string mensaje) = 0;

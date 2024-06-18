@@ -13,6 +13,7 @@ public:
     ~mensajesPropiedad();
     int getCantMensajes();
     dtPropiedad *getPropiedad();
+    friend ostream& operator<<(ostream& os, mensajesPropiedad *prop);
 };
 
 
