@@ -116,7 +116,6 @@ registroMensajes *propiedad::MostrarMensajes(string correo){
     }else{
         chat *c =(chat*) chats -> find(k);
         return c -> ObtenerRegistro();
-
     }
 }
 
@@ -143,7 +142,6 @@ void propiedad::IngresarMensaje(string correo, string mensaje){
 int propiedad::obtenerCantMensajes(string correo){
     IKey *k = new String(correo.c_str());
     if(!chats -> member(k)){
-        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
         return 0;
     }else{
         chat * c =(chat *) this -> chats -> find(k);

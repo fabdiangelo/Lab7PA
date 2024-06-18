@@ -4,6 +4,7 @@
 #include "dtMensaje.h"
 #include "../ICollection/collections/List.h"
 #include "../ICollection/interfaces/IIterator.h"
+#include "../mensaje.h"
 
 class registroMensajes
 {
@@ -14,6 +15,7 @@ public:
     ~registroMensajes();
     List *getMensajes();
     void agregarMensaje(dtMensaje *mens);
+    friend ostream& operator<<(ostream& os, registroMensajes *prop);
 };
 
 #endif

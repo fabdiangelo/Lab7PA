@@ -43,29 +43,27 @@ int main() {
         cout << "9) Eliminar Propiedad \x1B[93m(inmobiliaria)\033[0m" << endl;
         cout << "10) Enviar Mensaje \x1B[94m(interesado)\033[0m" << endl;
 
-        cout << "e) Salir\n\n\n\x1B[36m(char):\033[0m Ingrese una de las opciones dadas: ";
+        cout << "e) Salir\n\n\n\x1B[36m(string):\033[0m Ingrese una de las opciones dadas: ";
 
-
-        char e;
+        string e;
         cin >> e;
         cout << endl;
-        switch(e){
-            case '1': iniciarSesion(s); break;
-            case '2': cerrarSesion(s); break;
-            case '3': altaInmobiliaria(s); break;
-            case '4': altaInteresado(s); break;
-            case '5': altaEdificio(s); break;
-            case '6': altaPropiedad(s); break;
-            case '7': consultarPropiedad(s); break;
-            case '8': modificarPropiedad(s); break;
-            case '9': eliminarPropiedad(s); break;
-            case '10': mensajeInteresado(s); break;
-            case 'e': continuar = false; break;
-            default: cout << "Opción no válida\n"; break;
-        }
+        if(e == "1") iniciarSesion(s); 
+        else if(e == "2") cerrarSesion(s); 
+        else if(e == "3") altaInmobiliaria(s); 
+        else if(e == "4") altaInteresado(s); 
+        else if(e == "5") altaEdificio(s); 
+        else if(e == "6") altaPropiedad(s); 
+        else if(e == "7") consultarPropiedad(s);
+        else if(e == "8") modificarPropiedad(s); 
+        else if(e == "9") eliminarPropiedad(s); 
+        else if(e == "10") mensajeInteresado(s); 
+        else if(e == "e") continuar = false; 
+        else cout << "Opción no válida\n"; 
     }
     return 0;
 }
+
 
 
 // Errores: cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
@@ -388,7 +386,7 @@ void eliminarPropiedad(ISistema *s){
 }
 void mensajeInteresado(ISistema *s){
     try{
-        s -> sesionAbierta();
+        s -> confirmarInteresado();
         s -> listarDepartamentos();
         cout << "\n\x1B[36m(char):\033[0m Ingresa el departamento en el que se ubique la propiedad: ";
         char d;
@@ -409,12 +407,12 @@ void mensajeInteresado(ISistema *s){
         if(!s -> zonaTieneProp()){
             throw invalid_argument("No hay propiedades registradas en esta zona");
         }
-        s -> listarPropiedades();
-        cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad de la que quieres obtener más información: ";
+        s -> listarPropMens();
+        cout << "\n\x1B[36m(string):\033[0m Ingresa la propiedad a la que quieras enviar un mensaje: ";
         string prop;
         cin >> prop;
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
-        s -> infoPropInmo(prop);
+        s -> listarMensajes(prop);
     }catch(exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
@@ -544,4 +542,17 @@ void precarga(ISistema* s){
     s -> establecerContra("inmo3", "inmo3");
     s -> cerrarSesion();
     s -> finalizarAlta();
+
+    s -> enviarCorreo("inter1");
+    s -> establecerContra("inter1", "inter1");
+    s -> cerrarSesion();
+    s -> enviarCorreo("inter2");
+    s -> establecerContra("inter2", "inter2");
+    s -> cerrarSesion();
+    s -> enviarCorreo("inter3");
+    s -> establecerContra("inter3", "inter3");
+    s -> cerrarSesion();
+    s -> enviarCorreo("inter4");
+    s -> establecerContra("inter4", "inter4");
+    s -> cerrarSesion();
 }

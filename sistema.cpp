@@ -142,6 +142,12 @@ void sistema::confirmarInmobiliaria(){
     }
 }
 
+void sistema::confirmarInteresado(){
+    if(usuarioActual == NULL || ! dynamic_cast<interesado*>(usuarioActual)){
+        throw invalid_argument("Debes registrarte como interesado para realizar esta acción\n");
+    }
+}
+
 void sistema::ingresarInmobiliaria(string correo, direccion * dir, string nombre){
     if(correo == "" || nombre == "" || dir->getCalle() == "" || dir->getCiudad() == "" || dir->getNumero() == ""){
         throw invalid_argument("Alguno de los datos ingresados no es válido\n");
@@ -411,13 +417,11 @@ void sistema::borrarProp(string codigo){
     inmo -> BorrarPropiedad(codigo);
 }
 
-void sistema::listarPropMens(string zonaSeleccionada){
-    seleccionarZona(zonaSeleccionada);
-    List* lista = zonaActual -> listarPropMens(this -> usuarioActual -> getCorreo());
-
-    IIterator *iter = lista -> getIterator();
+void sistema::listarPropMens(){
+    IIterator *iter = zonaActual -> listarPropMens(this -> usuarioActual -> getCorreo()) -> getIterator();
+    cout << endl;
     while(iter -> hasCurrent()){
-        cout << iter -> getCurrent();
+        cout << (mensajesPropiedad *) iter -> getCurrent();
         iter -> next();
     }
 }
@@ -425,9 +429,10 @@ void sistema::listarPropMens(string zonaSeleccionada){
 void sistema::listarMensajes(string propSeleccionada){
     propiedad *prop = this -> zonaActual -> seleccionarPropiedad(propSeleccionada);
     registroMensajes *mensj = prop -> MostrarMensajes(this -> usuarioActual -> getCorreo());
-    List *lista = mensj -> getMensajes();
-    
-    IIterator *iter = lista -> getIterator();
+    if(mensj == NULL){
+        crearChat(propSeleccionada);
+    }
+    IIterator *iter = mensj -> getMensajes() -> getIterator();
     while(iter -> hasCurrent()){
         cout << iter -> getCurrent();
         iter -> next();
