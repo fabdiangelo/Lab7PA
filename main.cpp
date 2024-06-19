@@ -68,7 +68,7 @@ int main() {
         else if(e == "e") continuar = false;
         else cout << "\x1B[91mError:\033[0m\tOpción no válida\n";
     }
-    cout << "\n\n\n\n\n\n\t\x1B[97mNos Vemos!\033[0m";
+    cout << "\n\n\n\n\n\n\t\x1B[97mNos Vemos!\033[0m\n\n\n\n";
     return 0;
 }
 
@@ -102,12 +102,13 @@ void iniciarSesion(ISistema *s){
                 }catch (exception& e){
                     cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
                     cout << "\n\x1B[36m(char):\033[0m Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
-                    char continuar;
-                    cin >> continuar;
-                    cin.ignore();
-                    if (continuar != '1'){
+                    string continuar;
+                    getline(cin, continuar);
+                    if (continuar != "1"){
                         x = false;
                         s -> cerrarSesion();
+                        cout << "\n\x1B[91mNo ha iniciado sesión\033[0m\n";
+                        break;
                     }
                 }
             }
@@ -124,12 +125,12 @@ void iniciarSesion(ISistema *s){
                 }catch (exception& e){
                     cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
                     cout << "\n\x1B[36m(char):\033[0m Presione 1 para volver a intentarlo, o presione culaquier otra tecla para salir: ";
-                    char continuar;
-                    cin >> continuar;
-                    cin.ignore();
-                    if (continuar != '1'){
+                    string continuar;
+                    getline(cin, continuar);
+                    if (continuar != "1"){
                         x = false;
                         s -> cerrarSesion();
+                        cout << "\n\x1B[91mNo ha iniciado sesión\033[0m\n";
                         break;
                     }
                 }
@@ -389,7 +390,7 @@ void altaPropiedad(ISistema *s){
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 throw invalid_argument("El campo solicitado debía ser de tipo 'int'\n");
             }
-            s -> ingresarPrecioAlquiler(codigo, valorvent);
+            s -> ingresarPrecioVenta(codigo, valorvent);
         }
         if(tipo != '0' && tipo != '1' && tipo != '2'){
             throw invalid_argument("Opción no válida\n");
@@ -430,7 +431,9 @@ void consultarPropiedad(ISistema *s){
         string prop;
         getline(cin, prop);
         transform(prop.begin(), prop.end(), prop.begin(), ::toupper);
+        cout << "\x1B[92m";
         s -> infoPropInmo(prop);
+        cout << "\033[0m";
     }catch (exception &e){
         cout <<"\n\x1B[91mError:\033[0m\t" << e.what();
     }
