@@ -131,11 +131,10 @@ void propiedad::CrearChat(string correo){
 void propiedad::IngresarMensaje(string correo, string mensaje){
     IKey *k = new String(correo.c_str());
     if(!chats -> member(k)){
-        cout << "El usuario " << correo << " no ha creado un chat con la propiedad " << this -> getCodigo() << endl;
-    }else{
-        chat * c =(chat *) this -> chats -> find(k);
-        c -> CrearMensaje(mensaje);
+        throw invalid_argument("El usuario " + correo + " no ha creado un chat con la propiedad " + this -> getCodigo() + "\n");
     }
+    chat * c =(chat *) this -> chats -> find(k);
+    c -> CrearMensaje(mensaje);
 }
 
 int propiedad::obtenerCantMensajes(string correo){

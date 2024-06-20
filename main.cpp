@@ -263,6 +263,7 @@ void altaPropiedad(ISistema *s){
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo del nuevo apartamento: ";
             getline(cin, codigo);
+            s -> confirmarValidezCodigo(codigo);
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes del nuevo apartamento: ";
             cin >> cantAmb;
             cin.ignore();
@@ -310,6 +311,7 @@ void altaPropiedad(ISistema *s){
             bool garage;
             cout << "\n\n\x1B[36m(string):\033[0m Ingresa el codigo de la nueva casa: ";
             getline(cin, codigo);
+            s -> confirmarValidezCodigo(codigo);
             cout << "\n\x1B[36m(integer):\033[0m Ingresa la cantidad de ambientes de la nueva casa: ";
             cin >> cantAmb;
             cin.ignore();
@@ -680,8 +682,8 @@ void precarga(ISistema* s){
     s -> ingresarInteresado("inter2", 20, "interesado", "2");
     s -> ingresarInteresado("inter3", 30, "interesado", "3");
     s -> ingresarInteresado("inter4", 40, "interesado", "4");
-
     s -> cerrarSesion();
+
     s -> enviarCorreo("inmo1");
     s -> establecerContra("inmo1", "inmo1");
     s -> seleccionarDepartamento("L");
@@ -735,33 +737,40 @@ void precarga(ISistema* s){
     s -> ingresarEdificio("ED1", 1, 1111);
     s -> ingresarEdificio("ED2", 2, 2222);
     s -> seleccionarEdificio("ED1");
-    s -> ingresarDatosApartamento("AP1", 1, 1, 1, false, dir, 1);
-    s -> ingresarDatosCasa("CA1", 1, 1, 1, true, dir, 1, 1);
-    s -> ingresarDatosCasa("CA2", 2, 2, 2, false, dir, 2, 2);
-    s -> ingresarPrecioVenta("AP1", 11111);
-    s -> ingresarPrecioAlquiler("CA1", 111111);
+    s -> ingresarDatosApartamento("AP8", 1, 1, 1, false, dir, 1);
+    s -> ingresarDatosCasa("CA5", 1, 1, 1, true, dir, 1, 1);
+    s -> ingresarDatosCasa("CA6", 2, 2, 2, false, dir, 2, 2);
+    s -> ingresarPrecioVenta("AP8", 11111);
+    s -> ingresarPrecioAlquiler("CA5", 111111);
     s -> seleccionarDepartamento("L");
     s -> seleccionarZona("L1");
     s -> seleccionarEdificio("ED1");
-    s -> ingresarDatosApartamento("AP8", 1, 1, 1, true, dir, 1);
-    s -> ingresarDatosCasa("CA5", 1, 1, 1, false, dir, 1, 1);
+    s -> ingresarDatosApartamento("AP9", 1, 1, 1, true, dir, 1);
+    s -> ingresarDatosCasa("CA7", 1, 1, 1, false, dir, 1, 1);
     s -> cerrarSesion();
 
     s -> enviarCorreo("inmo3");
     s -> establecerContra("inmo3", "inmo3");
     s -> cerrarSesion();
-    s -> finalizarAlta();
 
+    s -> seleccionarDepartamento("L");
+    s -> seleccionarZona("L1");
     s -> enviarCorreo("inter1");
     s -> establecerContra("inter1", "inter1");
     s -> cerrarSesion();
+
     s -> enviarCorreo("inter2");
     s -> establecerContra("inter2", "inter2");
+    s -> crearChat("CA1");
+    s -> ingresarMensaje("Hi!", "CA1");
     s -> cerrarSesion();
+
     s -> enviarCorreo("inter3");
     s -> establecerContra("inter3", "inter3");
     s -> cerrarSesion();
     s -> enviarCorreo("inter4");
     s -> establecerContra("inter4", "inter4");
     s -> cerrarSesion();
+
+    s -> finalizarAlta();
 }
