@@ -68,7 +68,7 @@ int main() {
         else if(e == "e") continuar = false;
         else cout << "\x1B[91mError:\033[0m\tOpción no válida\n";
     }
-    cout << "\n\n\n\n\n\n\t\x1B[97mNos Vemos!\033[0m\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n\n\t\x1B[97mNos Vemos!\033[0m\n\n\n\n\n\n\n\n";
     return 0;
 }
 
