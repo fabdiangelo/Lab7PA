@@ -774,3 +774,4 @@ void precarga(ISistema* s){
 
     s -> finalizarAlta();
 }
+// Heyyyy muuy buenas a todos, WUÁPISIMOS, aquí VEGETTA 777;
