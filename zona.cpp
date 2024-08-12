@@ -83,9 +83,10 @@ propiedad* zona::seleccionarPropiedad(string codigo){
     if(this -> propiedades -> member(k)){
         propiedad* prop = (propiedad*) this -> propiedades -> find(k);
         return prop;
+    }else{
+        delete k;
+        throw invalid_argument("No se encontró una propiedad con el codigo " + codigo + " dentro de la zona " + this -> getNombre() + "\n");
     }
-    cout << "No se encontró una propiedad con el codigo " << codigo << " dentro de la zona " << this -> getNombre() << endl;
-    return NULL;
 }
 
 void zona::agegarPropiedad(propiedad* prop){

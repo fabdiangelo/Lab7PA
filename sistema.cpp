@@ -1,5 +1,4 @@
 #include "sistema.h"
-
 // CONSTRUCTOR:
 sistema * sistema::instance = NULL;
 
@@ -287,6 +286,35 @@ void sistema::seleccionarEdificio(string edSelec){
     this -> edificioActual = ed;
 }
 
+void sistema::confirmarValidezCodigo(string codigo){
+    confirmarInmobiliaria();
+    IKey *k = new String(codigo.c_str());
+    IDictionary *chatsInmo = new OrderedDictionary();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            zona* z = (zona*) iterZ -> getCurrent();
+            IIterator* iterProp = z -> listarPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                propiedad *prop = (propiedad *) iterProp -> getCurrent();
+                string mayus = codigo;
+                transform(mayus.begin(), mayus.end(), mayus.begin(), ::toupper);
+                if(prop -> getCodigo() == mayus){
+                    throw invalid_argument("Ya existe una propiedad con este código dentro del sistema\n");
+                }
+                iterProp -> next();
+            }
+            iterProp->~IIterator();
+            iterZ -> next();
+        }
+        iterZ->~IIterator();
+        iterDep -> next();
+    }
+    iterDep->~IIterator();
+}
+
 void sistema::ingresarDatosApartamento(string codigo, int cantAmb, int cantDorm, int cantBa, bool garage, direccion* dir, int m2){
     confirmarInmobiliaria();
     if( zonaActual == NULL || edificioActual == NULL){
@@ -406,13 +434,19 @@ void sistema::imprimirPropsInmo(){
     confirmarInmobiliaria();
     IIterator *iterDep = departamentos -> getIterator();
     while (iterDep -> hasCurrent()){
-        zona *z = (zona *) iterDep -> getCurrent();
-        IIterator *iterZ = z -> listarPropiedades() -> getIterator();
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
         while(iterZ -> hasCurrent()){
-            propiedad* prop = (propiedad *) iterZ -> getCurrent();
-            if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
-                cout << prop;
+            zona* z = (zona*) iterZ -> getCurrent();
+            IIterator* iterProp = z -> listarPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                propiedad* prop = (propiedad *) iterProp -> getCurrent();
+                if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
+                    cout << prop;
+                }
+                iterProp -> next();
             }
+            delete iterProp;
             iterZ -> next();
         }
         delete iterZ;
@@ -467,17 +501,100 @@ void sistema::ingresarMensaje(string mensaje, string codigo){
     }
     IKey* k = new String(codigo.c_str());
     propiedad* prop = (propiedad*) zonaActual -> listarPropiedades() -> find(k);
-    prop -> IngresarMensaje(usuarioActual -> getCorreo(), mensaje);
+    prop -> IngresarMensaje(usuarioActual -> getCorreo(), usuarioActual->getCorreo() + ": " + mensaje);
     delete k;
 }
 
 void sistema::listarMensajesRecientes(){
+    confirmarInmobiliaria();
+    IDictionary *chatsInmo = new OrderedDictionary();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            zona* z = (zona*) iterZ -> getCurrent();
+            IIterator* iterProp = z -> listarPropiedades() -> getIterator();
+            while(iterProp -> hasCurrent()){
+                propiedad* prop = (propiedad *) iterProp -> getCurrent();
+                if(prop -> getInmobiliaria() == usuarioActual -> getCorreo()){
+                    IIterator *iterChat = prop -> getChats() -> getIterator();
+                    while(iterChat -> hasCurrent()){
+                        chat* c = (chat *) iterChat -> getCurrent();
+                        IKey *k = new String ((c -> ultimoMens()).c_str());
+                        chatsInmo -> add(k, c);
+                        iterChat -> next();
+                    }
+                    delete iterChat;
+                }
+                iterProp -> next();
+            }
+            delete iterProp;
+            iterZ -> next();
+        }
+        delete iterZ;
+        iterDep -> next();
+    }
+    delete iterDep;
+    if(chatsInmo -> getSize() == 0){
+        throw invalid_argument("No hay conversaciónes iniciadas con esta inmobiliaria\n");
+    }
+    IIterator *iter = chatsInmo -> getIterator();
+    while(iter -> hasCurrent()){
+        chat * c= (chat *) iter -> getCurrent();
+        cout << c -> getPropiedad() << "\tINTERESADO: " << c -> getInteresado() << "\n" << c -> ObtenerRegistro() << endl;
+        iter -> next();
+    }
+    delete iter;
 }
 
-dtInmobiliaria* sistema::mostrarDatosInmo(){
-    return NULL;
+void sistema::enviarMensajeA(string codigo, string correo, string mensaje){
+    confirmarInmobiliaria();
+    finalizarAlta();
+    IKey *k = new String(codigo.c_str());
+    IDictionary *chatsInmo = new OrderedDictionary();
+    IIterator *iterDep = departamentos -> getIterator();
+    while (iterDep -> hasCurrent()){
+        departamento *dep = (departamento *) iterDep -> getCurrent();
+        IIterator *iterZ = dep -> getZonas() -> getIterator();
+        while(iterZ -> hasCurrent()){
+            zona* z = (zona*) iterZ -> getCurrent();
+            if(z -> listarPropiedades() -> member(k)){
+                propiedad* prop = (propiedad *) z -> listarPropiedades() -> find(k);
+                if(prop -> getInmobiliaria() != usuarioActual -> getCorreo()){
+                    throw invalid_argument("La propiedad por la que tratas de responder no te pertenece\n");
+                }
+                delete k;
+                departamentoActual = dep;
+                zonaActual = z;
+                prop -> IngresarMensaje(correo, usuarioActual -> getCorreo() + ": " + mensaje);
+            }
+            iterZ -> next();
+        }
+        delete iterZ;
+        iterDep -> next();
+    }
+    delete iterDep;
+    if(zonaActual == NULL){
+        throw invalid_argument("No existe una propiedad con ese código\n");
+    }
 }
 
-dtPropiedad* sistema::mostrarPropiedad(){
-    return NULL;
+void sistema::mostrarDatosInmo(){
+    confirmarAdmin();
+    IIterator *iter = usuarios -> getIterator();
+    int count = 0;
+    while (iter -> hasCurrent()){
+        inmobiliaria* inmo = dynamic_cast<inmobiliaria*>(iter -> getCurrent());
+        if(inmo){
+            cout << endl;
+            inmo -> MostrarDatos();
+            count ++;
+        }
+        iter -> next();
+    }
+    delete iter;
+    if(count == 0){
+        throw invalid_argument("No hay inmobiliarias registradas");
+    }
 }
